@@ -46,6 +46,7 @@ body{
 
 .navBar .navLinksDiv a:hover{
     color: darkcyan !important;
+    background-color: #f8f9fa;
 }
 
 .sidebarHeading{
