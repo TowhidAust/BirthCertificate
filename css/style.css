@@ -53,3 +53,9 @@ body{
     margin-bottom: 0.5em;
 }
 
+.termsCheck{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
