@@ -1,0 +1,99 @@
+
+
+Get http://localhost/rental/api/pickup-district
+
+Get http://localhost/rental/api/pickup-thana/1
+
+Get http://localhost/rental/api/drop-district
+
+Get http://localhost/rental/api/drop-thana/1
+
+Post http://localhost/rental/api/search-car-list?trip_date=12-12-2020&trip_time=12:12&pickup_location=dhanmondi&from_thana=10&to_thana=13
+
+post http://localhost/rental/api/user-registration?user_name=saif1&mobno=01741474167&emailid=saif1@gmail.com&gender=1&password=123456
+
+post http://localhost/rental/api//user-login?username=saif@gmail.com&password=123456&device_token=gggggggggggggggggggggg&fcm_id=sdfsfssssssssssssssssssdddddddddddddddddd
+
+Post http://localhost/rental/api/user-logout?user_id=4&api_token=soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz
+
+post http://localhost/rental/api/book?car=2&return_fare=500&pickup_location=dhanmondilake&customer_id=4&base_fare=4000&fare_id=31&trip_date=12-12-2020&trip_time=12:12&api_token=soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz
+
+Post http://localhost/rental/api/ride-history?customer_id=4&api_token=soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz
+Get http://localhost/rental/api/wedding-package
+Get http://localhost/rental/api/package
+
+post http://localhost/rental/api/book-package?customer_id=14&package_id=9&api_token=soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz&price=5000
+
+
+get  https://xpress.com.bd/api/guest-car
+
+POST  http://xpress.com.bd/api/car-slot?car_id=1
+
+post http://xpress.com.bd/api/book-wedding-car?customer_id=14&wedding_pack_id=9&api_token=soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz&price=5000&pickup_location=barishal&trip_date=2020/20/20&type=real&color_id=1
+
+Get  http://localhost/rental/api/colors
+post http://xpress.com.bd/api/book-guest-car?customer_id=14&wedding_pack_id=9&api_token=soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz&price=5000&pickup_location=barishal&trip_date=2020/20/20&type=real&color_id=1
+&slot_id=array&car=array&car_name=alian
+
+post https://xpress.com.bd/api/book-guest-car
+{
+    "api_token":"soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz",
+    "wedding_pack_id":"1",
+    "trip_date":"2020/2/20",
+    "price":"5000",
+    "pickup_location":"dhanmondi",
+    "color_id":1,
+    "type":"real",
+    "customer_id":4,
+    "slot":[
+       {
+        "slot_id":4,
+        "qty":1
+       },
+       {
+        "slot_id":8,
+        "qty":2
+       }
+    ]
+}
+ sample data from body->row
+
+ Post Route::post('/book-guest-car-only', 'UsersApi@bookGuestCarOnly');
+ {
+     "api_token":"soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz",
+     "trip_date":"2020/2/20",
+     "pickup_location":"dhanmondi",
+     "customer_id":4,
+     "slot":[
+        {
+         "slot_id":4,
+         "qty":1
+        },
+        {
+         "slot_id":8,
+         "qty":1
+        }
+     ]
+ }
+ post http://xpress.com.bd/api/user-profile
+ {
+    "api_token":"soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz",
+    "user_id":"4"
+ }
+ post https://xpress.com.bd/api/edit-user-profile
+ form data
+ user_id   requied
+ api_token  requied
+ emailid requied
+ mobno requied
+ user_name
+ gender  (1,0)
+ profile_pic
+
+ post http://xpress.com.bd/api/change-password
+ {
+    "api_token":"soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz",
+    "user_id":"4",
+     "new_password":"111111"
+}
+Post http://xpress.com.bd/api/cancel-ride-request?api_token=soolv73qJetJUkA3DTHt4DOjiUimjOHWGxQzs3mWLqhwZhZFm8qlFU4dwFEz&booking_id=4&reason=soo far
