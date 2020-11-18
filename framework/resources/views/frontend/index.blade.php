@@ -122,6 +122,7 @@
                               </tr>
                           </table>
                     </div>
+                    <a href="{{route('application_form')}}"><button style="float:right;" class="btn btn-primary " type="button" name="button"> Continue to Online Enrolment</button></a>
                 </div>
             </div>
         </div>

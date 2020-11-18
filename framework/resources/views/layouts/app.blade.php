@@ -296,7 +296,7 @@ $(document).ready(function(){
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>
               <p>
-                @lang('menu.bookings')
+                applications
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -305,14 +305,14 @@ $(document).ready(function(){
                 <a style="margin-left: 23px;" href="{{ route('bookings.create')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
                   <i class="fa fa-address-book nav-icon "></i>
                   <p>
-                  @lang('menu.newbooking')</p>
+                New Applications</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('bookings.index')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
-                  @lang('menu.manage_bookings')</p>
+                  Manage Applications</p>
                 </a>
               </li>
             </ul>
@@ -485,7 +485,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('drivers.index')}}" class="nav-link @if(Request::is('admin/drivers*')) active @endif">
                   <i class="fa fa-id-card nav-icon"></i>
-                  <p>@lang('menu.drivers')</p>
+                  <p>Word Councillor</p>
                 </a>
               </li>
               @endif
@@ -493,14 +493,14 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('users.index')}}" class="nav-link @if(Request::is('admin/users*')) active @endif">
                   <i class="fa fa-user nav-icon"></i>
-                  <p>@lang('fleet.users')</p>
+                  <p>Medical Office</p>
                 </a>
               </li>
               @if(in_array(0,$modules))
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('customers.index')}}" class="nav-link @if(Request::is('admin/customers*')) active @endif">
                   <i class="fa fa-address-card nav-icon"></i>
-                  <p>@lang('fleet.customers')</p>
+                  <p>Operator</p>
                 </a>
               </li>
               @endif
@@ -540,7 +540,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('income.index')}}" class="nav-link @if((Request::is('admin/income'))|| (Request::is('admin/income_records'))) active @endif">
                   <i class="fa fa-newspaper-o nav-icon"></i>
-                  <p>@lang('fleet.manage_income')</p>
+                  <p>Manage Fee</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -567,7 +567,7 @@ $(document).ready(function(){
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>
               <p>
-                @lang('menu.bookings')
+                Applications
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -576,28 +576,22 @@ $(document).ready(function(){
                 <a style="margin-left: 23px;" href="{{ route('bookings.create')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
                   <i class="fa fa-address-book nav-icon "></i>
                   <p>
-                  @lang('menu.newbooking')</p>
+                  New Applications</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('bookings.index')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
-                  @lang('menu.manage_bookings')</p>
+                  Manage Applications</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('booking-quotation.index')}}" class="nav-link @if(Request::is('admin/booking-quotation*')) active @endif">
-                  <i class="fa fa-quote-left nav-icon"></i>
-                  <p>
-                  @lang('fleet.booking_quotes')</p>
-                </a>
-              </li>
+
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('bookings.calendar')}}" class="nav-link @if(Request::is('admin/bookings_calendar')) active @endif">
                   <i class="fa fa-calendar nav-icon"></i>
                   <p>
-                  @lang('menu.calendar')</p>
+                  Calander</p>
                 </a>
               </li>
             </ul>
@@ -624,7 +618,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/reports/income') }}" class="nav-link @if(Request::is('admin/reports/income')) active @endif">
                   <i class="fa fa-credit-card nav-icon"></i>
-                  <p> @lang('fleet.income') @lang('fleet.report')</p>
+                  <p> Fee @lang('fleet.report')</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -650,7 +644,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('reports.booking') }}" class="nav-link @if(Request::is('admin/reports/booking')) active @endif">
                   <i class="fa fa-book nav-icon"></i>
-                  <p>@lang('menu.bookingReport')</p>
+                  <p>Applications</p>
                 </a>
               </li>
               @endif
@@ -662,36 +656,22 @@ $(document).ready(function(){
                 </a>
               </li>
               @endif
-              @if(in_array(5,$modules))
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.fuel') }}" class="nav-link @if(Request::is('admin/reports/fuel')) active @endif">
-                  <i class="fa fa-truck nav-icon"></i>
-                  <p>@lang('fleet.fuelReport')</p>
-                </a>
-              </li>
-              @endif
+
               @if(in_array(0,$modules))
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('reports.drivers') }}" class="nav-link @if(Request::is('admin/reports/drivers')) active @endif">
                   <i class="fa fa-id-card nav-icon"></i>
-                  <p>@lang('fleet.driverReport')</p>
+                  <p>@lang('fleet.Officers')</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('reports.customers') }}" class="nav-link @if(Request::is('admin/reports/customers')) active @endif">
                   <i class="fa fa-users nav-icon"></i>
-                  <p>@lang('fleet.customerReport')</p>
+                  <p>@lang('fleet.Operators')</p>
                 </a>
               </li>
               @endif
-              @if(in_array(6,$modules))
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.vendors') }}" class="nav-link @if(Request::is('admin/reports/vendors')) active @endif">
-                  <i class="fa fa-cubes nav-icon"></i>
-                  <p>@lang('fleet.vendorReport')</p>
-                </a>
-              </li>
-              @endif
+
               @if(in_array(2,$modules))
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('reports.yearly') }}" class="nav-link @if(Request::is('admin/reports/yearly')) active @endif">

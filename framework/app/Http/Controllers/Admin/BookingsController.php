@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BookingRequest;
 use App\Mail\DriverBooked;
 use App\Mail\VehicleBooked;
-use App\Model\Address;
 use App\Model\BookingIncome;
 use App\Model\BookingPaymentsModel;
 use App\Model\Bookings;
@@ -36,10 +35,7 @@ public function index()
             $vehicle_ids = VehicleModel::where('group_id', Auth::user()->group_id)->pluck('id')->toArray();
             $data['data'] = Bookings::whereIn('vehicle_id', $vehicle_ids)->orderBy('id', 'desc')->get();
         }
-        $data['fare']= DB::table('fare_commission')
-                    ->select('*')
-                    ->orderBy('id','desc')
-                    ->get();
+      
         $data['types'] = IncCats::get();
         // dd($data);
         return view("bookings.index", $data);
@@ -319,7 +315,6 @@ public function index()
         $user = Auth::user()->group_id;
         $data['customers'] = User::where('user_type', 'C')->get();
         $data['drivers'] = User::whereUser_type("D")->get();
-        $data['addresses'] = Address::where('customer_id', Auth::user()->id)->get();
         if ($user == null) {
             $data['vehicles'] = VehicleModel::whereIn_service("1")->get();
         } else {
@@ -410,9 +405,6 @@ public function index()
         if ($xx) {
             $id = Bookings::create($request->all())->id;
 
-            Address::updateOrCreate(['customer_id' => $request->get('customer_id'), 'address' => $request->get('pickup_addr')]);
-
-            Address::updateOrCreate(['customer_id' => $request->get('customer_id'), 'address' => $request->get('dest_addr')]);
 
             $booking = Bookings::find($id);
             $booking->user_id = $request->get("user_id");
