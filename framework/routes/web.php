@@ -7,5 +7,6 @@ if (env('front_enable') == 'no') {
     })->middleware('IsInstalled');
 } else {
     Route::get('/', 'FrontendController@index')->middleware('IsInstalled')->name('index');
+    Route::get('/application-form', 'FrontendController@applicationForm')->middleware('IsInstalled')->name('application_form');
 
 }

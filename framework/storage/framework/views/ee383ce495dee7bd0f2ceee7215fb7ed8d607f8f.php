@@ -26,19 +26,8 @@
               <span class="info-box-icon bg-success"><i class="fa fa-id-card"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text"><?php echo app('translator')->getFromJson('fleet.drivers'); ?></span>
-                <span class="info-box-number"><?php echo e($drivers); ?></span>
-              </div>
-            </div>
-          </div>
-          <?php endif; ?>
-          <?php if(in_array(3,$modules)): ?>
-          <div class="col-lg-4 col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-danger"><i class="fa fa-book"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><?php echo app('translator')->getFromJson('fleet.bookings'); ?></span>
-                <span class="info-box-number"><?php echo e($bookings); ?></span>
+                <span class="info-box-text">Officer</span>
+                <span class="info-box-number">123</span>
               </div>
             </div>
           </div>
@@ -48,19 +37,31 @@
             <div class="info-box">
               <span class="info-box-icon bg-info"><i class="fa fa-taxi"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text"><?php echo app('translator')->getFromJson('fleet.vehicles'); ?></span>
-                <span class="info-box-number"><?php echo e($vehicles); ?></span>
+                <span class="info-box-text">Operator</span>
+                <span class="info-box-number">54</span>
               </div>
             </div>
           </div>
           <?php endif; ?>
+          <?php if(in_array(3,$modules)): ?>
+          <div class="col-lg-4 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Application</span>
+                <span class="info-box-number">122</span>
+              </div>
+            </div>
+          </div>
+          <?php endif; ?>
+
           <?php if(in_array(2,$modules)): ?>
           <div class="col-lg-4 col-xs-6">
             <div class="info-box">
               <span class="info-box-icon bg-success"><i class="fa fa-money"></i></span>
               <div class="info-box-content">
-                <span class="info-box-text"><?php echo app('translator')->getFromJson('fleet.income'); ?></span>
-                <span class="info-box-number"><small><?php echo e(Hyvikk::get("currency")); ?></small> <?php echo e($income); ?></span>
+                <span class="info-box-text">Application Fee</span>
+                <span class="info-box-number"><small><?php echo e(Hyvikk::get("currency")); ?></small> 50000</span>
               </div>
             </div>
           </div>
@@ -75,28 +76,7 @@
           </div>
           <?php endif; ?>
 
-          <?php if(in_array(0,$modules)): ?>
-          <div class="col-lg-4  col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-info"><i class="fa fa-address-card"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><?php echo app('translator')->getFromJson('fleet.customers'); ?></span>
-                <span class="info-box-number"><?php echo e($customers); ?></span>
-              </div>
-            </div>
-          </div>
-          <?php endif; ?>
-          <?php if(in_array(6,$modules)): ?>
-          <div class="col-lg-4  col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fa fa-cubes"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><?php echo app('translator')->getFromJson('fleet.vendors'); ?></span>
-                <span class="info-box-number"><?php echo e($vendors); ?></span>
-              </div>
-            </div>
-          </div>
-          <?php endif; ?>
+
           <?php if(Hyvikk::api('api') && Hyvikk::api('driver_review') == 1 && in_array(10,$modules)): ?>
           <div class="col-lg-4  col-xs-6">
             <div class="info-box">
@@ -108,33 +88,6 @@
             </div>
           </div>
           <?php endif; ?>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-12">
-    <div class="card card-default">
-      <div class="card-header">
-        <h3 class="card-title"><?php echo app('translator')->getFromJson("fleet.monthly_chart"); ?> <?php echo e(date("F")); ?></h3>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card card-info">
-              <div class="card-header"> <h5> <?php echo app('translator')->getFromJson('fleet.income'); ?> - <?php echo app('translator')->getFromJson('fleet.expense'); ?> </h5></div>
-              <div class="card-body">
-                <canvas id="canvas" width="400" height="400"></canvas>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card card-info">
-              <div class="card-header"> <h5> <?php echo app('translator')->getFromJson('fleet.vehicle'); ?>  <?php echo app('translator')->getFromJson('fleet.expenses'); ?> </h5></div>
-              <div class="card-body">
-                <canvas id="canvas2" width="400" height="400"></canvas>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -401,4 +354,5 @@ function random_color(i){
   });
 </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/home.blade.php ENDPATH**/ ?>

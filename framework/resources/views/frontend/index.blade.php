@@ -122,12 +122,7 @@
                               </tr>
                           </table>
                     </div>
-
-                    <div class="termsCheck">
-                      <input type="checkbox"> 
-                      <span class="ml-1">i have read all the terms and conditions.</span>
-                      <a class="btn btn-primary ml-3" href="./birthForms/birthformSlip.html">continue</a>
-                    </div>
+                    <a href="{{route('application_form')}}"><button style="float:right;" class="btn btn-primary " type="button" name="button"> Continue to Online Enrolment</button></a>
                 </div>
             </div>
         </div>
