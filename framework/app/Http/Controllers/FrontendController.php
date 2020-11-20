@@ -22,4 +22,11 @@ class FrontendController extends Controller {
 		return view('frontend.application_form');
 	}
 
+	public function correctionForm() {
+
+		return view('frontend.correction');
+	}
+
+
+
 }
