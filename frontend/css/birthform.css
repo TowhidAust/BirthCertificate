@@ -2,6 +2,7 @@
     width: 50%;
 }
 
-.Applyform_header .applyNo{
-    width: 50%;
+.Applyform_header .applyNo {
+    width: 20%;
+    background-color: rebeccapurple;
 }
