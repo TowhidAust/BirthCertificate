@@ -3,6 +3,20 @@
 }
 
 .Applyform_header .applyNo {
-    width: 20%;
-    background-color: rebeccapurple;
+    width: 50%;
+    background-color: #99336e;
+    padding: 2%;
+    border-radius: 5px;
+}
+
+input, select{
+    width: 95% !important;
+}
+
+.col-md-6{
+    border: 1px dashed #dddddd;
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin: 2% 0;
 }

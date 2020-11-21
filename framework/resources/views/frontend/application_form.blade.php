@@ -9,8 +9,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
-  <!-- <link rel="stylesheet" href="{{asset('frontend/css/birthform.css')}}"> -->
-  <link rel="stylesheet" href="{{asset('frontend/css/new.css')}}">
+  <link rel="stylesheet" href="{{asset('frontend/css/birthform.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('frontend/css/new.css')}}"> -->
   <title>Birth Certificate</title>
 </head>
 
@@ -58,7 +58,7 @@
 
           <div class="applyNo">
             <label for="">বিনামূল্যে বিতরনের জন্য অনলাইনের মাধ্যমে/ফটোকপি/হাতে লিখা/কম্পিউটার প্রিন্ট কপি গ্রহনযোগ্য আবেদন পত্র নম্বর</label>
-            <input type="text" name="" id="">
+            <input class="form-control" type="text" name="" id="">
           </div>
         </div>
 
@@ -67,7 +67,7 @@
 
           <!-- First col -->
           <div class="col-md-6">
-            <div class="mt-5">
+            <div class="mt-3">
               <label for="">নিবন্ধন কার্যালয়ের নামঃ </label>
               <input class="form-control" type="text">
             </div>
@@ -199,7 +199,7 @@
 
           <!-- 2nd col -->
           <div class="col-md-6">
-            <h3>জন্মস্থানের ঠিকানাঃ (বাংলায়)</h3>
+            <h3 class="mt-3">জন্মস্থানের ঠিকানাঃ (বাংলায়)</h3>
             <label class="mt-3" for=""> বাসা ও সড়কঃ (নাম নম্বর) </label>
             <input class="form-control" type="text">
 
@@ -295,35 +295,7 @@
               <input class="form-control" type="text">
             </div>
 
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          <div class="mt-3 p-3">
+            <div class="mt-3 p-3">
             <h3>আবেদনকারীর প্রত্যয়ন (নিবন্ধনকারী ব্যাক্তি ১৮ বছরের নিম্নে বয়স্ক হলে তাহার পিতা বা মাতা বা আইনানুগ অভিভাবক বা বিধি ৯ মতে ক্ষমতাপ্রাপ্ত ব্যক্তি) নিম্নে প্রত্যয়নপূর্বক সাক্ষর/ টিপসহি প্রদান করিবেনঃ</h3>
 
             <label class="mt-3" for=""> নামঃ </label>
@@ -351,6 +323,12 @@
             <label class="mt-3" for="">আমি সজ্ঞানে ঘোষণা করিতেছি যে উপরে বর্ণিত সকল তথ্য সঠিক এবং আমার/আবেদনাধীন ব্যক্তির অন্য কোথাও জন্ম নিবন্ধিত হয় নাই;হইয়া থাকিলে আমি তাহার জন্য দায়ী থাকিব।</label>
 
           </div>
+          </div>
+
+
+
+
+
 
       </form>
     </div>
