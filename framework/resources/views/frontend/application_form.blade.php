@@ -9,6 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+  <!-- <link rel="stylesheet" href="{{asset('frontend/css/x.css')}}"> -->
   <link rel="stylesheet" href="{{asset('frontend/css/birthform.css')}}">
   <!-- <link rel="stylesheet" href="{{asset('frontend/css/new.css')}}"> -->
   <title>Birth Certificate</title>
@@ -53,11 +54,11 @@
 
         <div class="Applyform_header d-flex justify-content-between align-items-center">
           <div class="avatarImage">
-            <img width="200" height="200" src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar">
+            <img class="img-fluid img-thumbnail" width="200" height="200" src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar">
           </div>
 
           <div class="applyNo">
-            <label for="">বিনামূল্যে বিতরনের জন্য অনলাইনের মাধ্যমে/ফটোকপি/হাতে লিখা/কম্পিউটার প্রিন্ট কপি গ্রহনযোগ্য আবেদন পত্র নম্বর</label>
+            <label class="text-white" for="">বিনামূল্যে বিতরনের জন্য অনলাইনের মাধ্যমে/ফটোকপি/হাতে লিখা/কম্পিউটার প্রিন্ট কপি গ্রহনযোগ্য আবেদন পত্র নম্বর</label>
             <input class="form-control" type="text" name="" id="">
           </div>
         </div>
