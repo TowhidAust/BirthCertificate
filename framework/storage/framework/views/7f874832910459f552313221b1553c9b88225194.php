@@ -49,24 +49,24 @@
 
             <form action="POST">
 
-                <div class="Applyform_header d-flex justify-content-between align-items-center">
-                  <div class="avatarImage">
-                    <img width="200" height="200" src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar">
-                  </div>
-
-                  <div class="applyNo">
-                    <label for="">বিনামূল্যে বিতরনের জন্য অনলাইনের মাধ্যমে/ফটোকপি/হাতে লিখা/কম্পিউটার প্রিন্ট কপি গ্রহনযোগ্য আবেদন পত্র নম্বর</label>
-                  <input type="text" name="" id="">
-                  </div>
-                </div>
-                <div class="mt-3">
+               
+                <div class="mt-3 birthInfoCheck">
                   <h3>জন্ম তথ্য যাচাই</h3>
                    <p>Enter the birth registration number and the date of birth of the person.</p>
-                    <label for=""> Birth Registration Number </label>
+
+                   <div class="row">
+                   <div class="col-md-6">
+                   <label for=""> Birth Registration Number </label>
                     <input class="form-control" type="text">
 
-                    <label for=""> Date of Birth </label>
+                    <label class="mt-3" for=""> Date of Birth </label>
                     <input class="form-control" type="date">
+                   </div>
+                   <div class="col-md-6">
+                      <h3>Output</h3>
+                   </div>
+                   </div>
+                    
                 </div>
             </form>
         </div>
