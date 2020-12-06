@@ -580,6 +580,13 @@ $(document).ready(function(){
                 </a>
               </li>
               <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('bookings.create')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Corrections</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('bookings.index')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
@@ -667,7 +674,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('reports.customers') }}" class="nav-link @if(Request::is('admin/reports/customers')) active @endif">
                   <i class="fa fa-users nav-icon"></i>
-                  <p>@lang('fleet.Operators')</p>
+                  <p>Operators</p>
                 </a>
               </li>
               @endif
@@ -705,12 +712,12 @@ $(document).ready(function(){
                   <p>@lang('menu.general_settings')</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/api-settings')}}" class="nav-link @if(Request::is('admin/api-settings')) active @endif">
                   <i class="fa fa-gear nav-icon"></i>
                   <p>@lang('menu.api_settings')</p>
                 </a>
-              </li>
+              </li> -->
               {{-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/payment-settings')}}" class="nav-link @if(Request::is('admin/payment-settings')) active @endif">
                   <i class="fa fa-gear nav-icon"></i>
@@ -735,36 +742,36 @@ $(document).ready(function(){
                   <p>@lang('menu.email_content')</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/fare-settings')}}" class="nav-link @if(Request::is('admin/fare-settings')) active @endif">
                   <i class="fa fa-gear nav-icon"></i>
                   <p>@lang('menu.fare_settings')</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('expensecategories.index') }}" class="nav-link @if(Request::is('admin/expensecategories*')) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>@lang('menu.expenseCategories')</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('incomecategories.index') }}" class="nav-link @if(Request::is('admin/incomecategories*')) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>@lang('menu.incomeCategories')</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/frontend-settings')}}" class="nav-link @if(Request::is('admin/frontend-settings')) active @endif">
                   <i class="fa fa-address-card nav-icon"></i>
                   <p>@lang('fleet.frontend_settings')</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/company-services')}}" class="nav-link @if(Request::is('admin/company-services*')) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>@lang('fleet.companyServices')</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
 

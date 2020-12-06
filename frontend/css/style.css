@@ -1,4 +1,5 @@
 /* Index.html css */
+
 .headerSection{
     padding: 2%;
 }
@@ -9,10 +10,11 @@
 
 .headerContent{
     padding: 2%;
+      color:white;
 }
 
 body{
-    background: lightcyan;
+    background:#3C736E;
 }
 
 .mainContents{

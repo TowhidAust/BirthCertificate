@@ -581,6 +581,13 @@ $(document).ready(function(){
                 </a>
               </li>
               <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('bookings.create')); ?>" class="nav-link <?php if(Request::is('admin/bookings/create')): ?> active <?php endif; ?>">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Corrections</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('bookings.index')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
@@ -668,7 +675,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('reports.customers')); ?>" class="nav-link <?php if(Request::is('admin/reports/customers')): ?> active <?php endif; ?>">
                   <i class="fa fa-users nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('fleet.Operators'); ?></p>
+                  <p>Operators</p>
                 </a>
               </li>
               <?php endif; ?>
@@ -706,12 +713,12 @@ $(document).ready(function(){
                   <p><?php echo app('translator')->getFromJson('menu.general_settings'); ?></p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(url('admin/api-settings')); ?>" class="nav-link <?php if(Request::is('admin/api-settings')): ?> active <?php endif; ?>">
                   <i class="fa fa-gear nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('menu.api_settings'); ?></p>
                 </a>
-              </li>
+              </li> -->
               
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('cancel-reason.index')); ?>" class="nav-link <?php if(Request::is('admin/cancel-reason*')): ?> active <?php endif; ?>">
@@ -731,36 +738,36 @@ $(document).ready(function(){
                   <p><?php echo app('translator')->getFromJson('menu.email_content'); ?></p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(url('admin/fare-settings')); ?>" class="nav-link <?php if(Request::is('admin/fare-settings')): ?> active <?php endif; ?>">
                   <i class="fa fa-gear nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('menu.fare_settings'); ?></p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('expensecategories.index')); ?>" class="nav-link <?php if(Request::is('admin/expensecategories*')): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('menu.expenseCategories'); ?></p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('incomecategories.index')); ?>" class="nav-link <?php if(Request::is('admin/incomecategories*')): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('menu.incomeCategories'); ?></p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(url('admin/frontend-settings')); ?>" class="nav-link <?php if(Request::is('admin/frontend-settings')): ?> active <?php endif; ?>">
                   <i class="fa fa-address-card nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('fleet.frontend_settings'); ?></p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(url('admin/company-services')); ?>" class="nav-link <?php if(Request::is('admin/company-services*')): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('fleet.companyServices'); ?></p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
 
