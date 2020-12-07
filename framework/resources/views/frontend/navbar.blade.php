@@ -7,11 +7,9 @@
     <div class="collapse navbar-collapse navLinksDiv" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Features</a>
-        <a class="nav-item nav-link" href="#">Pricing</a>
         <a class="nav-item nav-link" href="{{route('correction_form')}}">Correction</a>
         <a class="nav-item nav-link" href="{{route('check_status')}}">Check Status</a>
-        <a class="nav-item nav-link" href="{{route('check_status')}}">Contact US</a>
+        <a class="nav-item nav-link" href="{{route('contact')}}">Contact US</a>
         <a class="nav-item nav-link" href="{{route('check_status')}}">FAQ</a>
       </div>
     </div>

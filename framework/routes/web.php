@@ -13,4 +13,7 @@ if (env('front_enable') == 'no') {
     Route::post('/application-submit', 'ApplicationController@application')->middleware('IsInstalled')->name('application');
     Route::get('/check-status', 'ApplicationController@checkStatus')->middleware('IsInstalled')->name('check_status');
     Route::post('/verify', 'ApplicationController@verify')->middleware('IsInstalled')->name('verify');
+
+
+    Route::get('/contact', 'ApplicationController@contact')->middleware('IsInstalled')->name('contact');
 }

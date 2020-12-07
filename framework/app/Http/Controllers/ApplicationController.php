@@ -144,6 +144,10 @@ class ApplicationController extends Controller {
 
 	 	return view('frontend.check_status',$index);
  }
+ public function contact(){
+	// $index['data'] ='';
+	return view('frontend.contact');
+}
  public function verify(Request $request) {
 	$application_info= DB::table('applican_informations')
 					->where('id',$request->get('application_id'))
