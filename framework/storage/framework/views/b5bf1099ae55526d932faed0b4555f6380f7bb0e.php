@@ -5,48 +5,7 @@
         <div class="sidebarAndContents container mt-3">
             <div class="row">
                 <div class="col-md-4">
-
-                    <div class="sidebarHeading">
-                        <h4 class="text-center bg-primary rounded p-2 text-light">জন্ম নিবন্ধন সংক্রান্ত তথ্য</h4>
-                        <div class="sidebarLinks d-flex flex-column justify-content-center">
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি কাজে লাগে</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">আবেদন প্রক্রিয়া</a>
-                        </div>
-                    </div>
-                    <div class="sidebarHeading">
-                        <h4 class="text-center bg-primary rounded p-2 text-light">জন্ম নিবন্ধন সংক্রান্ত তথ্য</h4>
-                        <div class="sidebarLinks d-flex flex-column justify-content-center">
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি কাজে লাগে</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">আবেদন প্রক্রিয়া</a>
-                        </div>
-                    </div>
-                    <div class="sidebarHeading">
-                        <h4 class="text-center bg-primary rounded p-2 text-light">জন্ম নিবন্ধন সংক্রান্ত তথ্য</h4>
-                        <div class="sidebarLinks d-flex flex-column justify-content-center">
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি কাজে লাগে</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">আবেদন প্রক্রিয়া</a>
-                        </div>
-                    </div>
-                    <div class="sidebarHeading">
-                        <h4 class="text-center bg-primary rounded p-2 text-light">জন্ম নিবন্ধন সংক্রান্ত তথ্য</h4>
-                        <div class="sidebarLinks d-flex flex-column justify-content-center">
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি কাজে লাগে</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">আবেদন প্রক্রিয়া</a>
-                        </div>
-                    </div>
-                    <div class="sidebarHeading">
-                        <h4 class="text-center bg-primary rounded p-2 text-light">জন্ম নিবন্ধন সংক্রান্ত তথ্য</h4>
-                        <div class="sidebarLinks d-flex flex-column justify-content-center">
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">জন্ম নিবন্ধন কি কাজে লাগে</a>
-                            <a href="./sidebarLinks/sidebarDetails.html">আবেদন প্রক্রিয়া</a>
-                        </div>
-                    </div>
-
+                    <?php echo $__env->make('frontend.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
                 <div class="col-md-8">
                     <div class="header">
