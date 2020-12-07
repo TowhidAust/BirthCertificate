@@ -21,6 +21,7 @@ class ApplicationController extends Controller {
 		DB::table('applican_informations')
 						->insert(
 						['applican_name' => $request->get('applican_name'),
+						 'ward_name' => $request->get('ward_name'),
 						 'bangla_name' => $bangla_name,
 						 'english_name' => $request->get('english_name'),
 						 'birth_date' => $request->get('birth_date'),

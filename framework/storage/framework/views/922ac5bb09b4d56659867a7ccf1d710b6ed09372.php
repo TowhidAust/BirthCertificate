@@ -310,7 +310,7 @@ $(document).ready(function(){
                 </a>
               </li>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('bookings.index')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
+                <a style="margin-left: 23px;" href="<?php echo e(url('/application')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
                   Manage Applications</p>
@@ -588,7 +588,7 @@ $(document).ready(function(){
                 </a>
               </li>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('bookings.index')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
+                <a style="margin-left: 23px;" href="<?php echo e(route('application')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
                   Manage Applications</p>

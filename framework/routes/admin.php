@@ -15,6 +15,12 @@ Route::namespace ('Admin')->group(function () {
         // Route::get('test', function () {
         //     return view('geocode');
         // });
+
+
+        Route::get('/application', 'ApplicationController@index')->name('application')->middleware('userpermission:3');
+        Route::get('/application/{id}/view', 'ApplicationController@view_application');
+
+
         Route::post('clear-database', 'SettingsController@clear_database')->middleware('userpermission:S');
         Route::post('cancel-booking', 'BookingsController@cancel_booking');
         Route::resource('team', 'TeamController');

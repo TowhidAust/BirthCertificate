@@ -26,8 +26,18 @@
           <!-- First col -->
           <div class="col-md-6">
             <div class="mt-3">
-              <label for="">নিবন্ধন কার্যালয়ের নামঃ </label>
-              <input class="form-control" name="applican_name" type="text">
+              <label for="">নিবন্ধন কার্যালয়ের নামঃ বরিশাল সিটি কর্পোরেশন </label>
+              <input class="form-control" name="applican_name" value="বরিশাল সিটি কর্পোরেশন" type="hidden">
+            </div>
+            <div class="mt-3">
+              <label for="">নিবন্ধন ওয়ার্ডের নামঃ </label>
+              <select class="form-control" name="ward_name">
+                <option value="">ওয়ার্ড নির্বাচন করুন  </option>
+                <option value="1">ওয়ার্ড নং 1 </option>
+                <option value="2">ওয়ার্ড নং 2 </option>
+                <option value="3">ওয়ার্ড নং 3 </option>
+                <option value="4">ওয়ার্ড নং 4 </option>
+              </select>
             </div>
             <div class="mt-3">
               <label for="">নিবন্ধনাধীন ব্যক্তির পরিচিতিঃ (নাম বাংলায়) </label>

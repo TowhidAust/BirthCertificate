@@ -53,7 +53,7 @@
                   <td>{{$row->english_name}}</td>
                   <td>{{$row->birth_date}}</td>
                   <td>{{$row->gender}}</td>
-                  <td> <button type="button" class="btn btn-info" name="View">View</button> </td>
+                  <td> <a href="{{ url("admin/application/".$row->id."/view")}}"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
                 </tr>
                 @endforeach
             </tbody>
