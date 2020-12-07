@@ -1,9 +1,18 @@
 .Applyform_header .avatarImage{
     width: 50%;
 }
-
+.verify{
+  float: right;
+  padding-right: 21px;
+}
+.verify-botton{
+  background-color: #3c736e;
+}
 .Applyform_header .applyNo {
     width: 50%;
+<<<<<<< HEAD
+    background-color: rebeccapurple;
+=======
     background-color: #99336e;
     padding: 2%;
     border-radius: 5px;
@@ -19,4 +28,5 @@ input, select{
     padding-top: 3%;
     padding-bottom: 3%;
     margin: 2% 0;
+>>>>>>> master
 }

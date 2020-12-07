@@ -1,56 +1,12 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
-  <!-- <link rel="stylesheet" href="{{asset('frontend/css/x.css')}}"> -->
-  <link rel="stylesheet" href="{{asset('frontend/css/birthform.css')}}">
-  <!-- <link rel="stylesheet" href="{{asset('frontend/css/new.css')}}"> -->
-  <title>Birth Certificate</title>
-</head>
-
-<body>
-  <section class="headerSection">
-    <div class="d-flex flex-row justify-content-center align-items-center">
-      <img class="img-fluid logoImg" src="https://1.bp.blogspot.com/-ym26csnYYR8/XXnmanyREUI/AAAAAAAADxI/Bmf_fg2ny3EfA11_3wDhlpyalvEi7zhIQCLcBGAsYHQ/s320/Government%2Bof%2BBangladesh%2BLogo%2BEnglish.png" alt="logo">
-      <div class="headerContent">
-        <h3>রেজিস্ট্রার জেনারেলের কার্যালয়, জন্ম ও মৃত্যু নিবন্ধন</h3>
-        <h4>স্থানীয় সরকার বিভাগ</h4>
-      </div>
-      <img class="img-fluid logoImg" src="http://br.lgd.gov.bd/images/jonmo.jpg" alt="logo">
-    </div>
-  </section>
-
+@include('frontend.header')
   <section class="mainContents">
 
-    <div class="navBar">
-      <nav class="navbar navbar-expand-lg navbar-dark position-sticky">
-        <a class="navbar-brand" href="../index.html">জন্ম ও মৃত্যু নিবন্ধন</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse navLinksDiv" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-          </div>
-        </div>
-      </nav>
-    </div>
+    @include('frontend.navbar')
 
     <div class="sidebarAndContents container mt-3">
 
-      <form action="POST">
+      <form action="{{route('application')}}" method="post" enctype="multipart/form-data">
+         {{csrf_field() }}
 
         <div class="Applyform_header d-flex justify-content-between align-items-center">
           <div class="avatarImage">
@@ -70,32 +26,37 @@
           <div class="col-md-6">
             <div class="mt-3">
               <label for="">নিবন্ধন কার্যালয়ের নামঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" name="applican_name" type="text">
             </div>
             <div class="mt-3">
               <label for="">নিবন্ধনাধীন ব্যক্তির পরিচিতিঃ (নাম বাংলায়) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" name="bangla_name" type="text" required>
             </div>
             <div class="mt-3">
               <label for="">Name in english:(capital letters) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" name="english_name" type="text" required>
             </div>
 
             <div class="mt-3">
               <label for=""> জন্ম তারিখঃ খ্রিঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" name="birth_date" type="date" required>
+            </div>
+
+            <div class="mt-3">
+              <label for=""> ফোন নম্বর</label>
+              <input class="form-control" name="number" type="number" required>
             </div>
             <div class="mt-3">
               <label for=""> পিতা ও মাতার কততম সন্তানঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" name="sons_position" type="text" required>
             </div>
 
             <div class="mt-3">
               <label for=""> লিঙ্গঃ </label>
-              <select class="form-control" name="" id="">
-                <option value="">পুরুষ</option>
-                <option value="">নারী</option>
-                <option value="">তৃতীয় লিঙ্গ</option>
+              <select class="form-control" name="gender" id="" required>
+                <option value="পুরুষ">পুরুষ</option>
+                <option value="নারী">নারী</option>
+                <option value="তৃতীয় লিঙ্">তৃতীয় লিঙ্গ</option>
               </select>
             </div>
 
@@ -103,44 +64,44 @@
             <div class="mt-3">
               <h3>পিতা ও মাতার বিবরনঃ (বাংলায়)</h3>
               <label class="mt-3" for=""> পিতার নামঃ (বাংলায়) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="father_name_bn">
 
               <label class="mt-3" for=""> পিতার নামঃ (ইংরেজীতে) (CAPITAL LETTERS) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="father_name_en">
 
               <label class="mt-3" for=""> জন্ম নিবন্ধন নম্বরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="father_birth_id">
 
               <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="father_nid">
 
               <label class="mt-3" for=""> বিদেশে অবস্থান করলে পাসপোর্ট নম্বরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="father_passport">
 
               <label class="mt-3" for=""> জাতীয়তাঃ (বাংলাদেশী ব্যাতীত ভিন্ন হইলে) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="father_nationality">
 
 
 
 
               <!-- মাতা -->
               <label class="mt-3" for=""> মাতার নামঃ (বাংলায়) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="mother_name_bn">
 
               <label class="mt-3" for=""> মাতার নামঃ (ইংরেজীতে) (CAPITAL LETTERS) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="mother_name_en">
 
               <label class="mt-3" for=""> জন্ম নিবন্ধন নম্বরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="mother_birth_id">
 
               <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="mother_nid">
 
               <label class="mt-3" for=""> বিদেশে অবস্থান করলে পাসপোর্ট নম্বরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="mother_passport">
 
               <label class="mt-3" for=""> জাতীয়তাঃ (বাংলাদেশী ব্যাতীত ভিন্ন হইলে) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="mother_nationality">
 
             </div>
 
@@ -151,50 +112,65 @@
             <div class="mt-3">
               <h3>বর্তমান ঠিকানাঃ (বাংলায়)</h3>
               <label class="mt-3" for=""> বাসা ও সড়কঃ (নাম নম্বর) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_house_no_bn">
 
               <label class="mt-3" for=""> গ্রাম/পাড়া/মহল্লাঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_village_bn">
 
               <label class="mt-3" for=""> ইউনিয়ন/ওয়ার্ডঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_union_bn">
 
               <label class="mt-3" for=""> ডাকঘরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_postoffice_bn">
 
               <label class="mt-3" for=""> পোষ্ট কোডঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_post_code_bn">
 
               <label class="mt-3" for=""> উপজেলাঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_police_station_bn">
 
               <label class="mt-3" for=""> জেলাঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_district_bn">
             </div>
 
 
             <div class="mt-3">
               <h3>বর্তমান ঠিকানাঃ (ইংরেজীতে)</h3>
               <label class="mt-3" for=""> House/Road Name, No </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_house_no_en">
 
               <label class="mt-3" for=""> Village/ Area/ Town </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_village_en">
 
               <label class="mt-3" for=""> Union/Ward </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_union_en">
 
               <label class="mt-3" for=""> Post Office </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_postoffice_en">
 
               <label class="mt-3" for=""> Post Code </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_post_code_en">
 
               <label class="mt-3" for=""> Upozila </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_police_station_en">
 
               <label class="mt-3" for=""> District </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="p_district_en">
+            </div>
+
+            <div class="mt-3">
+              <h3>সমর্থনকারী কাগজপত্র</h3>
+              <label class="mt-3" for="">পিতা  জাতীয় পরিচয়পত্র </label>
+              <input class="form-control" type="file" name="father_nid_file">
+
+              <label class="mt-3" for="">মাতার  জাতীয় পরিচয়পত্র </label>
+              <input class="form-control" type="file" name="mother_nid_file">
+
+              <label class="mt-3" for=""> মেডিকেল রিপোর্ট / টিকা কার্ড </label>
+              <input class="form-control" type="file" name="card">
+
+              <label class="mt-3" for=""> অন্যান্য </label>
+              <input class="form-control" type="file" name="others">
             </div>
           </div>
 
@@ -202,98 +178,98 @@
           <div class="col-md-6">
             <h3 class="mt-3">জন্মস্থানের ঠিকানাঃ (বাংলায়)</h3>
             <label class="mt-3" for=""> বাসা ও সড়কঃ (নাম নম্বর) </label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="b_house_no_bn">
 
             <label class="mt-3" for=""> গ্রাম/পাড়া/মহল্লাঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="b_village_bn">
 
             <label class="mt-3" for=""> ইউনিয়ন/ওয়ার্ডঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="b_union_bn">
 
             <label class="mt-3" for=""> ডাকঘরঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="b_postoffice_bn">
 
             <label class="mt-3" for=""> পোষ্ট কোডঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="b_post_code_bn">
 
             <label class="mt-3" for=""> উপজেলাঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="b_police_station_bn">
 
             <label class="mt-3" for=""> জেলাঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" name="b_district_bn">
 
             <div class="mt-3">
               <h3>জন্মস্থানের ঠিকানাঃ (ইংরেজীতে)</h3>
               <label class="mt-3" for=""> House/Road Name, No </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="b_house_no_en">
+
               <label class="mt-3" for=""> Village/ Area/ Town </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="b_village_en">
 
               <label class="mt-3" for=""> Union/Ward </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="b_union_en">
 
               <label class="mt-3" for=""> Post Office </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="b_postoffice_en">
 
               <label class="mt-3" for=""> Post Code </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="b_post_code_en">
 
               <label class="mt-3" for=""> Upozila </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="b_police_station_en">
 
               <label class="mt-3" for=""> District </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="b_district_en">
             </div>
-
 
             <!-- স্থায়ী ঠিকানা -->
             <div class="mt-3">
               <h3>স্থায়ী ঠিকানাঃ (বাংলায়)</h3>
               <label class="mt-3" for=""> বাসা ও সড়কঃ (নাম নম্বর) </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_house_no_bn">
 
               <label class="mt-3" for=""> গ্রাম/পাড়া/মহল্লাঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_village_bn">
 
               <label class="mt-3" for=""> ইউনিয়ন/ওয়ার্ডঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_union_bn">
 
               <label class="mt-3" for=""> ডাকঘরঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_postoffice_bn">
 
               <label class="mt-3" for=""> পোষ্ট কোডঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_post_code_bn">
 
               <label class="mt-3" for=""> উপজেলাঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_police_station_bn">
 
               <label class="mt-3" for=""> জেলাঃ </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_district_bn">
             </div>
 
 
             <div class="mt-3">
               <h3>স্থায়ী ঠিকানাঃ (ইংরেজীতে)</h3>
               <label class="mt-3" for=""> House/Road Name, No </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_house_no_en">
 
               <label class="mt-3" for=""> Village/ Area/ Town </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_village_en">
 
               <label class="mt-3" for=""> Union/Ward </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_union_en">
 
               <label class="mt-3" for=""> Post Office </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_postoffice_en">
 
               <label class="mt-3" for=""> Post Code </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_post_code_en">
 
               <label class="mt-3" for=""> Upozila </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_police_station_en">
 
               <label class="mt-3" for=""> District </label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="per_district_en">
             </div>
 
             <div class="mt-3 p-3">
@@ -324,6 +300,10 @@
             <label class="mt-3" for="">আমি সজ্ঞানে ঘোষণা করিতেছি যে উপরে বর্ণিত সকল তথ্য সঠিক এবং আমার/আবেদনাধীন ব্যক্তির অন্য কোথাও জন্ম নিবন্ধিত হয় নাই;হইয়া থাকিলে আমি তাহার জন্য দায়ী থাকিব।</label>
 
           </div>
+          <div class="modal-footer">
+                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button class="btn btn-success notika-btn-success">Submit</button>
+             </div>
           </div>
 
 
@@ -334,18 +314,4 @@
       </form>
     </div>
   </section>
-
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    -->
-</body>
-
-</html>
+@include('frontend.footer')

@@ -35,8 +35,9 @@ public function index()
             $vehicle_ids = VehicleModel::where('group_id', Auth::user()->group_id)->pluck('id')->toArray();
             $data['data'] = Bookings::whereIn('vehicle_id', $vehicle_ids)->orderBy('id', 'desc')->get();
         }
-      
+
         $data['types'] = IncCats::get();
+        $data['applican_info'] = DB::table('applican_informations')->get();
         // dd($data);
         return view("bookings.index", $data);
     }

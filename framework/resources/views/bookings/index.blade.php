@@ -17,8 +17,8 @@
   <div class="col-md-12">
     <div class="card card-info">
       <div class="card-header with-border">
-        <h3 class="card-title"> @lang('fleet.manage_bookings') &nbsp;
-          <a href="{{route("bookings.create")}}" class="btn btn-success">@lang('fleet.new_booking')</a>
+        <h3 class="card-title"> @lang('Manage Application') &nbsp;
+          <a href="{{route("bookings.create")}}" class="btn btn-success">@lang('New Application')</a>
         </h3>
       </div>
 
@@ -33,19 +33,32 @@
                   @endif
                 </th>
                 <th> Application ID</th>
+                <th>Applican Name</th>
                 <th> Name Bangla</th>
                 <th>Name English</th>
                 <th>Birth Date</th>
-                <th>Phone Number</th>
-                <th>Present Address</th>
-                <th>Parmanet address</th>
+                <th>Gender</th>
                 <th>@lang('fleet.action')</th>
               </tr>
             </thead>
             <tbody>
-
+                @foreach($applican_info as $row)
+                <tr>
+                  <td>  @if($data->count() > 0)
+                    <input type="checkbox" id="chk_all">
+                    @endif</td>
+                  <td>{{$row->id}}</td>
+                  <td>{{$row->applican_name}}</td>
+                  <td>{{$row->bangla_name}}</td>
+                  <td>{{$row->english_name}}</td>
+                  <td>{{$row->birth_date}}</td>
+                  <td>{{$row->gender}}</td>
+                  <td> <button type="button" class="btn btn-info" name="View">View</button> </td>
+                </tr>
+                @endforeach
             </tbody>
             <tfoot>
+
               <tr>
                 <th>
                 @if($data->count() > 0)
@@ -53,12 +66,11 @@
                 @endif
                 </th>
                 <th> Application ID</th>
+                <th>Applican Name</th>
                 <th> Name Bangla</th>
                 <th>Name English</th>
                 <th>Birth Date</th>
-                <th>Phone Number</th>
-                <th>Present Address</th>
-                <th>Parmanet address</th>
+                <th>Gender</th>
                 <th>@lang('fleet.action')</th>
               </tr>
             </tfoot>
