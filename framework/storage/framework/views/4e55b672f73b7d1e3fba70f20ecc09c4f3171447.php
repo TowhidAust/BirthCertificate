@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse navLinksDiv" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="<?php echo e(url('/')); ?>">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="#">Features</a>
         <a class="nav-item nav-link" href="#">Pricing</a>
         <a class="nav-item nav-link" href="<?php echo e(route('correction_form')); ?>">Correction</a>
