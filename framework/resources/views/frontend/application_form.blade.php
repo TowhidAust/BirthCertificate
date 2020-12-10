@@ -3,7 +3,7 @@
 
     @include('frontend.navbar')
 
-    <div class="sidebarAndContents container mt-3">
+    <div class="sidebarAndContents applicationForm container mt-3">
 
       <form action="{{route('application_submit')}}" method="post" enctype="multipart/form-data">
          {{csrf_field() }}
@@ -23,7 +23,7 @@
         <div class="row">
 
           <!-- First col -->
-          <div class="col-md-6">
+          <div class="col-md-6 dashed">
             <div class="mt-3">
               <label for="">নিবন্ধন কার্যালয়ের নামঃ বরিশাল সিটি কর্পোরেশন </label>
               <select class="form-control" name="ward_name">
@@ -188,7 +188,7 @@
           </div>
 
           <!-- 2nd col -->
-          <div class="col-md-6">
+          <div class="col-md-6 dashed">
             <h3 class="mt-3">জন্মস্থানের ঠিকানাঃ (বাংলায়)</h3>
             <label class="mt-3" for=""> বাসা ও সড়কঃ (নাম নম্বর) </label>
             <input class="form-control" type="text" name="b_house_no_bn">

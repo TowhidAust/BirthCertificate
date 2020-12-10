@@ -3,7 +3,7 @@
 
     <?php echo $__env->make('frontend.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <div class="sidebarAndContents container mt-3">
+    <div class="sidebarAndContents applicationForm container mt-3">
 
       <form action="<?php echo e(route('application_submit')); ?>" method="post" enctype="multipart/form-data">
          <?php echo e(csrf_field()); ?>
@@ -24,7 +24,7 @@
         <div class="row">
 
           <!-- First col -->
-          <div class="col-md-6">
+          <div class="col-md-6 dashed">
             <div class="mt-3">
               <label for="">নিবন্ধন কার্যালয়ের নামঃ বরিশাল সিটি কর্পোরেশন </label>
               <select class="form-control" name="ward_name">
@@ -189,7 +189,7 @@
           </div>
 
           <!-- 2nd col -->
-          <div class="col-md-6">
+          <div class="col-md-6 dashed">
             <h3 class="mt-3">জন্মস্থানের ঠিকানাঃ (বাংলায়)</h3>
             <label class="mt-3" for=""> বাসা ও সড়কঃ (নাম নম্বর) </label>
             <input class="form-control" type="text" name="b_house_no_bn">
@@ -328,5 +328,8 @@
       </form>
     </div>
   </section>
+  <footer class="copyrightFooter">
+      <span>	&copy; 2020 Birth & Death Registration. All rights reserved. Developed by Birth and Death Registration Team.</span>
+    </footer>
 <?php echo $__env->make('frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/frontend/application_form.blade.php ENDPATH**/ ?>

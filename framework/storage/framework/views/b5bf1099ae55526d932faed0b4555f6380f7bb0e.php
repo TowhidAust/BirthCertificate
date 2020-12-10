@@ -40,7 +40,13 @@
                               </tr>
                           </table>
                     </div>
-                    <a href="<?php echo e(route('application_form')); ?>"><button style="float:right;" class="btn btn-primary " type="button" name="button"> Continue to Online Enrolment</button></a>
+
+                    <div class="checkBeforeProceed d-flex justify-content-between align-items-center">
+                        <input type="checkbox">
+                        <span>I agree with the terms and conditions.</span>
+                         <a href="<?php echo e(route('application_form')); ?>">
+                        <button style="float:right;" class="btn btn-primary " type="button" name="button"> Continue to Online Enrolment</button></a>
+                    </div>
                 </div>
             </div>
         </div>
