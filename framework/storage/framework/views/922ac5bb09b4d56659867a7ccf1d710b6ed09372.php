@@ -373,7 +373,7 @@ $(document).ready(function(){
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a style="margin-left: 23px;" href="<?php echo e(route('my_bookings')); ?>" class="nav-link <?php if(Request::is('admin/my_bookings')): ?> active <?php endif; ?>">
               <i class="nav-icon fa fa-book"></i>
               <p>
@@ -381,7 +381,7 @@ $(document).ready(function(){
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a style="margin-left: 23px;" href="<?php echo e(url('admin/change-details/'.Auth::user()->id)); ?>" class="nav-link <?php if(Request::is('admin/change-details*')): ?> active <?php endif; ?>">
               <i class="nav-icon fa fa-edit"></i>
@@ -484,7 +484,7 @@ $(document).ready(function(){
             <ul class="nav nav-treeview">
               <?php if(in_array(0,$modules)): ?>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('drivers.index')); ?>" class="nav-link <?php if(Request::is('admin/drivers*')): ?> active <?php endif; ?>">
+                <a style="margin-left: 23px;" href="<?php echo e(route('councillor')); ?>" class="nav-link <?php if(Request::is('admin/drivers*')): ?> active <?php endif; ?>">
                   <i class="fa fa-id-card nav-icon"></i>
                   <p>Word Councillor</p>
                 </a>
@@ -494,7 +494,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('users.index')); ?>" class="nav-link <?php if(Request::is('admin/users*')): ?> active <?php endif; ?>">
                   <i class="fa fa-user nav-icon"></i>
-                  <p>Medical Office</p>
+                  <p> Officers</p>
                 </a>
               </li>
               <?php if(in_array(0,$modules)): ?>
@@ -563,7 +563,7 @@ $(document).ready(function(){
             <?php ($active=""); ?>
 
             <?php endif; ?>
-          <?php if(in_array(3,$modules)): ?>
+            <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"): ?>
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
               <i class="nav-icon fa fa-address-card"></i>
@@ -574,34 +574,67 @@ $(document).ready(function(){
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('bookings.create')); ?>" class="nav-link <?php if(Request::is('admin/bookings/create')): ?> active <?php endif; ?>">
+                <a style="margin-left: 23px;" href="#" class="nav-link <?php if(Request::is('admin/bookings/create')): ?> active <?php endif; ?>">
                   <i class="fa fa-address-book nav-icon "></i>
                   <p>
-                  New Applications</p>
+                  New</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('today_application')); ?>" class="nav-link <?php if(Request::is('admin/today_application')): ?> active <?php endif; ?>">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Today's</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('pending')); ?>" class="nav-link <?php if(Request::is('admin/pending')): ?> active <?php endif; ?>">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Pending</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('application')); ?>" class="nav-link <?php if((Request::is('admin/application*')) && !(Request::is('admin/application')) && !(Request::is('admin/application'))): ?> active <?php endif; ?>">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                  Manage Applications</p>
+                </a>
+              </li>
+            </ul>
+          </li> <?php endif; ?>
+            <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"): ?>
+          <li class="nav-item has-treeview <?php echo e($class); ?>">
+            <a href="#" class="nav-link <?php echo e($active); ?>">
+              <i class="nav-icon fa fa-address-card"></i>
+              <p>
+                Corrections
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('bookings.create')); ?>" class="nav-link <?php if(Request::is('admin/bookings/create')): ?> active <?php endif; ?>">
                   <i class="fa fa-address-book nav-icon "></i>
                   <p>
-                  Corrections</p>
+                  Today's </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('application')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
-                  Manage Applications</p>
+                  Pending </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('application')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                  Manage Corrections</p>
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('bookings.calendar')); ?>" class="nav-link <?php if(Request::is('admin/bookings_calendar')): ?> active <?php endif; ?>">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p>
-                  Calander</p>
-                </a>
-              </li>
             </ul>
           </li> <?php endif; ?>
 
@@ -650,7 +683,7 @@ $(document).ready(function(){
               <?php endif; ?>
               <?php if(in_array(3,$modules)): ?>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.booking')); ?>" class="nav-link <?php if(Request::is('admin/reports/booking')): ?> active <?php endif; ?>">
+                <a style="margin-left: 23px;" href="<?php echo e(route('reports.application')); ?>" class="nav-link <?php if(Request::is('admin/reports/application')): ?> active <?php endif; ?>">
                   <i class="fa fa-book nav-icon"></i>
                   <p>Applications</p>
                 </a>

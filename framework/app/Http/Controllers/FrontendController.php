@@ -18,8 +18,8 @@ class FrontendController extends Controller {
 		return view('frontend.index');
 	}
 	public function applicationForm() {
-
-		return view('frontend.application_form');
+    $data['wards'] = DB::table('wards')->get();
+		return view('frontend.application_form',$data);
 	}
 
 	public function correctionForm() {

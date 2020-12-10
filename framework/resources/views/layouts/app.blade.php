@@ -372,7 +372,7 @@ $(document).ready(function(){
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a style="margin-left: 23px;" href="{{ route('my_bookings')}}" class="nav-link @if(Request::is('admin/my_bookings')) active @endif">
               <i class="nav-icon fa fa-book"></i>
               <p>
@@ -380,7 +380,7 @@ $(document).ready(function(){
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a style="margin-left: 23px;" href="{{ url('admin/change-details/'.Auth::user()->id)}}" class="nav-link @if(Request::is('admin/change-details*')) active @endif">
               <i class="nav-icon fa fa-edit"></i>
@@ -483,7 +483,7 @@ $(document).ready(function(){
             <ul class="nav nav-treeview">
               @if(in_array(0,$modules))
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('drivers.index')}}" class="nav-link @if(Request::is('admin/drivers*')) active @endif">
+                <a style="margin-left: 23px;" href="{{ route('councillor')}}" class="nav-link @if(Request::is('admin/drivers*')) active @endif">
                   <i class="fa fa-id-card nav-icon"></i>
                   <p>Word Councillor</p>
                 </a>
@@ -493,7 +493,7 @@ $(document).ready(function(){
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('users.index')}}" class="nav-link @if(Request::is('admin/users*')) active @endif">
                   <i class="fa fa-user nav-icon"></i>
-                  <p>Medical Office</p>
+                  <p> Officers</p>
                 </a>
               </li>
               @if(in_array(0,$modules))
@@ -562,7 +562,7 @@ $(document).ready(function(){
             @php($active="")
 
             @endif
-          @if(in_array(3,$modules))
+            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S")
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>
@@ -573,34 +573,67 @@ $(document).ready(function(){
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('bookings.create')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
+                <a style="margin-left: 23px;" href="#" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
                   <i class="fa fa-address-book nav-icon "></i>
                   <p>
-                  New Applications</p>
+                  New</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('today_application')}}" class="nav-link @if(Request::is('admin/today_application')) active @endif">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Today's</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('pending')}}" class="nav-link @if(Request::is('admin/pending')) active @endif">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Pending</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('application')}}" class="nav-link @if((Request::is('admin/application*')) && !(Request::is('admin/application')) && !(Request::is('admin/application'))) active @endif">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                  Manage Applications</p>
+                </a>
+              </li>
+            </ul>
+          </li> @endif
+            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S")
+          <li class="nav-item has-treeview {{$class}}">
+            <a href="#" class="nav-link {{$active}}">
+              <i class="nav-icon fa fa-address-card"></i>
+              <p>
+                Corrections
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('bookings.create')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
                   <i class="fa fa-address-book nav-icon "></i>
                   <p>
-                  Corrections</p>
+                  Today's </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('application')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
-                  Manage Applications</p>
+                  Pending </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('application')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                  Manage Corrections</p>
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('bookings.calendar')}}" class="nav-link @if(Request::is('admin/bookings_calendar')) active @endif">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p>
-                  Calander</p>
-                </a>
-              </li>
             </ul>
           </li> @endif
 
@@ -649,7 +682,7 @@ $(document).ready(function(){
               @endif
               @if(in_array(3,$modules))
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.booking') }}" class="nav-link @if(Request::is('admin/reports/booking')) active @endif">
+                <a style="margin-left: 23px;" href="{{ route('reports.application') }}" class="nav-link @if(Request::is('admin/reports/application')) active @endif">
                   <i class="fa fa-book nav-icon"></i>
                   <p>Applications</p>
                 </a>

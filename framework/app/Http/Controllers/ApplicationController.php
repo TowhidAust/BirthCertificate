@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Model\VehicleTypeModel;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use Illuminate\Support\Facades\Auth as Login;
-use App\Model\Bookings;
 use App\Rules\UniqueMobile;
 use App\Model\User;
 use App\Model\UserData;
@@ -116,6 +114,37 @@ class ApplicationController extends Controller {
 						 'upozila' => $request->get('b_police_station_en'),
 						 'district' =>$request->get('b_district_en'),]
 						);
+			// documents
+   	 	 $father_nid = "uploads/father_nid/".$applicant_id."_";
+ 	  	 $mother_nid = "uploads/mother_nid/".$applicant_id."_";
+ 		  $card= "uploads/card/".$applicant_id."_";
+ 	  	$others= "uploads/others/".$applicant_id."_";
+ 		  $father_nid = $father_nid .basename($_FILES["father_nid_file"]["name"]);
+ 		  $mother_nid = $mother_nid .basename($_FILES["mother_nid_file"]["name"]);
+ 		  $card_nid =  $card.basename($_FILES["card"]["name"]);
+ 		  $others_nid = $others.basename($_FILES["others"]["name"]);
+ 		  $response = array();
+ 		  // Check if image file is an actual image or fake image
+ 		  if (isset($_FILES["father_nid_file"]))
+ 		  {
+ 		    move_uploaded_file($_FILES["father_nid_file"]["tmp_name"], $father_nid);
+ 		    move_uploaded_file($_FILES["mother_nid_file"]["tmp_name"], $mother_nid);
+ 		    move_uploaded_file($_FILES["card"]["tmp_name"], $card_nid);
+ 		    move_uploaded_file($_FILES["others"]["tmp_name"], $others_nid);
+ 		  }
+ 			DB::table('documents')
+ 							->insert(
+ 							['applicant_id' =>$applicant_id,
+ 							 'father_nid' => $father_nid,
+ 							 'mother_nid' => $mother_nid,
+ 							 'card' => $card_nid,
+ 							 'others' => $others_nid,]
+ 							);
+			// approval
+			DB::table('approvals')
+							->insert(
+							['applicant_id' =>$applicant_id]
+							);
 		// $this->sendSMS($number,$applicant_id,$bangla_name);
 		return view('frontend.index');
 	}

@@ -32,11 +32,13 @@
                   <?php endif; ?>
                 </th>
                 <th> Application ID</th>
+                <th> Birth ID</th>
                 <th>Applican Name</th>
                 <th> Name Bangla</th>
                 <th>Name English</th>
                 <th>Birth Date</th>
                 <th>Gender</th>
+                <th>Status</th>
                 <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
               </tr>
             </thead>
@@ -47,11 +49,13 @@
                     <input type="checkbox" id="chk_all">
                     <?php endif; ?></td>
                   <td><?php echo e($row->id); ?></td>
+                  <td><?php echo e($row->birth_id); ?></td>
                   <td><?php echo e($row->applican_name); ?></td>
                   <td><?php echo e($row->bangla_name); ?></td>
                   <td><?php echo e($row->english_name); ?></td>
                   <td><?php echo e($row->birth_date); ?></td>
                   <td><?php echo e($row->gender); ?></td>
+                  <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
                   <td> <a href="<?php echo e(url("admin/application/".$row->id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -65,11 +69,13 @@
                 <?php endif; ?>
                 </th>
                 <th> Application ID</th>
+                <th>Birth ID</th>
                 <th>Applican Name</th>
                 <th> Name Bangla</th>
                 <th>Name English</th>
                 <th>Birth Date</th>
                 <th>Gender</th>
+                <th>Status</th>
                 <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
               </tr>
             </tfoot>

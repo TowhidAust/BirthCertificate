@@ -5,7 +5,7 @@
 
     <div class="sidebarAndContents container mt-3">
 
-      <form action="<?php echo e(route('application')); ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo e(route('application_submit')); ?>" method="post" enctype="multipart/form-data">
          <?php echo e(csrf_field()); ?>
 
 
@@ -37,10 +37,9 @@
               <label for="">নিবন্ধন ওয়ার্ডের নামঃ </label>
               <select class="form-control" name="ward_name">
                 <option value="">ওয়ার্ড নির্বাচন করুন  </option>
-                <option value="1">ওয়ার্ড নং 1 </option>
-                <option value="2">ওয়ার্ড নং 2 </option>
-                <option value="3">ওয়ার্ড নং 3 </option>
-                <option value="4">ওয়ার্ড নং 4 </option>
+                <?php $__currentLoopData = $wards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($row->id); ?>"><?php echo e($row->name); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </select>
             </div>
             <div class="mt-3">

@@ -146,45 +146,32 @@ input:checked + .slider:before {
               </div>
             </div>
 
-            <div class="form-group">
-              <?php echo Form::label('group_id',__('fleet.selectGroup'), ['class' => 'form-label']); ?>
 
-              <select id="group_id" name="group_id" class="form-control">
-                <option value=""><?php echo app('translator')->getFromJson('fleet.vehicleGroup'); ?></option>
-                <?php $__currentLoopData = $groups; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $group): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($group->id == 1): ?>
-                <option value="<?php echo e($group->id); ?>" selected><?php echo e($group->name); ?></option>
-                <?php else: ?>
-                <option value="<?php echo e($group->id); ?>" ><?php echo e($group->name); ?></option>
-                <?php endif; ?>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-              </select>
-            </div>
 
             <div class="form-group">
               <?php echo Form::label('module',__('fleet.select_modules'), ['class' => 'form-label']); ?> <br>
               <div class="row">
                 <div class="col-md-4" style="padding: 0px;">
                   <input type="checkbox" name="module[]" value="0" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('menu.users'); ?><br>
-                  <input type="checkbox" name="module[]" value="1" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.vehicles'); ?><br>
+                  <!-- <input type="checkbox" name="module[]" value="1" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.vehicles'); ?><br>
                   <input type="checkbox" name="module[]" value="2" class="flat-red form-control"> &nbsp;<?php echo app('translator')->getFromJson('menu.transactions'); ?> <br>
                   <input type="checkbox" name="module[]" value="3" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.bookings'); ?><br>
-                  <input type="checkbox" name="module[]" value="13" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.helpus'); ?>
+                  <input type="checkbox" name="module[]" value="13" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.helpus'); ?> -->
                 </div>
                 <div class="col-md-4" style="padding: 0px;">
                   <input type="checkbox" name="module[]" value="4" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('menu.reports'); ?><br>
-                  <input type="checkbox" name="module[]" value="5" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.fuel'); ?><br>
+                  <!-- <input type="checkbox" name="module[]" value="5" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.fuel'); ?><br>
 
                   <input type="checkbox" name="module[]" value="6" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.vendors'); ?><br>
                   <input type="checkbox" name="module[]" value="7" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.work_orders'); ?><br>
-                  <input type="checkbox" name="module[]" value="14" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.parts'); ?>
+                  <input type="checkbox" name="module[]" value="14" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.parts'); ?> -->
                 </div>
                 <div class="col-md-4" style="padding: 0px;">
                   <input type="checkbox" name="module[]" value="8" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.notes'); ?><br>
-                  <input type="checkbox" name="module[]" value="9" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.serviceReminders'); ?><br>
+                  <!-- <input type="checkbox" name="module[]" value="9" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.serviceReminders'); ?><br>
                   <input type="checkbox" name="module[]" value="10" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.reviews'); ?><br>
                   <input type="checkbox" name="module[]" value="12" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.maps'); ?><br>
-                  <input type="checkbox" name="module[]" value="15" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.testimonials'); ?>
+                  <input type="checkbox" name="module[]" value="15" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.testimonials'); ?> -->
                 </div>
               </div>
             </div>
@@ -215,4 +202,5 @@ input:checked + .slider:before {
   });
 </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/users/create.blade.php ENDPATH**/ ?>

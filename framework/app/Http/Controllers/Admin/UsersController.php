@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Model\User;
-use App\Model\VehicleGroupModel;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -18,8 +17,7 @@ class UsersController extends Controller {
 	}
 
 	public function create() {
-		$index['groups'] = VehicleGroupModel::all();
-		return view("users.create", $index);
+		return view("users.create");
 	}
 
 	public function destroy(Request $request) {
@@ -67,8 +65,7 @@ class UsersController extends Controller {
 	}
 	public function edit(User $user) {
 
-		$groups = VehicleGroupModel::all();
-		return view("users.edit", compact("user", 'groups'));
+		return view("users.edit", compact("user"));
 	}
 
 	public function update(EditUserRequest $request) {

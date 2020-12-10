@@ -18,7 +18,6 @@ class UserRequest extends FormRequest {
 
 	public function rules() {
 		return [
-			'package_name' => 'required',
 			'profile_image' => 'nullable|image|mimes:jpg,png,jpeg',
 		];
 	}
