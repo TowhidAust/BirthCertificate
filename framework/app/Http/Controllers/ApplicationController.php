@@ -148,6 +148,10 @@ class ApplicationController extends Controller {
 	// $index['data'] ='';
 	return view('frontend.contact');
 }
+public function sidebarDetails(){
+	// $index['data'] ='';
+	return view('frontend.sidebarDetails');
+}
  public function verify(Request $request) {
 	$application_info= DB::table('applican_informations')
 					->where('id',$request->get('application_id'))

@@ -13,10 +13,10 @@
             <img class="img-fluid img-thumbnail" width="200" height="200" src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar">
           </div>
 
-          <div class="applyNo">
+          <!-- <div class="applyNo">
             <label class="text-white" for="">বিনামূল্যে বিতরনের জন্য অনলাইনের মাধ্যমে/ফটোকপি/হাতে লিখা/কম্পিউটার প্রিন্ট কপি গ্রহনযোগ্য আবেদন পত্র নম্বর</label>
             <input class="form-control" type="text" name="" id="">
-          </div>
+          </div> -->
         </div>
 
 
@@ -26,7 +26,11 @@
           <div class="col-md-6">
             <div class="mt-3">
               <label for="">নিবন্ধন কার্যালয়ের নামঃ বরিশাল সিটি কর্পোরেশন </label>
-              <input class="form-control" name="applican_name" value="বরিশাল সিটি কর্পোরেশন" type="hidden">
+              <select class="form-control" name="ward_name">
+                <option value="1"> সদর নির্বাচন করুন </option>
+                <option value="1"> বরিশাল সদর </option>
+                <option value="2"> বরিশাল সিটি কর্পোরেশন </option>
+              </select>
             </div>
             <div class="mt-3">
               <label for="">নিবন্ধন ওয়ার্ডের নামঃ </label>
@@ -324,4 +328,7 @@
       </form>
     </div>
   </section>
+  <footer class="copyrightFooter">
+      <span>	&copy; 2020 Birth & Death Registration. All rights reserved. Developed by Birth and Death Registration Team.</span>
+    </footer>
 @include('frontend.footer')

@@ -43,5 +43,8 @@
             </div>
         </div>
     </section>
+    <footer class="copyrightFooter">
+      <span>	&copy; 2020 Birth & Death Registration. All rights reserved. Developed by Birth and Death Registration Team.</span>
+    </footer>
     <?php echo $__env->make('frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/frontend/contact.blade.php ENDPATH**/ ?>

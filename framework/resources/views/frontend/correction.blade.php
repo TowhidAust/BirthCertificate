@@ -28,4 +28,8 @@
             </form>
         </div>
     </section>
+
+    <footer class="copyrightFooter">
+      <span>	&copy; 2020 Birth & Death Registration. All rights reserved. Developed by Birth and Death Registration Team.</span>
+    </footer>
 @include('frontend.footer')

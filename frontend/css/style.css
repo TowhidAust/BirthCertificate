@@ -14,7 +14,8 @@
 }
 
 body{
-    background:#3C736E;
+    /* background:#3C736E; */
+    background-color: #1a330a;
 }
 
 .mainContents{
@@ -52,4 +53,13 @@ body{
 
 .sidebarHeading{
     margin-bottom: 0.5em;
+}
+
+
+.copyrightFooter{
+    padding: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
 }
