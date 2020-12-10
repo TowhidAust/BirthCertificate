@@ -15,7 +15,7 @@ class User extends Authenticatable {
 	protected $table = "users";
 	protected $metaTable = 'users_meta'; //optional.
 	protected $fillable = [
-		'name', 'email', 'password', 'user_type', 'group_id', 'api_token',
+		'name', 'email', 'password','user_type', 'group_id', 'api_token',
 	];
 
 	protected $hidden = ['password', 'remember_token', 'api_token'];
@@ -32,8 +32,6 @@ class User extends Authenticatable {
 		return $this->hasMany('App\Model\VehicleModel', 'user_id', 'id')->withTrashed();
 	}
 
-	public function driver_vehicle() {
-		return $this->hasOne("App\Model\DriverVehicleModel", "driver_id", "id");
-	}
+
 
 }

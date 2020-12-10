@@ -95,10 +95,25 @@ class HomeController extends Controller {
 		if (Auth::user()->user_type == "D") {
 			$index['data'] = User::whereId(Auth::user()->id)->first();
 			$index['bookings'] = Bookings::orderBy('id', 'desc')->where('driver_id', Auth::user()->id)->get();
+	  	$index['pending_applican_info'] = DB::table('applican_informations')
+																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
+																			->orderBy('applican_informations.id','desc')
+																			->where('applican_informations.ward_name',Auth::user()->ward_id)
+																			->where('applican_informations.status','Pending')
+																			->where('approvals.councillor','0')
+																			->get();
+	  	$index['approved_applican_info'] = DB::table('applican_informations')
+																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
+																			->orderBy('applican_informations.id','desc')
+																			->where('applican_informations.ward_name',Auth::user()->ward_id)
+																			->where('approvals.councillor','1')
+																			->get();
 
-			$index['total'] = Bookings::whereDriver_id(Auth::user()->id)->get()->count();
+			$index['total'] = DB::table('applican_informations')
+																			->where('ward_name',Auth::user()->ward_id)
+																			->count();
 			// $index['vehicle'] = VehicleModel::where('driver_id', Auth::user()->id)->first();
-			return view("drivers.profile", $index);
+			return view("councillors.profile", $index);
 
 		} elseif (Auth::user()->user_type == "C") {
 

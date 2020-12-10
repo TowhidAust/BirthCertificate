@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookingRequest;
+use Illuminate\Support\Facades\Session;
 use App\Mail\DriverBooked;
 use App\Mail\VehicleBooked;
 use App\Model\BookingIncome;
@@ -36,10 +37,44 @@ public function index()
             $data['data'] = Bookings::whereIn('vehicle_id', $vehicle_ids)->orderBy('id', 'desc')->get();
         }
 
+
         $data['types'] = IncCats::get();
-        $data['applican_info'] = DB::table('applican_informations')->get();
+        $data['applican_info'] = DB::table('applican_informations')->orderBy('id','desc')->where('status','Completed')->get();
         // dd($data);
         return view("application.index", $data);
+    }
+public function today_application()
+    {
+        if (Auth::user()->user_type == "C") {
+            $data['data'] = Bookings::where('customer_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        } elseif (Auth::user()->group_id == null || Auth::user()->user_type == "S") {
+            $data['data'] = Bookings::orderBy('id', 'desc')->get();
+        } else {
+            $vehicle_ids = VehicleModel::where('group_id', Auth::user()->group_id)->pluck('id')->toArray();
+            $data['data'] = Bookings::whereIn('vehicle_id', $vehicle_ids)->orderBy('id', 'desc')->get();
+        }
+
+
+        $data['types'] = IncCats::get();
+        $data['applican_info'] = DB::table('applican_informations')->orderBy('id','desc')->whereDate('created_at', Carbon::today())->get();
+        // dd($data);
+        return view("application.today_application", $data);
+    }
+public function pending()  {
+        if (Auth::user()->user_type == "C") {
+            $data['data'] = Bookings::where('customer_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        } elseif (Auth::user()->group_id == null || Auth::user()->user_type == "S") {
+            $data['data'] = Bookings::orderBy('id', 'desc')->get();
+        } else {
+            $vehicle_ids = VehicleModel::where('group_id', Auth::user()->group_id)->pluck('id')->toArray();
+            $data['data'] = Bookings::whereIn('vehicle_id', $vehicle_ids)->orderBy('id', 'desc')->get();
+        }
+
+
+        $data['types'] = IncCats::get();
+        $data['applican_info'] = DB::table('applican_informations')->orderBy('id','desc')->where('status','Pending')->get();
+        // dd($data);
+        return view("application.pending_application", $data);
     }
 
 
@@ -48,20 +83,39 @@ public function index()
 
         $data['id'] = $id;
         $data['data']=DB::table('applican_informations')
+                      ->join('wards','wards.id','=','applican_informations.ward_name')
                       ->join('birth_address_bn','birth_address_bn.applicant_id','=','applican_informations.id')
                       ->join('birth_address_en','birth_address_en.applicant_id','=','applican_informations.id')
                       ->join('present_address_bn','present_address_bn.applicant_id','=','applican_informations.id')
                       ->join('present_address_en','present_address_en.applicant_id','=','applican_informations.id')
                       ->join('permanent_address_bn','permanent_address_bn.applicant_id','=','applican_informations.id')
                       ->join('permanent_address_en','permanent_address_en.applicant_id','=','applican_informations.id')
+                      ->join('parents','parents.applicant_id','=','applican_informations.id')
+                      ->join('documents','documents.applicant_id','=','applican_informations.id')
                       ->where('applican_informations.id',$id)
-                      ->select('applican_informations.ward_name',
+                      ->select('applican_informations.id as applicant_id',
+                      'applican_informations.birth_id',
+                      'applican_informations.status',
+                      'applican_informations.applican_name',
+                      'wards.name as ward_name',
                       'applican_informations.bangla_name',
                       'applican_informations.english_name',
                       'applican_informations.number',
                       'applican_informations.birth_date',
                       'applican_informations.gender',
                       'applican_informations.sons_position',
+                      'parents.father_name_bn',
+                      'parents.father_name_en',
+                      'parents.father_birth_id',
+                      'parents.father_nid as father_nid_no',
+                      'parents.father_passport',
+                      'parents.father_nationality',
+                      'parents.mother_name_bn',
+                      'parents.mother_name_en',
+                      'parents.mother_birth_id',
+                      'parents.mother_nid as mother_nid_no',
+                      'parents.mother_passport',
+                      'parents.mother_nationality',
                       'birth_address_bn.house_no as b_house_no_bn',
                       'birth_address_bn.village as b_village_bn',
                       'birth_address_bn.post_office as b_post_office_bn',
@@ -103,7 +157,8 @@ public function index()
                       'permanent_address_en.post_code as per_post_code_en',
                       'permanent_address_en.upozila as per_police_station_en',
                       'permanent_address_en.district as per_district_en',
-                      'permanent_address_en.ward as per_union_en'
+                      'permanent_address_en.ward as per_union_en',
+                      'documents.*'
                       )
                       ->first();
           // echo '<pre>';
@@ -112,6 +167,15 @@ public function index()
         return view("application.view",$data);
     }
 
+    function approve($id) {
+      if (Auth::user()->user_type == "D") {
+         DB::table('approvals')
+            ->where('applicant_id',$id)
+            ->update(['councillor' => 1]);
+      }
+      Session::flash('message', 'Approved successfully!');
+     return back();
+    }
     function print($id) {
         $data['i'] = $book = BookingIncome::whereBooking_id($id)->first();
         // $data['info'] = IncomeModel::whereId($book['income_id'])->first();

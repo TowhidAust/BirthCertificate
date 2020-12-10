@@ -10,7 +10,7 @@ if (env('front_enable') == 'no') {
     Route::get('/application-form', 'FrontendController@applicationForm')->middleware('IsInstalled')->name('application_form');
 
     Route::get('/correction-form', 'FrontendController@correctionForm')->middleware('IsInstalled')->name('correction_form');
-    Route::post('/application-submit', 'ApplicationController@application')->middleware('IsInstalled')->name('application');
+    Route::post('/application-submit', 'ApplicationController@application')->middleware('IsInstalled')->name('application_submit');
     Route::get('/check-status', 'ApplicationController@checkStatus')->middleware('IsInstalled')->name('check_status');
     Route::post('/verify', 'ApplicationController@verify')->middleware('IsInstalled')->name('verify');
 }

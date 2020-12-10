@@ -11,25 +11,24 @@ Route::namespace ('Admin')->group(function () {
     });
 
     Route::get("/", 'HomeController@index')->middleware(['lang_check', 'auth']);
+    Route::get('/application/{id}/view', 'ApplicationController@view_application')->middleware('userpermission:3');
+    Route::get('/application/{id}/approve', 'ApplicationController@approve')->middleware('userpermission:3');
     Route::group(['middleware' => ['lang_check', 'auth', 'officeadmin']], function () {
         // Route::get('test', function () {
         //     return view('geocode');
         // });
-
-
         Route::get('/application', 'ApplicationController@index')->name('application')->middleware('userpermission:3');
-        Route::get('/application/{id}/view', 'ApplicationController@view_application');
+        Route::get('/today-application', 'ApplicationController@today_application')->name('today_application')->middleware('userpermission:3');
+        Route::get('/pending-application', 'ApplicationController@pending')->name('pending')->middleware('userpermission:3');
+
+        Route::get('/councillor', 'CouncillorController@index')->name('councillor')->middleware('userpermission:3');
 
 
         Route::post('clear-database', 'SettingsController@clear_database')->middleware('userpermission:S');
         Route::post('cancel-booking', 'BookingsController@cancel_booking');
         Route::resource('team', 'TeamController');
         Route::resource('company-services', 'CompanyServicesController')->middleware('userpermission:S');
-        Route::resource('booking-quotation', 'BookingQuotationController')->middleware('userpermission:3');
-        Route::post('add-booking', 'BookingQuotationController@add_booking');
-        Route::get('booking-quotation/invoice/{id}', 'BookingQuotationController@invoice')->middleware('userpermission:3');
-        Route::get('print-quote/{id}', 'BookingQuotationController@print')->middleware('userpermission:3');
-        Route::get('booking-quotation/approve/{id}', 'BookingQuotationController@approve')->middleware('userpermission:3');
+
 
         Route::get('frontend-settings', 'SettingsController@frontend')->middleware('userpermission:S');
         Route::post('frontend-settings', 'SettingsController@store_frontend');
@@ -70,6 +69,9 @@ Route::namespace ('Admin')->group(function () {
         Route::resource('/incomecategories', 'IncomeCategories')->middleware('userpermission:S');
 
 
+        Route::get("/reports/application", "ReportsController@application")->name("reports.application")->middleware('userpermission:4');
+        Route::post("/reports/booking", "ReportsController@booking_post")->name("reports.booking")->middleware('userpermission:4');
+
         Route::get('/bookings/complete/{id}', 'BookingsController@complete')->middleware('userpermission:3');
         Route::get('/bookings/receipt/{id}', 'BookingsController@receipt')->middleware('userpermission:3');
         Route::get('/bookings/payment/{id}', 'BookingsController@payment')->middleware('userpermission:3');
@@ -80,14 +82,12 @@ Route::namespace ('Admin')->group(function () {
         Route::post("reports/drivers", "ReportsController@drivers_post")->name("reports.drivers")->middleware('userpermission:4');
         Route::get("reports/customers", "ReportsController@customers")->name("reports.customers")->middleware('userpermission:4');
         Route::post("reports/customers", "ReportsController@customers_post")->name("reports.customers")->middleware('userpermission:4');
-        Route::get("/reports/booking", "ReportsController@booking")->name("reports.booking")->middleware('userpermission:4');
         Route::get("/reports/delinquent", "ReportsController@delinquent")->name("reports.delinquent")->middleware('userpermission:4');
         Route::get("/reports/users", "ReportsController@users")->name("reports.users")->middleware('userpermission:4');
         Route::post("/reports/users", "ReportsController@users_post")->name("reports.users")->middleware('userpermission:4');
         Route::get('/calendar', 'BookingsController@calendar');
         Route::get("/drivers/enable/{id}", 'DriversController@enable');
         Route::get("/drivers/disable/{id}", 'DriversController@disable');
-        Route::post("/reports/booking", "ReportsController@booking_post")->name("reports.booking")->middleware('userpermission:4');
         Route::post("/reports/fuel", "ReportsController@fuel_post")->name("reports.fuel")->middleware('userpermission:4');
         Route::get("/reports/fuel", "ReportsController@fuel")->name("reports.fuel")->middleware('userpermission:4');
         Route::get("/reports/yearly", "ReportsController@yearly")->name("reports.yearly")->middleware('userpermission:4');

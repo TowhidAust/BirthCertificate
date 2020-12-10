@@ -19,6 +19,68 @@ use Illuminate\Http\Request;
 
 class ReportsController extends Controller {
 
+		public function application() {
+			$years = collect(DB::select("select distinct year(pickup) as years from bookings where deleted_at is null and pickup is not null order by years desc"));
+
+			$y = array();
+			foreach ($years as $year) {
+				$y[$year->years] = $year->years;
+			}
+			$data['vehicle_select'] = "";
+			$data['customer_select'] = "";
+			$data['customers'] = User::where('user_type', 'C')->get();
+			$data['years'] = $y;
+			$data['year_select'] = date("Y");
+			$data['month_select'] = date("n");
+			if (Auth::user()->group_id == null || Auth::user()->user_type == "S") {
+				$data['vehicles'] = VehicleModel::get();
+			} else {
+				$data['vehicles'] = VehicleModel::where('group_id', Auth::user()->group_id)->get();
+			}
+			$vehicle_ids = array(0);
+			foreach ($data['vehicles'] as $vehicle) {
+				$vehicle_ids[] = $vehicle->id;
+			}
+			$data['bookings'] = Bookings::whereYear("pickup", date("Y"))->whereMonth("pickup", date("n"))->whereIn('vehicle_id', $vehicle_ids)->get();
+
+			return view("reports.application", $data);
+		}
+
+
+			public function booking_post(Request $request) {
+				$years = collect(DB::select("select distinct year(pickup) as years from bookings where deleted_at is null and pickup is not null order by years desc"));
+
+				$y = array();
+				$data['customers'] = User::where('user_type', 'C')->get();
+				foreach ($years as $year) {
+					$y[$year->years] = $year->years;
+				}
+				$data['vehicle_select'] = $request->get('vehicle_id');
+				$data['customer_select'] = $request->get('customer_id');
+				$data['years'] = $y;
+				$data['year_select'] = $request->get("year");
+				$data['month_select'] = $request->get("month");
+				if (Auth::user()->group_id == null || Auth::user()->user_type == "S") {
+					$data['vehicles'] = VehicleModel::get();
+				} else {
+					$data['vehicles'] = VehicleModel::where('group_id', Auth::user()->group_id)->get();
+				}
+				$vehicle_ids = array(0);
+				foreach ($data['vehicles'] as $vehicle) {
+					$vehicle_ids[] = $vehicle->id;
+				}
+				$data['bookings'] = Bookings::whereYear("pickup", $data['year_select'])->whereMonth("pickup", $data['month_select'])->whereIn('vehicle_id', $vehicle_ids);
+				if ($request->get("vehicle_id") != "") {
+					$data['bookings'] = $data['bookings']->where("vehicle_id", $request->get("vehicle_id"));
+				}
+				if ($request->get("customer_id") != "") {
+					$data['bookings'] = $data['bookings']->where("customer_id", $request->get("customer_id"));
+				}
+				$data['bookings'] = $data['bookings']->get();
+
+				return view("reports.booking", $data);
+			}
+
 	public function expense() {
 		$years = collect(DB::select("select distinct year(date) as years from expense where deleted_at is null order by years desc"))->toArray();
 
@@ -281,66 +343,7 @@ class ReportsController extends Controller {
 		return view("reports.delinquent", $data);
 	}
 
-	public function booking() {
-		$years = collect(DB::select("select distinct year(pickup) as years from bookings where deleted_at is null and pickup is not null order by years desc"));
 
-		$y = array();
-		foreach ($years as $year) {
-			$y[$year->years] = $year->years;
-		}
-		$data['vehicle_select'] = "";
-		$data['customer_select'] = "";
-		$data['customers'] = User::where('user_type', 'C')->get();
-		$data['years'] = $y;
-		$data['year_select'] = date("Y");
-		$data['month_select'] = date("n");
-		if (Auth::user()->group_id == null || Auth::user()->user_type == "S") {
-			$data['vehicles'] = VehicleModel::get();
-		} else {
-			$data['vehicles'] = VehicleModel::where('group_id', Auth::user()->group_id)->get();
-		}
-		$vehicle_ids = array(0);
-		foreach ($data['vehicles'] as $vehicle) {
-			$vehicle_ids[] = $vehicle->id;
-		}
-		$data['bookings'] = Bookings::whereYear("pickup", date("Y"))->whereMonth("pickup", date("n"))->whereIn('vehicle_id', $vehicle_ids)->get();
-
-		return view("reports.booking", $data);
-	}
-
-	public function booking_post(Request $request) {
-		$years = collect(DB::select("select distinct year(pickup) as years from bookings where deleted_at is null and pickup is not null order by years desc"));
-
-		$y = array();
-		$data['customers'] = User::where('user_type', 'C')->get();
-		foreach ($years as $year) {
-			$y[$year->years] = $year->years;
-		}
-		$data['vehicle_select'] = $request->get('vehicle_id');
-		$data['customer_select'] = $request->get('customer_id');
-		$data['years'] = $y;
-		$data['year_select'] = $request->get("year");
-		$data['month_select'] = $request->get("month");
-		if (Auth::user()->group_id == null || Auth::user()->user_type == "S") {
-			$data['vehicles'] = VehicleModel::get();
-		} else {
-			$data['vehicles'] = VehicleModel::where('group_id', Auth::user()->group_id)->get();
-		}
-		$vehicle_ids = array(0);
-		foreach ($data['vehicles'] as $vehicle) {
-			$vehicle_ids[] = $vehicle->id;
-		}
-		$data['bookings'] = Bookings::whereYear("pickup", $data['year_select'])->whereMonth("pickup", $data['month_select'])->whereIn('vehicle_id', $vehicle_ids);
-		if ($request->get("vehicle_id") != "") {
-			$data['bookings'] = $data['bookings']->where("vehicle_id", $request->get("vehicle_id"));
-		}
-		if ($request->get("customer_id") != "") {
-			$data['bookings'] = $data['bookings']->where("customer_id", $request->get("customer_id"));
-		}
-		$data['bookings'] = $data['bookings']->get();
-
-		return view("reports.booking", $data);
-	}
 	public function delinquent_post(Request $request) {
 
 		$years = DB::select(DB::raw("select distinct year(date) as years from income where deleted_at is null order by years desc"));
