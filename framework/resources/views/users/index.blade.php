@@ -30,8 +30,11 @@
               </th>
               <th>#</th>
               <th>@lang('fleet.profile_photo')</th>
+              <th>@lang('User Role')</th>
               <th>@lang('fleet.name')</th>
               <th>@lang('fleet.email')</th>
+              <th>@lang('Number')</th>
+              <th>@lang('Desgignation')</th>
               <th>@lang('fleet.created')</th>
               <th>@lang('fleet.action')</th>
             </tr>
@@ -52,8 +55,21 @@
               <img src="{{ asset("assets/images/no-user.jpg")}}" height="70px" width="70px">
               @endif
               </td>
+              <td>
+                @if($row->user_type=="S")
+                  Admin
+                @elseif($row->user_type=="O")
+                Officer
+                @elseif($row->user_type=="OP")
+                Operator
+                @elseif($row->user_type=="A")
+                Accountant
+                @endif
+              </td>
               <td>{{$row->name}}</td>
               <td>{{$row->email}}</td>
+              <td>{{$row->number}}</td>
+              <td>{{$row->designation}}</td>
               <td>{{date($date_format_setting.' g:i A',strtotime($row->created_at))}}</td>
               <td>
               <div class="btn-group">
@@ -89,8 +105,11 @@
               </th>
               <th>#</th>
               <th>@lang('fleet.profile_photo')</th>
+              <th>@lang('User Role')</th>
               <th>@lang('fleet.name')</th>
               <th>@lang('fleet.email')</th>
+              <th>@lang('Number')</th>
+              <th>@lang('Desgignation')</th>
               <th>@lang('fleet.created')</th>
               <th>@lang('fleet.action')</th>
             </tr>

@@ -18,7 +18,15 @@
                 <?php echo session('message'); ?>
 
               </div>
-              <?php endif; ?></h5></span>
+              <?php endif; ?></h5>
+        </span>
+        <span><h5><?php if(Session::has('reject')): ?>
+              <div class="alert alert-danger" role="alert">
+                <?php echo session('reject'); ?>
+
+              </div>
+              <?php endif; ?></h5>
+        </span>
       </h4>
     </div>
   </div>
@@ -193,19 +201,50 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <a href="<?php echo e(url('admin/print/'.$id)); ?>" target="_blank" class="btn btn-danger"><i class="fa fa-print"></i> <?php echo app('translator')->getFromJson('fleet.print'); ?></a>
+      <a href="<?php echo e(url('admin/print/'.$id)); ?>" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> <?php echo app('translator')->getFromJson('fleet.print'); ?></a>
    <?php if(Auth::user()->user_type == "S"): ?>
    <a href="<?php echo e(url('admin/print/'.$id)); ?>" target="_blank" class="btn btn-primary"><i class="fa fa-undo"></i> Reject</a>
    <a href="<?php echo e(url('admin/application/'.$data->applicant_id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    <?php endif; ?>
    <?php if(Auth::user()->user_type == "D"&&$approve->councillor=='0'): ?>
-   <a href="<?php echo e(url('admin/print/'.$id)); ?>" target="_blank" class="btn btn-primary"><i class="fa fa-undo"></i> Reject</a>
-   <a href="<?php echo e(url('admin/application/'.$data->applicant_id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i><?php echo app('translator')->getFromJson('Reject'); ?></button>
+   <a href="<?php echo e(url('admin/application/'.$data->applicant_id.'/councillor_approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    <?php endif; ?>
 
   </div>
   </div>
 </div>
+<!-- Modal -->
+<div id="import" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Reject Application</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <?php echo Form::open(['route'=>'councillor.reject','method'=>'POST','files'=>true]); ?>
+
+        <div class="form-group">
+          <?php echo Form::label('excel',__('Write Reason below'),['class'=>"form-label"]); ?>
+
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="applicant_id" value="<?php echo e($data->applicant_id); ?>">
+          <textarea name="reason" rows="8" cols="65"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="submit"><?php echo app('translator')->getFromJson('Submit'); ?></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo app('translator')->getFromJson('fleet.close'); ?></button>
+      </div>
+        <?php echo Form::close(); ?>
+
+    </div>
+  </div>
+</div>
+<!-- Modal -->
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/application/view.blade.php ENDPATH**/ ?>

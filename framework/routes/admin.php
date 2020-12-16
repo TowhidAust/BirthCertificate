@@ -11,17 +11,23 @@ Route::namespace ('Admin')->group(function () {
     });
 
     Route::get("/", 'HomeController@index')->middleware(['lang_check', 'auth']);
-    Route::get('/application/{id}/view', 'ApplicationController@view_application')->middleware('userpermission:3');
-    Route::get('/application/{id}/approve', 'ApplicationController@approve')->middleware('userpermission:3');
+    Route::get('/application/{id}/view', 'ApplicationController@view_application');
+    Route::get('/application/{id}/councillor_approve', 'ApplicationController@councillor_approve')->middleware('userpermission:3');
+    Route::post('/councillor-reject', 'ApplicationController@councillor_reject')->name('councillor.reject');
     Route::group(['middleware' => ['lang_check', 'auth', 'officeadmin']], function () {
         // Route::get('test', function () {
         //     return view('geocode');
         // });
-        Route::get('/application', 'ApplicationController@index')->name('application')->middleware('userpermission:3');
+        Route::get('/application', 'ApplicationController@index')->name('application');
         Route::get('/today-application', 'ApplicationController@today_application')->name('today_application')->middleware('userpermission:3');
-        Route::get('/pending-application', 'ApplicationController@pending')->name('pending')->middleware('userpermission:3');
+        Route::get('/pending-application', 'ApplicationController@pending')->name('pending');
 
-        Route::get('/councillor', 'CouncillorController@index')->name('councillor')->middleware('userpermission:3');
+        Route::get('/councillor', 'CouncillorController@index')->name('councillor');
+        Route::get('/councillor-create', 'CouncillorController@create')->name('councillor.create');
+        Route::post('/councillor-store', 'CouncillorController@store')->name('councillor.store');
+        Route::get("/councillor/enable/{id}", 'CouncillorController@enable');
+        Route::get("/councillor/disable/{id}", 'CouncillorController@disable');
+        Route::get("/councillor/{id}/edit", 'CouncillorController@edit');
 
 
         Route::post('clear-database', 'SettingsController@clear_database')->middleware('userpermission:S');
@@ -86,8 +92,6 @@ Route::namespace ('Admin')->group(function () {
         Route::get("/reports/users", "ReportsController@users")->name("reports.users")->middleware('userpermission:4');
         Route::post("/reports/users", "ReportsController@users_post")->name("reports.users")->middleware('userpermission:4');
         Route::get('/calendar', 'BookingsController@calendar');
-        Route::get("/drivers/enable/{id}", 'DriversController@enable');
-        Route::get("/drivers/disable/{id}", 'DriversController@disable');
         Route::post("/reports/fuel", "ReportsController@fuel_post")->name("reports.fuel")->middleware('userpermission:4');
         Route::get("/reports/fuel", "ReportsController@fuel")->name("reports.fuel")->middleware('userpermission:4');
         Route::get("/reports/yearly", "ReportsController@yearly")->name("reports.yearly")->middleware('userpermission:4');

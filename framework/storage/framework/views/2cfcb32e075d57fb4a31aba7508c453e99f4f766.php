@@ -29,8 +29,11 @@
               </th>
               <th>#</th>
               <th><?php echo app('translator')->getFromJson('fleet.profile_photo'); ?></th>
+              <th><?php echo app('translator')->getFromJson('User Role'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.name'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.email'); ?></th>
+              <th><?php echo app('translator')->getFromJson('Number'); ?></th>
+              <th><?php echo app('translator')->getFromJson('Desgignation'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.created'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
             </tr>
@@ -51,8 +54,21 @@
               <img src="<?php echo e(asset("assets/images/no-user.jpg")); ?>" height="70px" width="70px">
               <?php endif; ?>
               </td>
+              <td>
+                <?php if($row->user_type=="S"): ?>
+                  Admin
+                <?php elseif($row->user_type=="O"): ?>
+                Officer
+                <?php elseif($row->user_type=="OP"): ?>
+                Operator
+                <?php elseif($row->user_type=="A"): ?>
+                Accountant
+                <?php endif; ?>
+              </td>
               <td><?php echo e($row->name); ?></td>
               <td><?php echo e($row->email); ?></td>
+              <td><?php echo e($row->number); ?></td>
+              <td><?php echo e($row->designation); ?></td>
               <td><?php echo e(date($date_format_setting.' g:i A',strtotime($row->created_at))); ?></td>
               <td>
               <div class="btn-group">
@@ -91,8 +107,11 @@
               </th>
               <th>#</th>
               <th><?php echo app('translator')->getFromJson('fleet.profile_photo'); ?></th>
+              <th><?php echo app('translator')->getFromJson('User Role'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.name'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.email'); ?></th>
+              <th><?php echo app('translator')->getFromJson('Number'); ?></th>
+              <th><?php echo app('translator')->getFromJson('Desgignation'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.created'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
             </tr>
@@ -284,4 +303,5 @@
   }
   </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/users/index.blade.php ENDPATH**/ ?>

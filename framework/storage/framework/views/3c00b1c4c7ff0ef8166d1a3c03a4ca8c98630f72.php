@@ -107,19 +107,35 @@ input:checked + .slider:before {
 
             </div>
 
+            <div class="form-group">
+              <?php echo Form::label('Number', __('Number'), ['class' => 'form-label']); ?>
+
+              <?php echo Form::number('number', $user->number,['class' => 'form-control','required']); ?>
+
+            </div>
 
 
-            <div class="form-group" style="margin-top: 30px">
-              <div class="row">
-                <div class="col-md-3">
-                  <label class="switch">
-                  <input type="checkbox" name="is_admin" value="1" <?php if($user->user_type == "S"): ?> checked <?php endif; ?>>
-                  <span class="slider round"></span>
-                  </label>
-                </div>
-                <div class="col-md-3" style="margin-top: 5px">
-                  <h4><?php echo app('translator')->getFromJson('fleet.is_admin'); ?></h4>
-                </div>
+
+            <div class="form-group">
+            <label class="form-label">Select Role</label>
+              <div class="input-group mb-3">
+               <select class="form-control" name="role" required>
+                 <option value="<?php echo e($user->user_type); ?>">
+                   <?php if($user->user_type=="S"): ?>
+                     Admin
+                   <?php elseif($user->user_type=="O"): ?>
+                   Officer
+                   <?php elseif($user->user_type=="OP"): ?>
+                   Operator
+                   <?php elseif($user->user_type=="A"): ?>
+                   Accountant
+                   <?php endif; ?>
+                 </option>
+                 <option value="S">Admin</option>
+                 <option value="O">Officer</option>
+                 <option value="OP">Operator</option>
+                 <option value="A">Accountant</option>
+               </select>
               </div>
             </div>
           </div>
@@ -133,6 +149,14 @@ input:checked + .slider:before {
                 <?php echo Form::email('email', $user->email,['class' => 'form-control','required']); ?>
 
               </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Desgignation</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span> </div>
+                <input type="text" name="designation" class="form-control" value="<?php echo e($user->designation); ?>" required>
+                </div>
             </div>
             <div class="form-group">
               <?php echo Form::label('profile_image', __('fleet.profile_photo'), ['class' => 'form-label']); ?>

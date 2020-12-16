@@ -93,8 +93,9 @@ class HomeController extends Controller {
 	public function index() {
 
 		if (Auth::user()->user_type == "D") {
-			$index['data'] = User::whereId(Auth::user()->id)->first();
-			$index['bookings'] = Bookings::orderBy('id', 'desc')->where('driver_id', Auth::user()->id)->get();
+			$index['data'] = User::join('wards','wards.id','users.ward_id')
+									   	->select('users.*','wards.name as ward_name')
+			               ->where('users.id',Auth::user()->id)->first();
 	  	$index['pending_applican_info'] = DB::table('applican_informations')
 																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
 																			->orderBy('applican_informations.id','desc')
@@ -107,6 +108,12 @@ class HomeController extends Controller {
 																			->orderBy('applican_informations.id','desc')
 																			->where('applican_informations.ward_name',Auth::user()->ward_id)
 																			->where('approvals.councillor','1')
+																			->get();
+	  	$index['rejected_applican_info'] = DB::table('applican_informations')
+																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
+																			->orderBy('applican_informations.id','desc')
+																			->where('applican_informations.ward_name',Auth::user()->ward_id)
+																			->where('approvals.councillor','2')
 																			->get();
 
 			$index['total'] = DB::table('applican_informations')

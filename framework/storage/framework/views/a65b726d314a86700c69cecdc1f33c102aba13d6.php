@@ -104,13 +104,32 @@ input:checked + .slider:before {
 
             </div>
             <div class="form-group">
+              <?php echo Form::label('Number', __('Number'), ['class' => 'form-label']); ?>
+
+              <?php echo Form::number('number', null,['class' => 'form-control','required']); ?>
+
+            </div>
+            <div class="form-group">
               <?php echo Form::label('profile_image', __('fleet.profile_photo'), ['class' => 'form-label']); ?>
 
 
               <?php echo Form::file('profile_image',null,['class' => 'form-control']); ?>
 
             </div>
+            <div class="form-group">
+            <label class="form-label">Select Role</label>
+              <div class="input-group mb-3">
+               <select class="form-control" name="role" required>
+                 <option value="">Select User Role</option>
+                 <option value="S">Admin</option>
+                 <option value="O">Officer</option>
+                 <option value="OP">Operator</option>
+                 <option value="A">Accountant</option>
+               </select>
+              </div>
+            </div>
             <div class="form-group" style="margin-top: 30px">
+
               <div class="row">
                 <div class="col-md-3">
                   <label class="switch">
@@ -133,6 +152,14 @@ input:checked + .slider:before {
                 <span class="input-group-text"><i class="fa fa-envelope"></i></span> </div>
                 <?php echo Form::email('email', null,['class' => 'form-control','required']); ?>
 
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="form-label">Desgignation</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user"></i></span> </div>
+              <input type="text" name="designation" class="form-control" required>
               </div>
             </div>
             <div class="form-group">
@@ -167,7 +194,7 @@ input:checked + .slider:before {
                   <input type="checkbox" name="module[]" value="14" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.parts'); ?> -->
                 </div>
                 <div class="col-md-4" style="padding: 0px;">
-                  <input type="checkbox" name="module[]" value="8" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.notes'); ?><br>
+                  <input type="checkbox" checked name="module[]" value="8" class="flat-red form-control">&nbsp; <?php echo app('translator')->getFromJson('fleet.notes'); ?><br>
                   <!-- <input type="checkbox" name="module[]" value="9" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.serviceReminders'); ?><br>
                   <input type="checkbox" name="module[]" value="10" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.reviews'); ?><br>
                   <input type="checkbox" name="module[]" value="12" class="flat-red form-control">&nbsp;  <?php echo app('translator')->getFromJson('fleet.maps'); ?><br>

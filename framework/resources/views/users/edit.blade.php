@@ -102,19 +102,33 @@ input:checked + .slider:before {
               {!! Form::text('last_name', $names[1],['class' => 'form-control','required']) !!}
             </div>
 
+            <div class="form-group">
+              {!! Form::label('Number', __('Number'), ['class' => 'form-label']) !!}
+              {!! Form::number('number', $user->number,['class' => 'form-control','required']) !!}
+            </div>
 
 
-            <div class="form-group" style="margin-top: 30px">
-              <div class="row">
-                <div class="col-md-3">
-                  <label class="switch">
-                  <input type="checkbox" name="is_admin" value="1" @if($user->user_type == "S") checked @endif>
-                  <span class="slider round"></span>
-                  </label>
-                </div>
-                <div class="col-md-3" style="margin-top: 5px">
-                  <h4>@lang('fleet.is_admin')</h4>
-                </div>
+
+            <div class="form-group">
+            <label class="form-label">Select Role</label>
+              <div class="input-group mb-3">
+               <select class="form-control" name="role" required>
+                 <option value="{{$user->user_type}}">
+                   @if($user->user_type=="S")
+                     Admin
+                   @elseif($user->user_type=="O")
+                   Officer
+                   @elseif($user->user_type=="OP")
+                   Operator
+                   @elseif($user->user_type=="A")
+                   Accountant
+                   @endif
+                 </option>
+                 <option value="S">Admin</option>
+                 <option value="O">Officer</option>
+                 <option value="OP">Operator</option>
+                 <option value="A">Accountant</option>
+               </select>
               </div>
             </div>
           </div>
@@ -126,6 +140,14 @@ input:checked + .slider:before {
                 <span class="input-group-text"><i class="fa fa-envelope"></i></span></div>
                 {!! Form::email('email', $user->email,['class' => 'form-control','required']) !!}
               </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Desgignation</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user"></i></span> </div>
+                <input type="text" name="designation" class="form-control" value="{{$user->designation}}" required>
+                </div>
             </div>
             <div class="form-group">
               {!! Form::label('profile_image', __('fleet.profile_photo'), ['class' => 'form-label']) !!}

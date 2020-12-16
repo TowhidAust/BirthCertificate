@@ -12,7 +12,7 @@ use Redirect;
 
 class UsersController extends Controller {
 	public function index() {
-		$index['data'] = User::whereUser_type("O")->orWhere('user_type', 'S')->get();
+		$index['data'] = User::whereUser_type("O")->orWhere('user_type', 'A')->orWhere('user_type', 'OP')->orWhere('user_type', 'S')->get();
 		return view("users.index", $index);
 	}
 
@@ -39,16 +39,14 @@ class UsersController extends Controller {
 
 	public function store(UserRequest $request) {
 	//	 dd($request->get('module'));
-		if ($request->get('is_admin') == '1') {
-			$user_type = 'S';
-		} else {
-			$user_type = 'O';
-		}
+
 		$id = User::create([
 			"name" => $request->get("first_name") . " " . $request->get("last_name"),
 			"email" => $request->get("email"),
+			"number" => $request->get("number"),
+			"designation" => $request->get("designation"),
 			"password" => bcrypt($request->get("password")),
-			"user_type" => $user_type,
+			"user_type" => $request->get("role"),
 			"group_id" => $request->get("group_id"),
 			'api_token' => str_random(60),
 		])->id;
@@ -69,22 +67,25 @@ class UsersController extends Controller {
 	}
 
 	public function update(EditUserRequest $request) {
-
+   // return $request->all();
 		$user = User::whereId($request->get("id"))->first();
 		$user->name = $request->get("first_name") . " " . $request->get("last_name");
 		$user->email = $request->get("email");
+		$user->number = $request->get("number");
+		$user->designation = $request->get("designation");
+		$user->user_type = $request->get("role");
 		$user->group_id = $request->get("group_id");
 		$user->module = serialize($request->get('module'));
 
 		// $user->profile_image = $request->get('profile_image');
-		if ($request->get('is_admin') == '1') {
-			$user->user_type = 'S';
-		} else {
-			$user->user_type = 'O';
-		}
-		if (Auth::user()->user_type == "S" && $user->id == Auth::user()->id) {
-			$user->user_type = 'S';
-		}
+		// if ($request->get('is_admin') == '1') {
+		// 	$user->user_type = 'S';
+		// } else {
+		// 	$user->user_type = 'O';
+		// }
+		// if (Auth::user()->user_type == "S" && $user->id == Auth::user()->id) {
+		// 	$user->user_type = 'S';
+		// }
 		$user->save();
 		if ($request->file('profile_image') && $request->file('profile_image')->isValid()) {
 			$this->upload_file($request->file('profile_image'), "profile_image", $user->id);

@@ -28,9 +28,8 @@
             <thead class="thead-inverse">
               <tr>
                 <th>
-                  @if($data->count() > 0)
                   <input type="checkbox" id="chk_all">
-                  @endif
+
                 </th>
                 <th> Application ID</th>
                 <th> Birth ID</th>
@@ -46,9 +45,9 @@
             <tbody>
                 @foreach($applican_info as $row)
                 <tr>
-                  <td>  @if($data->count() > 0)
+                  <td>
                     <input type="checkbox" id="chk_all">
-                    @endif</td>
+
                   <td>{{$row->id}}</td>
                   <td>{{$row->birth_id}}</td>
                   <td>{{$row->applican_name}}</td>
@@ -65,9 +64,9 @@
 
               <tr>
                 <th>
-                @if($data->count() > 0)
+              
                   <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled>@lang('fleet.delete')</button>
-                @endif
+
                 </th>
                 <th> Application ID</th>
                 <th>Birth ID</th>

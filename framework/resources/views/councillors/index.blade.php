@@ -34,7 +34,7 @@
     <div class="card card-info">
       <div class="card-header">
         <h3 class="card-title">Councillor &nbsp;
-          <a href="{{ route("drivers.create") }}" class="btn btn-success">Add Councillor </a>
+          <a href="{{ route("councillor.create") }}" class="btn btn-success">Add Councillor </a>
           <button data-toggle="modal" data-target="#import" class="btn btn-warning">@lang('fleet.import')</button>
         </h3>
       </div>
@@ -51,6 +51,7 @@
               <th>#</th>
               <th>Image</th>
               <th>@lang('fleet.name')</th>
+              <th>@lang('Ward No')</th>
               <th>@lang('fleet.email')</th>
               <th>@lang('fleet.is_active')</th>
               <th>@lang('fleet.phone')</th>
@@ -78,6 +79,7 @@
                 @endif
               </td>
               <td>{{$row->name}}</td>
+              <td>{{$row->ward_name}}</td>
               <td>{{$row->email}}</td>
               <td>{{($row->getMeta('is_active')) ? "YES" : "NO"}}</td>
               <td>{{$row->getMeta('phone')}}</td>
@@ -90,12 +92,12 @@
                 </button>
                 <div class="dropdown-menu custom" role="menu">
                   <a class="dropdown-item" class="mybtn changepass" data-id="{{$row->id}}" data-toggle="modal" data-target="#changepass" title="@lang('fleet.change_password')"><i class="fa fa-key" aria-hidden="true" style="color:#269abc;"></i> @lang('fleet.change_password')</a>
-                  <a class="dropdown-item" href="{{ url("admin/drivers/".$row->id."/edit")}}"> <span aria-hidden="true" class="fa fa-edit" style="color: #f0ad4e;"></span> @lang('fleet.edit')</a>
+                  <a class="dropdown-item" href="{{ url("admin/councillor/".$row->id."/edit")}}"> <span aria-hidden="true" class="fa fa-edit" style="color: #f0ad4e;"></span> @lang('fleet.edit')</a>
                   <a class="dropdown-item" data-id="{{$row->id}}" data-toggle="modal" data-target="#myModal"><span aria-hidden="true" class="fa fa-trash" style="color: #dd4b39"></span> @lang('fleet.delete')</a>
                   @if($row->getMeta('is_active'))
-                  <a class="dropdown-item" href="{{ url("admin/drivers/disable/".$row->id)}}" class="mybtn" data-toggle="tooltip"  title="@lang('fleet.disable_driver')"><span class="fa fa-times" aria-hidden="true" style="color: #5cb85c;"></span> @lang('fleet.disable_driver')</a>
+                  <a class="dropdown-item" href="{{ url("admin/councillor/disable/".$row->id)}}" class="mybtn" data-toggle="tooltip"  title="@lang('fleet.disable_driver')"><span class="fa fa-times" aria-hidden="true" style="color: #5cb85c;"></span> @lang('Deactive')</a>
                   @else
-                  <a class="dropdown-item" href="{{ url("admin/drivers/enable/".$row->id)}}" class="mybtn" data-toggle="tooltip"  title="@lang('fleet.enable_driver')"><span class="fa fa-check" aria-hidden="true" style="color: #5cb85c;"></span> @lang('fleet.enable_driver')</a>
+                  <a class="dropdown-item" href="{{ url("admin/councillor/enable/".$row->id)}}" class="mybtn" data-toggle="tooltip"  title="@lang('fleet.enable_driver')"><span class="fa fa-check" aria-hidden="true" style="color: #5cb85c;"></span> @lang('Active')</a>
                   @endif
                 </div>
               </div>

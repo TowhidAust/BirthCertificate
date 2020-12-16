@@ -17,7 +17,14 @@
               <div class="alert alert-success" role="alert">
                 {!! session('message') !!}
               </div>
-              @endif</h5></span>
+              @endif</h5>
+        </span>
+        <span><h5>@if (Session::has('reject'))
+              <div class="alert alert-danger" role="alert">
+                {!! session('reject') !!}
+              </div>
+              @endif</h5>
+        </span>
       </h4>
     </div>
   </div>
@@ -192,17 +199,45 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-danger"><i class="fa fa-print"></i> @lang('fleet.print')</a>
+      <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> @lang('fleet.print')</a>
    @if(Auth::user()->user_type == "S")
    <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-primary"><i class="fa fa-undo"></i> Reject</a>
    <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    @endif
    @if(Auth::user()->user_type == "D"&&$approve->councillor=='0')
-   <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-primary"><i class="fa fa-undo"></i> Reject</a>
-   <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i>@lang('Reject')</button>
+   <a href="{{url('admin/application/'.$data->applicant_id.'/councillor_approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    @endif
 
   </div>
   </div>
 </div>
+<!-- Modal -->
+<div id="import" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Reject Application</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['route'=>'councillor.reject','method'=>'POST','files'=>true]) !!}
+        <div class="form-group">
+          {!! Form::label('excel',__('Write Reason below'),['class'=>"form-label"]) !!}
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="applicant_id" value="{{$data->applicant_id}}">
+          <textarea name="reason" rows="8" cols="65"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="submit">@lang('Submit')</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@lang('fleet.close')</button>
+      </div>
+        {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+<!-- Modal -->
 @endsection

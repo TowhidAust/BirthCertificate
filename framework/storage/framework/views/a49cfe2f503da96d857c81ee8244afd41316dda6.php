@@ -33,7 +33,7 @@
     <div class="card card-info">
       <div class="card-header">
         <h3 class="card-title">Councillor &nbsp;
-          <a href="<?php echo e(route("drivers.create")); ?>" class="btn btn-success">Add Councillor </a>
+          <a href="<?php echo e(route("councillor.create")); ?>" class="btn btn-success">Add Councillor </a>
           <button data-toggle="modal" data-target="#import" class="btn btn-warning"><?php echo app('translator')->getFromJson('fleet.import'); ?></button>
         </h3>
       </div>
@@ -50,6 +50,7 @@
               <th>#</th>
               <th>Image</th>
               <th><?php echo app('translator')->getFromJson('fleet.name'); ?></th>
+              <th><?php echo app('translator')->getFromJson('Ward No'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.email'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.is_active'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.phone'); ?></th>
@@ -77,6 +78,7 @@
                 <?php endif; ?>
               </td>
               <td><?php echo e($row->name); ?></td>
+              <td><?php echo e($row->ward_name); ?></td>
               <td><?php echo e($row->email); ?></td>
               <td><?php echo e(($row->getMeta('is_active')) ? "YES" : "NO"); ?></td>
               <td><?php echo e($row->getMeta('phone')); ?></td>
@@ -89,12 +91,12 @@
                 </button>
                 <div class="dropdown-menu custom" role="menu">
                   <a class="dropdown-item" class="mybtn changepass" data-id="<?php echo e($row->id); ?>" data-toggle="modal" data-target="#changepass" title="<?php echo app('translator')->getFromJson('fleet.change_password'); ?>"><i class="fa fa-key" aria-hidden="true" style="color:#269abc;"></i> <?php echo app('translator')->getFromJson('fleet.change_password'); ?></a>
-                  <a class="dropdown-item" href="<?php echo e(url("admin/drivers/".$row->id."/edit")); ?>"> <span aria-hidden="true" class="fa fa-edit" style="color: #f0ad4e;"></span> <?php echo app('translator')->getFromJson('fleet.edit'); ?></a>
+                  <a class="dropdown-item" href="<?php echo e(url("admin/councillor/".$row->id."/edit")); ?>"> <span aria-hidden="true" class="fa fa-edit" style="color: #f0ad4e;"></span> <?php echo app('translator')->getFromJson('fleet.edit'); ?></a>
                   <a class="dropdown-item" data-id="<?php echo e($row->id); ?>" data-toggle="modal" data-target="#myModal"><span aria-hidden="true" class="fa fa-trash" style="color: #dd4b39"></span> <?php echo app('translator')->getFromJson('fleet.delete'); ?></a>
                   <?php if($row->getMeta('is_active')): ?>
-                  <a class="dropdown-item" href="<?php echo e(url("admin/drivers/disable/".$row->id)); ?>" class="mybtn" data-toggle="tooltip"  title="<?php echo app('translator')->getFromJson('fleet.disable_driver'); ?>"><span class="fa fa-times" aria-hidden="true" style="color: #5cb85c;"></span> <?php echo app('translator')->getFromJson('fleet.disable_driver'); ?></a>
+                  <a class="dropdown-item" href="<?php echo e(url("admin/councillor/disable/".$row->id)); ?>" class="mybtn" data-toggle="tooltip"  title="<?php echo app('translator')->getFromJson('fleet.disable_driver'); ?>"><span class="fa fa-times" aria-hidden="true" style="color: #5cb85c;"></span> <?php echo app('translator')->getFromJson('Deactive'); ?></a>
                   <?php else: ?>
-                  <a class="dropdown-item" href="<?php echo e(url("admin/drivers/enable/".$row->id)); ?>" class="mybtn" data-toggle="tooltip"  title="<?php echo app('translator')->getFromJson('fleet.enable_driver'); ?>"><span class="fa fa-check" aria-hidden="true" style="color: #5cb85c;"></span> <?php echo app('translator')->getFromJson('fleet.enable_driver'); ?></a>
+                  <a class="dropdown-item" href="<?php echo e(url("admin/councillor/enable/".$row->id)); ?>" class="mybtn" data-toggle="tooltip"  title="<?php echo app('translator')->getFromJson('fleet.enable_driver'); ?>"><span class="fa fa-check" aria-hidden="true" style="color: #5cb85c;"></span> <?php echo app('translator')->getFromJson('Active'); ?></a>
                   <?php endif; ?>
                 </div>
               </div>

@@ -27,9 +27,8 @@
             <thead class="thead-inverse">
               <tr>
                 <th>
-                  <?php if($data->count() > 0): ?>
                   <input type="checkbox" id="chk_all">
-                  <?php endif; ?>
+
                 </th>
                 <th> Application ID</th>
                 <th> Birth ID</th>
@@ -45,9 +44,9 @@
             <tbody>
                 <?php $__currentLoopData = $applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                  <td>  <?php if($data->count() > 0): ?>
+                  <td>
                     <input type="checkbox" id="chk_all">
-                    <?php endif; ?></td>
+
                   <td><?php echo e($row->id); ?></td>
                   <td><?php echo e($row->birth_id); ?></td>
                   <td><?php echo e($row->applican_name); ?></td>
@@ -64,9 +63,9 @@
 
               <tr>
                 <th>
-                <?php if($data->count() > 0): ?>
+              
                   <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled><?php echo app('translator')->getFromJson('fleet.delete'); ?></button>
-                <?php endif; ?>
+
                 </th>
                 <th> Application ID</th>
                 <th>Birth ID</th>
