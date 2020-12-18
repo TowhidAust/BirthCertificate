@@ -12,14 +12,14 @@ Route::namespace ('Admin')->group(function () {
 
     Route::get("/", 'HomeController@index')->middleware(['lang_check', 'auth']);
     Route::get('/application/{id}/view', 'ApplicationController@view_application');
-    Route::get('/application/{id}/councillor_approve', 'ApplicationController@councillor_approve')->middleware('userpermission:3');
+    Route::get('/application/{id}/councillor_approve', 'ApplicationController@councillor_approve');
     Route::post('/councillor-reject', 'ApplicationController@councillor_reject')->name('councillor.reject');
     Route::group(['middleware' => ['lang_check', 'auth', 'officeadmin']], function () {
         // Route::get('test', function () {
         //     return view('geocode');
         // });
         Route::get('/application', 'ApplicationController@index')->name('application');
-        Route::get('/today-application', 'ApplicationController@today_application')->name('today_application')->middleware('userpermission:3');
+        Route::get('/today-application', 'ApplicationController@today_application')->name('today_application');
         Route::get('/pending-application', 'ApplicationController@pending')->name('pending');
 
         Route::get('/councillor', 'CouncillorController@index')->name('councillor');

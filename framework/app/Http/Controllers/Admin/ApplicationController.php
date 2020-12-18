@@ -45,10 +45,47 @@ public function index()
     }
 public function today_application()
     {
+       $data;
         if (Auth::user()->user_type == "C") {
             $data['data'] = Bookings::where('customer_id', Auth::user()->id)->orderBy('id', 'desc')->get();
-        } elseif (Auth::user()->group_id == null || Auth::user()->user_type == "S") {
-            $data['data'] = Bookings::orderBy('id', 'desc')->get();
+        } elseif (Auth::user()->user_type == "S") {
+          $data['pending_applican_info'] = DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+                                          ->where('applican_informations.status','Pending  ')
+                                          ->get();
+          $data['approved_applican_info'] =  DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+                                          ->where('applican_informations.status','Completed')
+                                          ->get();
+          $data['rejected_applican_info'] =  DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+                                          ->where('applican_informations.status','Rejected')
+                                          ->get();
+        } elseif (Auth::user()->user_type == "A") {
+          $data['pending_applican_info'] = DB::table('applican_informations')
+    																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
+    																			->orderBy('applican_informations.id','desc')
+    																			->where('applican_informations.status','Pending')
+    																			->where('approvals.councillor','1')
+    																			->where('approvals.accountant','0')
+    																			->get();
+    	  	$data['approved_applican_info'] =  DB::table('applican_informations')
+    																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
+    																			->orderBy('applican_informations.id','desc')
+    																			->where('applican_informations.status','Pending')
+    																			->where('approvals.councillor','1')
+    																			->where('approvals.accountant','1')
+    																			->get();
+    	  	$data['rejected_applican_info'] =  DB::table('applican_informations')
+    																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
+    																			->orderBy('applican_informations.id','desc')
+    																			->where('applican_informations.status','Pending')
+    																			->where('approvals.councillor','1')
+    																			->where('approvals.accountant','2')
+    																			->get();
         } else {
             $vehicle_ids = VehicleModel::where('group_id', Auth::user()->group_id)->pluck('id')->toArray();
             $data['data'] = Bookings::whereIn('vehicle_id', $vehicle_ids)->orderBy('id', 'desc')->get();
@@ -56,8 +93,8 @@ public function today_application()
 
 
         $data['types'] = IncCats::get();
-        $data['applican_info'] = DB::table('applican_informations')->orderBy('id','desc')->whereDate('created_at', Carbon::today())->get();
-        // dd($data);
+$data['data'] = Bookings::orderBy('id', 'desc')->get();
+
         return view("application.today_application", $data);
     }
 public function pending()  {
@@ -95,6 +132,7 @@ public function pending()  {
                       ->join('permanent_address_en','permanent_address_en.applicant_id','=','applican_informations.id')
                       ->join('parents','parents.applicant_id','=','applican_informations.id')
                       ->join('documents','documents.applicant_id','=','applican_informations.id')
+                      ->join('payments','payments.applicant_id','=','applican_informations.id')
                       ->where('applican_informations.id',$id)
                       ->select('applican_informations.id as applicant_id',
                       'applican_informations.birth_id',
@@ -161,7 +199,12 @@ public function pending()  {
                       'permanent_address_en.upozila as per_police_station_en',
                       'permanent_address_en.district as per_district_en',
                       'permanent_address_en.ward as per_union_en',
-                      'documents.*'
+                      'documents.*',
+                      'payments.bank_name',
+                      'payments.transaction_id',
+                      'payments.branch',
+                      'payments.file',
+                      'payments.status as payment_status',
                       )
                       ->first();
           // echo '<pre>';
@@ -175,6 +218,13 @@ public function pending()  {
          DB::table('approvals')
             ->where('applicant_id',$id)
             ->update(['councillor' => 1]);
+      }elseif(Auth::user()->user_type == "A"){
+        DB::table('approvals')
+           ->where('applicant_id',$id)
+           ->update(['accountant' => 1]);
+        DB::table('payments')
+           ->where('applicant_id',$id)
+           ->update(['status' => 1]);
       }
       Session::flash('message', 'Approved successfully!');
      return back();

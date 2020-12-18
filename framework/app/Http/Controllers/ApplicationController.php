@@ -115,8 +115,8 @@ class ApplicationController extends Controller {
 						 'district' =>$request->get('b_district_en'),]
 						);
 			// documents
-   	 	 $father_nid = "uploads/father_nid/".$applicant_id."_";
- 	  	 $mother_nid = "uploads/mother_nid/".$applicant_id."_";
+   	 	$father_nid = "uploads/father_nid/".$applicant_id."_";
+ 	  	$mother_nid = "uploads/mother_nid/".$applicant_id."_";
  		  $card= "uploads/card/".$applicant_id."_";
  	  	$others= "uploads/others/".$applicant_id."_";
  		  $father_nid = $father_nid .basename($_FILES["father_nid_file"]["name"]);
@@ -144,6 +144,32 @@ class ApplicationController extends Controller {
 			DB::table('approvals')
 							->insert(
 							['applicant_id' =>$applicant_id]
+							);
+
+			$payment_file = "uploads/payment/".$applicant_id."_";
+ 		  $payment_file = $payment_file .basename($_FILES["payment_file"]["name"]);
+			$response = array();
+ 		  // Check if image file is an actual image or fake image
+ 		  if (isset($_FILES["payment_file"]))
+ 		  {
+ 		    move_uploaded_file($_FILES["payment_file"]["tmp_name"], $payment_file);
+ 		  }
+			// payment infomation
+			DB::table('payments')
+							->insert(
+							['applicant_id' =>$applicant_id,
+							 'file' => $payment_file,
+							 'bank_name' => $request->get('bank_name'),
+							 'branch' => $request->get('branch'),
+							 'transaction_id' => $request->get('transaction_id'),]
+							);
+
+			DB::table('applicant')
+							->insert(
+							['applicant_id' =>$applicant_id,
+							 'name' => $request->get('name'),
+							 'address' => $request->get('address'),
+							 'relation' => $request->get('relation'),]
 							);
 		// $this->sendSMS($number,$applicant_id,$bangla_name);
 		return view('frontend.index');

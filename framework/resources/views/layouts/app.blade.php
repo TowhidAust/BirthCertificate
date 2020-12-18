@@ -283,7 +283,7 @@ $(document).ready(function(){
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <!-- customer -->
-          @if(Auth::user()->user_type=="C")
+          @if(Auth::user()->user_type=="C"||Auth::user()->user_type=="A")
 
             @if(Request::is('admin/bookings*'))
             @php($class="menu-open")
@@ -361,7 +361,7 @@ $(document).ready(function(){
           <!-- user-type S or O -->
 
           <!-- driver -->
-          @if(Auth::user()->user_type=="D")
+          @if(Auth::user()->user_type=="D"||Auth::user()->user_type=="A")
 
           <li class="nav-item">
             <a style="margin-left: 23px;" href="{{url('admin/')}}" class="nav-link @if(Request::is('admin/')) active @endif">
@@ -562,7 +562,7 @@ $(document).ready(function(){
             @php($active="")
 
             @endif
-            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S")
+            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A")
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>

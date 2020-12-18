@@ -43,6 +43,7 @@
     <div class="col-sm-6 invoice-col">
       <p class="text-muted well well-sm " style="margin-top: 10px;">   </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Status : <span class="badge badge-secondary">{{$data->status}}</span>  </p>
+      <p class="text-muted well well-sm " style="margin-top: 10px;">  Payment Status : <span class="badge badge-secondary">@if($data->payment_status=='0') Unpaid @else Paid @endif</span>  </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Division : {{$data->applican_name}}  </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Ward : {{$data->ward_name}}  </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application ID : {{$data->applicant_id}}  </p>
@@ -135,12 +136,29 @@
       <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;"> District : {{$data->per_district_en}}</p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-6 invoice-col">
+      <strong>Payment Information</strong>
+        <p class="text-muted well well-sm " style="margin-top: 10px;">  Bank Name : {{$data->bank_name}}  </p>
+        <p class="text-muted well well-sm " style="margin-top: 10px;">  Branch Name : {{$data->branch}}  </p>
+        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">  Transaction ID : {{$data->transaction_id}}  </p>
+    </div>
+    <div class="col-sm-6 invoice-col">
+      <?php  $extension=substr($data->file,-3);
+      if($extension=='pdf'){
+       ?>
+       <iframe width="100%" height="500px" src="{{asset($data->file)}}"></iframe>
+     <?php }else{ ?>
+       <img style="height: 90%;width:100%" src="{{asset($data->file)}}" alt="">
+     <?php } ?>
+    </div>
+  </div>
     <h3>Supported Documents</h3>
   <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Father's NID</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->father_nid,-3);
       if($extension=='pdf'){
        ?>
@@ -151,10 +169,10 @@
     </div>
     </div>
   <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Mother's NID</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->mother_nid,-3);
       if($extension=='pdf'){
        ?>
@@ -166,10 +184,10 @@
     </div>
 
     <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Medical Report / Tika Card</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->card,-3);
       if($extension=='pdf'){
        ?>
@@ -180,10 +198,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Others Documents</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->others,-3);
       if($extension=='pdf'){
        ?>
@@ -199,12 +217,16 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> @lang('fleet.print')</a>
-   @if(Auth::user()->user_type == "S")
+     @if(Auth::user()->user_type == "S")
    <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-primary"><i class="fa fa-undo"></i> Reject</a>
    <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    @endif
    @if(Auth::user()->user_type == "D"&&$approve->councillor=='0')
+   <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> @lang('fleet.print')</a>
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i>@lang('Reject')</button>
+   <a href="{{url('admin/application/'.$data->applicant_id.'/councillor_approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   @endif
+   @if(Auth::user()->user_type == "A"&&$approve->accountant=='0')
    <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i>@lang('Reject')</button>
    <a href="{{url('admin/application/'.$data->applicant_id.'/councillor_approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    @endif

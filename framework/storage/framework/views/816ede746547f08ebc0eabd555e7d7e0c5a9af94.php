@@ -285,7 +285,17 @@
               <label class="mt-3" for=""> District </label>
               <input class="form-control" type="text" name="per_district_en">
             </div>
+            <div class="mt-3">
+              <h3>ফি প্রদানের তথ্য </h3>
+              <label class="mt-3" for=""> ব্যাংকের নাম </label>
+              <input class="form-control" type="text" name="bank_name">
 
+              <label class="mt-3" for=""> ক্রমিক সংখ্যা </label>
+              <input class="form-control" type="text" name="transaction_id">
+
+              <label class="mt-3" for=""> ফি প্রদানের নথি </label>
+              <input class="form-control" type="file" name="payment_file">
+            </div>
             <div class="mt-3 p-3">
             <h3>আবেদনকারীর প্রত্যয়ন (নিবন্ধনকারী ব্যাক্তি ১৮ বছরের নিম্নে বয়স্ক হলে তাহার পিতা বা মাতা বা আইনানুগ অভিভাবক বা বিধি ৯ মতে ক্ষমতাপ্রাপ্ত ব্যক্তি) নিম্নে প্রত্যয়নপূর্বক সাক্ষর/ টিপসহি প্রদান করিবেনঃ</h3>
 

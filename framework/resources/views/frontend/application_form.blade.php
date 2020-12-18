@@ -26,10 +26,10 @@
           <div class="col-md-6 dashed">
             <div class="mt-3">
               <label for="">নিবন্ধন কার্যালয়ের নামঃ বরিশাল সিটি কর্পোরেশন </label>
-              <select class="form-control" name="ward_name">
-                <option value="1"> সদর নির্বাচন করুন </option>
-                <option value="1"> বরিশাল সদর </option>
-                <option value="2"> বরিশাল সিটি কর্পোরেশন </option>
+              <select class="form-control" name="applican_name">
+                <option value="সদর নির্বাচন করুন"> সদর নির্বাচন করুন </option>
+                <option value="বরিশাল সদর"> বরিশাল সদর </option>
+                <option value="বরিশাল সিটি কর্পোরেশন"> বরিশাল সিটি কর্পোরেশন </option>
               </select>
             </div>
             <div class="mt-3">
@@ -284,18 +284,31 @@
               <label class="mt-3" for=""> District </label>
               <input class="form-control" type="text" name="per_district_en">
             </div>
+            <div class="mt-3">
+              <h3>ফি প্রদানের তথ্য </h3>
+              <label class="mt-3" for=""> ব্যাংকের নাম </label>
+              <input class="form-control" type="text" name="bank_name">
 
+              <label class="mt-3" for="">শাখা </label>
+              <input class="form-control" type="text" name="branch">
+
+              <label class="mt-3" for=""> ক্রমিক সংখ্যা </label>
+              <input class="form-control" type="text" name="transaction_id">
+
+              <label class="mt-3" for=""> ফি প্রদানের নথি </label>
+              <input class="form-control" type="file" name="payment_file">
+            </div>
             <div class="mt-3 p-3">
             <h3>আবেদনকারীর প্রত্যয়ন (নিবন্ধনকারী ব্যাক্তি ১৮ বছরের নিম্নে বয়স্ক হলে তাহার পিতা বা মাতা বা আইনানুগ অভিভাবক বা বিধি ৯ মতে ক্ষমতাপ্রাপ্ত ব্যক্তি) নিম্নে প্রত্যয়নপূর্বক সাক্ষর/ টিপসহি প্রদান করিবেনঃ</h3>
 
             <label class="mt-3" for=""> নামঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" name="name" type="text">
 
             <label class="mt-3" for=""> ঠিকানাঃ </label>
-            <input class="form-control" type="text">
+            <input class="form-control" name="address" type="text">
 
             <label class="mt-3" for=""> নিবন্ধনকারী ব্যক্তির সহিত সম্পর্কঃ </label>
-            <select class="form-control" name="" id="">
+            <select class="form-control" name="relation" id="">
               <option value="">পিতা</option>
               <option value="">মাতা</option>
               <option value="">নিজ</option>

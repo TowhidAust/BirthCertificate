@@ -45,6 +45,7 @@
     <div class="col-sm-6 invoice-col">
       <p class="text-muted well well-sm " style="margin-top: 10px;">   </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Status : <span class="badge badge-secondary"><?php echo e($data->status); ?></span>  </p>
+      <p class="text-muted well well-sm " style="margin-top: 10px;">  Payment Status : <span class="badge badge-secondary"><?php if($data->payment_status=='0'): ?> Unpaid <?php else: ?> Paid <?php endif; ?></span>  </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Division : <?php echo e($data->applican_name); ?>  </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Ward : <?php echo e($data->ward_name); ?>  </p>
       <p class="text-muted well well-sm " style="margin-top: 10px;">  Application ID : <?php echo e($data->applicant_id); ?>  </p>
@@ -137,12 +138,29 @@
       <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;"> District : <?php echo e($data->per_district_en); ?></p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-6 invoice-col">
+      <strong>Payment Information</strong>
+        <p class="text-muted well well-sm " style="margin-top: 10px;">  Bank Name : <?php echo e($data->bank_name); ?>  </p>
+        <p class="text-muted well well-sm " style="margin-top: 10px;">  Branch Name : <?php echo e($data->branch); ?>  </p>
+        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">  Transaction ID : <?php echo e($data->transaction_id); ?>  </p>
+    </div>
+    <div class="col-sm-6 invoice-col">
+      <?php  $extension=substr($data->file,-3);
+      if($extension=='pdf'){
+       ?>
+       <iframe width="100%" height="500px" src="<?php echo e(asset($data->file)); ?>"></iframe>
+     <?php }else{ ?>
+       <img style="height: 90%;width:100%" src="<?php echo e(asset($data->file)); ?>" alt="">
+     <?php } ?>
+    </div>
+  </div>
     <h3>Supported Documents</h3>
   <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Father's NID</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->father_nid,-3);
       if($extension=='pdf'){
        ?>
@@ -153,10 +171,10 @@
     </div>
     </div>
   <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Mother's NID</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->mother_nid,-3);
       if($extension=='pdf'){
        ?>
@@ -168,10 +186,10 @@
     </div>
 
     <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Medical Report / Tika Card</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->card,-3);
       if($extension=='pdf'){
        ?>
@@ -182,10 +200,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-3 invoice-col">
+    <div class="col-sm-4 invoice-col">
       <strong>Others Documents</strong>
     </div>
-    <div class="col-sm-9 invoice-col">
+    <div class="col-sm-8 invoice-col">
       <?php  $extension=substr($data->others,-3);
       if($extension=='pdf'){
        ?>
@@ -201,12 +219,16 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <a href="<?php echo e(url('admin/print/'.$id)); ?>" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> <?php echo app('translator')->getFromJson('fleet.print'); ?></a>
-   <?php if(Auth::user()->user_type == "S"): ?>
+     <?php if(Auth::user()->user_type == "S"): ?>
    <a href="<?php echo e(url('admin/print/'.$id)); ?>" target="_blank" class="btn btn-primary"><i class="fa fa-undo"></i> Reject</a>
    <a href="<?php echo e(url('admin/application/'.$data->applicant_id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    <?php endif; ?>
    <?php if(Auth::user()->user_type == "D"&&$approve->councillor=='0'): ?>
+   <a href="<?php echo e(url('admin/print/'.$id)); ?>" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> <?php echo app('translator')->getFromJson('fleet.print'); ?></a>
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i><?php echo app('translator')->getFromJson('Reject'); ?></button>
+   <a href="<?php echo e(url('admin/application/'.$data->applicant_id.'/councillor_approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   <?php endif; ?>
+   <?php if(Auth::user()->user_type == "A"&&$approve->accountant=='0'): ?>
    <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i><?php echo app('translator')->getFromJson('Reject'); ?></button>
    <a href="<?php echo e(url('admin/application/'.$data->applicant_id.'/councillor_approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
    <?php endif; ?>
