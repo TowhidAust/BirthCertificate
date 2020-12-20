@@ -19,6 +19,12 @@
               </div>
               @endif</h5>
         </span>
+        <span><h5>@if (Session::has('complete'))
+              <div class="alert alert-success" role="alert">
+                {!! session('complete') !!}
+              </div>
+              @endif</h5>
+        </span>
         <span><h5>@if (Session::has('reject'))
               <div class="alert alert-danger" role="alert">
                 {!! session('reject') !!}
@@ -217,18 +223,19 @@
 
   <div class="row">
     <div class="col-xs-12">
-     @if(Auth::user()->user_type == "S")
-   <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-primary"><i class="fa fa-undo"></i> Reject</a>
-   <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
-   @endif
    @if(Auth::user()->user_type == "D"&&$approve->councillor=='0')
    <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> @lang('fleet.print')</a>
-   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i>@lang('Reject')</button>
-   <a href="{{url('admin/application/'.$data->applicant_id.'/councillor_approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
-   @endif
-   @if(Auth::user()->user_type == "A"&&$approve->accountant=='0')
-   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i>@lang('Reject')</button>
-   <a href="{{url('admin/application/'.$data->applicant_id.'/councillor_approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
+   <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   @elseif(Auth::user()->user_type == "A"&&$approve->accountant=='0')
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
+   <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   @elseif(Auth::user()->user_type == "O"&&$approve->officer=='0')
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
+   <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+   @elseif(Auth::user()->user_type == "OP"&&$approve->operator=='0')
+   <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
+   <button data-toggle="modal" data-target="#complete" class="btn btn-success"><i class="fa fa-send"></i> Approve</button>
    @endif
 
   </div>
@@ -244,7 +251,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        {!! Form::open(['route'=>'councillor.reject','method'=>'POST','files'=>true]) !!}
+        {!! Form::open(['route'=>'reject','method'=>'POST','files'=>true]) !!}
         <div class="form-group">
           {!! Form::label('excel',__('Write Reason below'),['class'=>"form-label"]) !!}
         </div>
@@ -255,6 +262,34 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-warning" type="submit">@lang('Submit')</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">@lang('fleet.close')</button>
+      </div>
+        {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<!-- Modal -->
+<div id="complete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"> Complete Application</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        {!! Form::open(['route'=>'complete','method'=>'POST','files'=>true]) !!}
+        <div class="form-group">
+          {!! Form::label('excel',__('Enter Birth ID *'),['class'=>"form-label"]) !!}
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="applicant_id" value="{{$data->applicant_id}}">
+          <input class="form-control" type="text" name="birth_id" value="" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" type="submit">@lang('Submit')</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">@lang('fleet.close')</button>
       </div>
         {!! Form::close() !!}

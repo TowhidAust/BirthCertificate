@@ -23,7 +23,7 @@
             </div>
             <div class="mt-3">
               <label for=""> জন্ম তারিখঃ খ্রিঃ </label>
-              <input class="form-control" name="birth_date" type="date" required>
+              <input class="form-control" id="date" name="birth_date" type="date" required>
             </div>
             <div class="mt-3 verify">
              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
@@ -48,7 +48,13 @@
                 </div>
                 @endif</h5>
             @if($data)
-            <p>enrollment ID : {{$data->id}}</p>
+            @if($data->status!="Completed")
+            <div class="alert alert-info" role="alert">
+            {{$data->application_status}}
+            </div>
+            @endif
+            <p>Enrollment ID : {{$data->id}}</p>
+            <p>Birth Certificate ID : {{$data->birth_id}}</p>
             <p>Bangla Name : {{$data->bangla_name}}</p>
             <p>English Name : {{$data->english_name}}</p>
             <p>Date of birth : {{$data->birth_date}}</p>

@@ -24,7 +24,7 @@
             </div>
             <div class="mt-3">
               <label for=""> জন্ম তারিখঃ খ্রিঃ </label>
-              <input class="form-control" name="birth_date" type="date" required>
+              <input class="form-control" id="date" name="birth_date" type="date" required>
             </div>
             <div class="mt-3 verify">
              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
@@ -51,7 +51,14 @@
                 </div>
                 <?php endif; ?></h5>
             <?php if($data): ?>
-            <p>enrollment ID : <?php echo e($data->id); ?></p>
+            <?php if($data->status!="Completed"): ?>
+            <div class="alert alert-info" role="alert">
+            <?php echo e($data->application_status); ?>
+
+            </div>
+            <?php endif; ?>
+            <p>Enrollment ID : <?php echo e($data->id); ?></p>
+            <p>Birth Certificate ID : <?php echo e($data->birth_id); ?></p>
             <p>Bangla Name : <?php echo e($data->bangla_name); ?></p>
             <p>English Name : <?php echo e($data->english_name); ?></p>
             <p>Date of birth : <?php echo e($data->birth_date); ?></p>

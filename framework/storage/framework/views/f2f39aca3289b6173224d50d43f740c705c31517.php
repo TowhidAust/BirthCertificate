@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('frontend/css/style.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('frontend/css/birthform.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('frontend/css/sidebarDetails.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/bootstrap-datepicker.min.css')); ?>">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Birth Certificate</title>
   </head>

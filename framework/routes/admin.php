@@ -12,8 +12,9 @@ Route::namespace ('Admin')->group(function () {
 
     Route::get("/", 'HomeController@index')->middleware(['lang_check', 'auth']);
     Route::get('/application/{id}/view', 'ApplicationController@view_application');
-    Route::get('/application/{id}/councillor_approve', 'ApplicationController@councillor_approve');
-    Route::post('/councillor-reject', 'ApplicationController@councillor_reject')->name('councillor.reject');
+    Route::get('/application/{id}/approve', 'ApplicationController@approve');
+    Route::post('/application-reject', 'ApplicationController@reject')->name('reject');
+    Route::post('/application-complete', 'ApplicationController@complete')->name('complete');
     Route::group(['middleware' => ['lang_check', 'auth', 'officeadmin']], function () {
         // Route::get('test', function () {
         //     return view('geocode');

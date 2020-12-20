@@ -362,7 +362,7 @@ $(document).ready(function(){
           <!-- user-type S or O -->
 
           <!-- driver -->
-          <?php if(Auth::user()->user_type=="D"||Auth::user()->user_type=="A"): ?>
+          <?php if(Auth::user()->user_type=="D"): ?>
 
           <li class="nav-item">
             <a style="margin-left: 23px;" href="<?php echo e(url('admin/')); ?>" class="nav-link <?php if(Request::is('admin/')): ?> active <?php endif; ?>">
@@ -563,7 +563,7 @@ $(document).ready(function(){
             <?php ($active=""); ?>
 
             <?php endif; ?>
-            <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"): ?>
+            <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP"): ?>
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
               <i class="nav-icon fa fa-address-card"></i>
@@ -603,7 +603,7 @@ $(document).ready(function(){
               </li>
             </ul>
           </li> <?php endif; ?>
-            <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"): ?>
+              <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP"): ?>
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
               <i class="nav-icon fa fa-address-card"></i>

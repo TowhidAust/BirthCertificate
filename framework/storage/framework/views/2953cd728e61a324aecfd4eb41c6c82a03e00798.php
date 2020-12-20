@@ -9,83 +9,133 @@
   </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection("breadcrumb"); ?>
-<li class="breadcrumb-item active"><?php echo app('translator')->getFromJson('menu.bookings'); ?></li>
+<li class="breadcrumb-item active"><?php echo app('translator')->getFromJson('Application'); ?></li>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <div class="row">
   <div class="col-md-12">
-    <div class="card card-info">
-      <div class="card-header with-border">
-        <h3 class="card-title"> <?php echo app('translator')->getFromJson('Manage Application'); ?> &nbsp;
-          <a href="<?php echo e(route("bookings.create")); ?>" class="btn btn-success"><?php echo app('translator')->getFromJson('New Application'); ?></a>
-        </h3>
+    <div class="card">
+      <div class="card-header p-2">
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a class="nav-link custom_color active" href="#activity" data-toggle="tab">Pending</a></li>
+          <li class="nav-item"><a class="nav-link custom_color" href="#upcoming" data-toggle="tab">Approved</a></li>
+          <li class="nav-item"><a class="nav-link custom_color " style="color:red;" href="#rejected" data-toggle="tab">Rejected</a></li>
+
+        </ul>
       </div>
-
       <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-responsive display" id="data_table1" style="padding-bottom: 35px; width: 100%">
-            <thead class="thead-inverse">
-              <tr>
-                <th>
-                  <?php if($data->count() > 0): ?>
-                  <input type="checkbox" id="chk_all">
-                  <?php endif; ?>
-                </th>
-                <th> Application ID</th>
-                <th> Birth ID</th>
-                <th>Applican Name</th>
-                <th> Name Bangla</th>
-                <th>Name English</th>
-                <th>Birth Date</th>
-                <th>Gender</th>
-                <th>Status</th>
-                <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-              </tr>
-            </thead>
-            <tbody>
-                <?php $__currentLoopData = $applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <tr>
-                  <td>  <?php if($data->count() > 0): ?>
-                    <input type="checkbox" id="chk_all">
-                    <?php endif; ?></td>
-                  <td><?php echo e($row->id); ?></td>
-                  <td><?php echo e($row->birth_id); ?></td>
-                  <td><?php echo e($row->applican_name); ?></td>
-                  <td><?php echo e($row->bangla_name); ?></td>
-                  <td><?php echo e($row->english_name); ?></td>
-                  <td><?php echo e($row->birth_date); ?></td>
-                  <td><?php echo e($row->gender); ?></td>
-                  <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
-                  <td> <a href="<?php echo e(url("admin/application/".$row->id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
-                </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </tbody>
-            <tfoot>
+        <div class="tab-content">
+          <div class="active tab-pane" id="activity">
+            <h4>Pending Applications</h4>
+            <div class="table-responsive">
+              <table class="table table-responsive display" id="data_table" >
+                <thead class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Birth ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php $__currentLoopData = $pending_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                      <td><?php echo e($row->applicant_id); ?></td>
+                      <td><?php echo e($row->birth_id); ?></td>
+                      <td><?php echo e($row->bangla_name); ?></td>
+                      <td><?php echo e($row->english_name); ?></td>
+                      <td><?php echo e($row->number); ?></td>
+                      <td><?php echo e($row->birth_date); ?></td>
+                      <td><?php echo e($row->gender); ?></td>
+                      <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
+                      <td> <a href="<?php echo e(url("admin/application/".$row->applicant_id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
+                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-              <tr>
-                <th>
-                <?php if($data->count() > 0): ?>
-                  <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled><?php echo app('translator')->getFromJson('fleet.delete'); ?></button>
-                <?php endif; ?>
-                </th>
-                <th> Application ID</th>
-                <th>Birth ID</th>
-                <th>Applican Name</th>
-                <th> Name Bangla</th>
-                <th>Name English</th>
-                <th>Birth Date</th>
-                <th>Gender</th>
-                <th>Status</th>
-                <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-              </tr>
-            </tfoot>
-          </table>
+          <div class="tab-pane" id="upcoming">
+            <h4>Approved Applications</h4>
+            <div class="table-responsive">
+              <table class="table driver_table" id="data_table1" >
+                <thead class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Birth ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php $__currentLoopData = $approved_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                      <td><?php echo e($row->applicant_id); ?></td>
+                      <td><?php echo e($row->birth_id); ?></td>
+                      <td><?php echo e($row->bangla_name); ?></td>
+                      <td><?php echo e($row->english_name); ?></td>
+                      <td><?php echo e($row->number); ?></td>
+                      <td><?php echo e($row->birth_date); ?></td>
+                      <td><?php echo e($row->gender); ?></td>
+                      <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
+                      <td> <a href="<?php echo e(url("admin/application/".$row->applicant_id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
+                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane" id="rejected">
+            <h4>Approved Applications</h4>
+            <div class="table-responsive">
+              <table class="table driver_table" id="data_table2">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Rejected Reason</th>
+                    <th>Status</th>
+                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php $__currentLoopData = $rejected_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                      <td><?php echo e($row->applicant_id); ?></td>
+                      <td><?php echo e($row->bangla_name); ?></td>
+                      <td><?php echo e($row->english_name); ?></td>
+                      <td><?php echo e($row->number); ?></td>
+                      <td><?php echo e($row->birth_date); ?></td>
+                      <td><?php echo e($row->gender); ?></td>
+                      <td><?php echo e($row->reason); ?></td>
+                      <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
+                      <td> <a href="<?php echo e(url("admin/application/".$row->applicant_id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
+                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 <?php $__env->stopSection(); ?>
 

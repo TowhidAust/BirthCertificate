@@ -361,7 +361,7 @@ $(document).ready(function(){
           <!-- user-type S or O -->
 
           <!-- driver -->
-          @if(Auth::user()->user_type=="D"||Auth::user()->user_type=="A")
+          @if(Auth::user()->user_type=="D")
 
           <li class="nav-item">
             <a style="margin-left: 23px;" href="{{url('admin/')}}" class="nav-link @if(Request::is('admin/')) active @endif">
@@ -562,7 +562,7 @@ $(document).ready(function(){
             @php($active="")
 
             @endif
-            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A")
+            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP")
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>
@@ -602,7 +602,7 @@ $(document).ready(function(){
               </li>
             </ul>
           </li> @endif
-            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S")
+              @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP")
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>

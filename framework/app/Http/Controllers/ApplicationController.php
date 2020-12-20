@@ -171,6 +171,11 @@ class ApplicationController extends Controller {
 							 'address' => $request->get('address'),
 							 'relation' => $request->get('relation'),]
 							);
+
+			DB::table('application_status')
+							->insert(
+							['applicant_id' =>$applicant_id]
+							);
 		// $this->sendSMS($number,$applicant_id,$bangla_name);
 		return view('frontend.index');
 	}
@@ -209,21 +214,23 @@ public function sidebarDetails(){
 }
  public function verify(Request $request) {
 	$application_info= DB::table('applican_informations')
-					->where('id',$request->get('application_id'))
-					->where('birth_date',$request->get('birth_date'))
+					->join('application_status','application_status.applicant_id','applican_informations.id')
+					->join('status_lists','status_lists.id','application_status.status_id')
+					->where('applican_informations.id',$request->get('application_id'))
+					->where('applican_informations.birth_date',$request->get('birth_date'))
+					->orwhere('applican_informations.birth_id',$request->get('application_id'))
+					->select('applican_informations.*','status_lists.status as application_status')
 					->first();
-	$status = DB::table('application_status')
-					->join('status_lists','application_status.status_id','=','status_lists.id')
-					->where('applicant_id',$request->get('application_id'))
-					->first();
-	if(empty($application_info)){
+// dd($application_info);
+	if(!empty($application_info)){
 
-		 Session::flash('error', 'Error!enrollment id or birthday mismatch.');
-	  	$index['data'] ='';
+		$index['data'] =$application_info;
+		 return view('frontend.check_status',$index);
+
 	}else{
-		 Session::flash('message', $status->status);
-			$index['data'] =$application_info;
+		 Session::flash('error', 'Sorry! Enrollment id or birthday Incorrect.');
+		$index['data'] ='';
+		 return view('frontend.check_status',$index);
 	}
-	 return view('frontend.check_status',$index);
  }
 }
