@@ -3,7 +3,7 @@
 
     <?php echo $__env->make('frontend.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <div class="sidebarAndContents container mt-3">
+    <div class="sidebarAndContents container-custom mt-3">
 
 
 

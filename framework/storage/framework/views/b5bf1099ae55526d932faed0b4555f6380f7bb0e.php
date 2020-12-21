@@ -2,7 +2,7 @@
   <?php echo $__env->make('frontend.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <section class="mainContents">
         <?php echo $__env->make('frontend.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <div class="sidebarAndContents container mt-3">
+        <div class="sidebarAndContents container-custom mt-3">
             <div class="row">
                 <div class="col-md-4">
                     <?php echo $__env->make('frontend.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

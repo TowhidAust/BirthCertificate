@@ -3,7 +3,7 @@
 
     @include('frontend.navbar')
 
-    <div class="sidebarAndContents container mt-3">
+    <div class="sidebarAndContents container-custom mt-3">
 
 
 

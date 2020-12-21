@@ -3,7 +3,7 @@
 
     @include('frontend.navbar')
 
-    <div class="sidebarAndContents applicationForm container mt-3">
+    <div class="sidebarAndContents applicationForm container-custom mt-3">
 
       <form action="{{route('application_submit')}}" method="post" enctype="multipart/form-data">
          {{csrf_field() }}

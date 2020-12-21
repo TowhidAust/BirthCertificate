@@ -30,13 +30,18 @@ body{
 
 .navBar{
     background-color: black;
-    border-radius: 1em 1em 0 0;
+    /* border-radius: 1em 1em 0 0; */
     padding: 0 4%;
 }
 
 .navbar-brand img{
     width: 2em;
     height: 2em;
+}
+
+.container-custom{
+    width: 95%;
+    margin: auto;
 }
 
 .navBar .navLinksDiv a {
