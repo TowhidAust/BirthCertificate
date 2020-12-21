@@ -372,15 +372,6 @@ $(document).ready(function(){
               </p>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a style="margin-left: 23px;" href="{{ route('my_bookings')}}" class="nav-link @if(Request::is('admin/my_bookings')) active @endif">
-              <i class="nav-icon fa fa-book"></i>
-              <p>
-                @lang('menu.my_bookings')
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li> -->
           <li class="nav-item">
             <a style="margin-left: 23px;" href="{{ url('admin/change-details/'.Auth::user()->id)}}" class="nav-link @if(Request::is('admin/change-details*')) active @endif">
               <i class="nav-icon fa fa-edit"></i>
@@ -419,6 +410,32 @@ $(document).ready(function(){
                   <p>@lang('fleet.create_note')</p>
                 </a>
               </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {{$class}}">
+            <a href="#" class="nav-link {{$active}}">
+              <i class="nav-icon fa fa-address-card"></i>
+              <p>
+                Corrections
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('today_correction')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Today's </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('correction')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                  Manage Corrections</p>
+                </a>
+              </li>
+
             </ul>
           </li>
             @if(Request::is('admin/driver-reports*'))
@@ -572,13 +589,7 @@ $(document).ready(function(){
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="#" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
-                  <i class="fa fa-address-book nav-icon "></i>
-                  <p>
-                  New</p>
-                </a>
-              </li>
+
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('today_application')}}" class="nav-link @if(Request::is('admin/today_application')) active @endif">
                   <i class="fa fa-address-book nav-icon "></i>
@@ -586,13 +597,7 @@ $(document).ready(function(){
                   Today's</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('pending')}}" class="nav-link @if(Request::is('admin/pending')) active @endif">
-                  <i class="fa fa-address-book nav-icon "></i>
-                  <p>
-                  Pending</p>
-                </a>
-              </li>
+
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('application')}}" class="nav-link @if((Request::is('admin/application*')) && !(Request::is('admin/application')) && !(Request::is('admin/application'))) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
@@ -613,21 +618,14 @@ $(document).ready(function(){
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('bookings.create')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
+                <a style="margin-left: 23px;" href="{{ route('today_correction')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
                   <i class="fa fa-address-book nav-icon "></i>
                   <p>
                   Today's </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('application')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
-                  <i class="fa fa-tasks nav-icon"></i>
-                  <p>
-                  Pending </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('application')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
+                <a style="margin-left: 23px;" href="{{ route('correction')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
                   <p>
                   Manage Corrections</p>

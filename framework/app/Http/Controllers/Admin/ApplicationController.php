@@ -2,19 +2,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BookingRequest;
 use Illuminate\Support\Facades\Session;
-use App\Mail\DriverBooked;
-use App\Mail\VehicleBooked;
-use App\Model\BookingIncome;
-use App\Model\BookingPaymentsModel;
 use App\Model\Bookings;
 use App\Model\Hyvikk;
 use App\Model\IncCats;
-use App\Model\IncomeModel;
-use App\Model\ServiceReminderModel;
 use App\Model\User;
-use App\Model\VehicleModel;
 use Auth;
 use Carbon\Carbon;
 use DB;
@@ -23,7 +15,6 @@ use Illuminate\Support\Facades\Mail;
 use Minishlink\WebPush\Subscription;
 use Minishlink\WebPush\WebPush;
 use PushNotification;
-
 class ApplicationController extends Controller
 {
 public function index()
@@ -443,7 +434,7 @@ public function pending()  {
                           'payments.transaction_id',
                           'payments.branch',
                           'payments.file',
-                          'payments.status as payment_status',
+                          'payments.status as payment_status'
                           )
                           ->first();
               // echo '<pre>';

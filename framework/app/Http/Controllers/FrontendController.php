@@ -24,7 +24,8 @@ class FrontendController extends Controller {
 
 	public function correctionForm() {
 
-		return view('frontend.correction');
+    $data['wards'] = DB::table('wards')->get();
+		return view('frontend.correction',$data);
 	}
 
 
