@@ -17,4 +17,9 @@ if (env('front_enable') == 'no') {
 
     Route::get('/contact', 'ApplicationController@contact')->middleware('IsInstalled')->name('contact');
     Route::get('/sidebarDetails', 'ApplicationController@sidebarDetails')->middleware('IsInstalled')->name('sidebarDetails');
+
+
+
+
+    Route::post('/correction-submit', 'CorrectionController@correction')->middleware('IsInstalled')->name('correction_submit');
 }

@@ -15,6 +15,14 @@ Route::namespace ('Admin')->group(function () {
     Route::get('/application/{id}/approve', 'ApplicationController@approve');
     Route::post('/application-reject', 'ApplicationController@reject')->name('reject');
     Route::post('/application-complete', 'ApplicationController@complete')->name('complete');
+
+    Route::get('/correction', 'CorrectionController@index')->name('correction');
+    Route::get('/today-correction', 'CorrectionController@today_correction')->name('today_correction');
+    Route::get('/correction/{id}/view', 'CorrectionController@view_correction');
+    Route::get('/correction/{id}/approve', 'CorrectionController@approve');
+    Route::post('/correction-reject', 'CorrectionController@reject')->name('reject_correction');
+
+
     Route::group(['middleware' => ['lang_check', 'auth', 'officeadmin']], function () {
         // Route::get('test', function () {
         //     return view('geocode');
@@ -29,6 +37,11 @@ Route::namespace ('Admin')->group(function () {
         Route::get("/councillor/enable/{id}", 'CouncillorController@enable');
         Route::get("/councillor/disable/{id}", 'CouncillorController@disable');
         Route::get("/councillor/{id}/edit", 'CouncillorController@edit');
+
+
+
+
+
 
 
         Route::post('clear-database', 'SettingsController@clear_database')->middleware('userpermission:S');
