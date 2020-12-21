@@ -3,7 +3,7 @@
 
     <?php echo $__env->make('frontend.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <div class="sidebarAndContents applicationForm container mt-3">
+    <div class="sidebarAndContents applicationForm container-custom mt-3">
 
       <form action="<?php echo e(route('application_submit')); ?>" method="post" enctype="multipart/form-data">
          <?php echo e(csrf_field()); ?>
@@ -11,13 +11,18 @@
 
         <div class="Applyform_header d-flex justify-content-between align-items-center">
           <div class="avatarImage">
-            <img class="img-fluid img-thumbnail" width="200" height="200" src="https://www.w3schools.com/howto/img_avatar.png" alt="avatar">
+            <img class="img-fluid img-thumbnail" width="100" height="100" src="https://grra.com/default-user.png" alt="avatar">
           </div>
 
           <!-- <div class="applyNo">
             <label class="text-white" for="">বিনামূল্যে বিতরনের জন্য অনলাইনের মাধ্যমে/ফটোকপি/হাতে লিখা/কম্পিউটার প্রিন্ট কপি গ্রহনযোগ্য আবেদন পত্র নম্বর</label>
             <input class="form-control" type="text" name="" id="">
           </div> -->
+        </div>
+
+        <div class="UploadImage">
+          <h6 class="mt-3"> আপনার ছবি সিলেক্ট করুন</h6>
+          <input type="file">
         </div>
 
 

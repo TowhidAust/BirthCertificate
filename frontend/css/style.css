@@ -76,3 +76,14 @@ body{
     padding-bottom: 3%;
     margin: 2% 0;
 }
+
+/* check before proceed */
+
+
+/* ===Application page==== */
+.UploadImage{
+    border: 1px dashed #dddddd;
+    width: 20em;
+    margin-top: 2%;
+    padding: 1%;
+}
