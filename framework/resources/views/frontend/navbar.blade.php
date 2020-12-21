@@ -6,10 +6,10 @@
     </button>
     <div class="collapse navbar-collapse navLinksDiv" id="navbarNavAltMarkup">
       <div class="navbar-nav mx-auto">
-        <a class="nav-item nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="{{route('correction_form')}}">Correction</a>
-        <a class="nav-item nav-link" href="{{route('check_status')}}">Check Status</a>
-        <a class="nav-item nav-link" href="{{route('contact')}}">Contact US</a>
+        <a class="nav-item nav-link" id="home" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link correction" id="correction" href="{{route('correction_form')}}">Correction</a>
+        <a class="nav-item nav-link checkStatus" id="checkStatus" href="{{route('check_status')}}">Check Status</a>
+        <a class="nav-item nav-link contact" id="contact" href="{{route('contact')}}">Contact US</a>
         <a class="nav-item nav-link" href="{{route('check_status')}}">FAQ</a>
       </div>
     </div>

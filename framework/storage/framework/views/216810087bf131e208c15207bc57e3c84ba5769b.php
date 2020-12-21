@@ -46,6 +46,21 @@ $(document).ready(function(){
                }
           });
      });
+
+
+     // MENUBAR Active state
+     // console.log(window.location);
+     let windowPathName = window.location.pathname;
+     if(windowPathName === "/BirthCertificate/"){
+          $('#home').css('backgroundColor', 'darkmagenta');
+     }else if(windowPathName === "/BirthCertificate/correction-form"){
+          $('#correction').css('backgroundColor', 'darkmagenta');
+     }else if(windowPathName === "/BirthCertificate/check-status"){
+          $('#checkStatus').css('backgroundColor', 'darkmagenta');
+     }else if(windowPathName === "/BirthCertificate/contact"){
+          $('#contact').css('backgroundColor', 'darkmagenta');
+          
+     }
 });
 </script>
 </body>
