@@ -18,6 +18,12 @@ body{
     background-color: #1a330a;
 }
 
+.red{
+  color: red;
+    margin-left: 5px;
+    font-size: 18px;
+    font-weight: 900;
+}
 .mainContents{
     width: 80%;
     margin: auto;

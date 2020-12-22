@@ -15,14 +15,14 @@
             <form action="{{route('verify')}}" method="post" enctype="multipart/form-data">
                {{csrf_field() }}
             <div class="mt-3">
-                <label class="text-black" for="">জন্ম রেকর্ডটি যাচাই করতে জন্ম নিবন্ধন নম্বর  এবং ব্যক্তির জন্মের তারিখ লিখুন</label>
+                <label class="text-black" for=""> <h5>জন্ম রেকর্ডটি যাচাই করতে আবেদন নাম্বার  এবং ব্যক্তির জন্মের তারিখ লিখুন</h5> </label>
             </div>
             <div class="mt-3">
-              <label for="">জন্ম নিবন্ধন নম্বর</label>
+              <label for="">আবেদন নাম্বারঃ</label><span class="red">*</span>
               <input class="form-control"  name="application_id" type="text" required>
             </div>
             <div class="mt-3">
-              <label for=""> জন্ম তারিখঃ খ্রিঃ </label>
+              <label for=""> জন্ম তারিখঃ খ্রিঃ </label><span class="red">*</span>
               <input class="form-control" id="date" name="birth_date" type="date" required>
             </div>
             <div class="mt-3 verify">

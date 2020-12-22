@@ -696,12 +696,7 @@ $(document).ready(function(){
               @endif
 
               @if(in_array(0,$modules))
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.drivers') }}" class="nav-link @if(Request::is('admin/reports/drivers')) active @endif">
-                  <i class="fa fa-id-card nav-icon"></i>
-                  <p>@lang('fleet.Officers')</p>
-                </a>
-              </li>
+
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('reports.customers') }}" class="nav-link @if(Request::is('admin/reports/customers')) active @endif">
                   <i class="fa fa-users nav-icon"></i>

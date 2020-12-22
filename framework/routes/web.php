@@ -17,9 +17,19 @@ if (env('front_enable') == 'no') {
 
     Route::get('/contact', 'ApplicationController@contact')->middleware('IsInstalled')->name('contact');
     Route::get('/sidebarDetails', 'ApplicationController@sidebarDetails')->middleware('IsInstalled')->name('sidebarDetails');
-
-
-
-
     Route::post('/correction-submit', 'CorrectionController@correction')->middleware('IsInstalled')->name('correction_submit');
+    Route::get('/contact', 'ApplicationController@contact')->middleware('IsInstalled')->name('contact');
+
+   Route::get('/bid-user', 'ApplicationController@bid_use')->middleware('IsInstalled')->name('bid_use');
+   Route::get('/process_of_apply', 'ApplicationController@process_of_apply')->middleware('IsInstalled')->name('process_of_apply');
+   Route::get('/information_supplier', 'ApplicationController@information_supplier')->middleware('IsInstalled')->name('information_supplier');
+   Route::get('/b_d_registration_center', 'ApplicationController@b_d_registration_center')->middleware('IsInstalled')->name('b_d_registration_center');
+   Route::get('/list_of_center', 'ApplicationController@list_of_center')->middleware('IsInstalled')->name('list_of_center');
+   Route::get('/mrittuki', 'ApplicationController@mrittuki')->middleware('IsInstalled')->name('mrittuki');
+   Route::get('/mrittuneed', 'ApplicationController@mrittuneed')->middleware('IsInstalled')->name('mrittuneed');
+   Route::get('/mrittuapp', 'ApplicationController@mrittuapp')->middleware('IsInstalled')->name('mrittuapp');
+   Route::get('/mrittuinf', 'ApplicationController@mrittuinf')->middleware('IsInstalled')->name('mrittuinf');
+   Route::get('/gaget', 'ApplicationController@gaget')->middleware('IsInstalled')->name('gaget');
+   Route::get('/press', 'ApplicationController@press')->middleware('IsInstalled')->name('press');
+   Route::get('/birthki', 'ApplicationController@birthki')->middleware('IsInstalled')->name('birthki');
 }

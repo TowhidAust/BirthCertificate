@@ -697,12 +697,7 @@ $(document).ready(function(){
               <?php endif; ?>
 
               <?php if(in_array(0,$modules)): ?>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.drivers')); ?>" class="nav-link <?php if(Request::is('admin/reports/drivers')): ?> active <?php endif; ?>">
-                  <i class="fa fa-id-card nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('fleet.Officers'); ?></p>
-                </a>
-              </li>
+
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('reports.customers')); ?>" class="nav-link <?php if(Request::is('admin/reports/customers')): ?> active <?php endif; ?>">
                   <i class="fa fa-users nav-icon"></i>

@@ -28,7 +28,7 @@ $(document).ready(function(){
      var i=1;
      $('#add').click(function(){
           i++;
-          $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="present[]" placeholder="Enter present information" class="form-control name_list" /></td><td><input type="text" name="correction[]" placeholder="Enter your correction" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+          $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="present[]"  class="form-control name_list" /></td><td><input type="text" name="correction[]"  class="form-control name_list" /></td><td><input type="text" name="reason[]"  class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
      });
      $(document).on('click', '.btn_remove', function(){
           var button_id = $(this).attr("id");
@@ -47,6 +47,21 @@ $(document).ready(function(){
           });
      });
 });
+function readURL(input) {
+       if (input.files && input.files[0]) {
+           var reader = new FileReader();
+
+           reader.onload = function (e) {
+               $('#blah').attr('src', e.target.result);
+           }
+
+           reader.readAsDataURL(input.files[0]);
+       }
+   }
+
+   $("#imgInp").change(function(){
+       readURL(this);
+   });
 </script>
 </body>
 </html>

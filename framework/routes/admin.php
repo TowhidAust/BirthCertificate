@@ -21,6 +21,8 @@ Route::namespace ('Admin')->group(function () {
     Route::get('/correction/{id}/view', 'CorrectionController@view_correction');
     Route::get('/correction/{id}/approve', 'CorrectionController@approve');
     Route::post('/correction-reject', 'CorrectionController@reject')->name('reject_correction');
+    Route::get('/correction/{id}/complete', 'CorrectionController@complete');
+    Route::post('/correction-update', 'CorrectionController@correction_update')->name('update');
 
 
     Route::group(['middleware' => ['lang_check', 'auth', 'officeadmin']], function () {

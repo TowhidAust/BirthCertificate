@@ -22,10 +22,10 @@
            <img class="img-fluid logoImg" src="https://1.bp.blogspot.com/-ym26csnYYR8/XXnmanyREUI/AAAAAAAADxI/Bmf_fg2ny3EfA11_3wDhlpyalvEi7zhIQCLcBGAsYHQ/s320/Government%2Bof%2BBangladesh%2BLogo%2BEnglish.png" alt="logo">
           </a>
             <div class="headerContent">
-                <h3>রেজিস্ট্রার জেনারেলের কার্যালয়, জন্ম ও মৃত্যু নিবন্ধন</h3>
+                <h3>বরিশাল সিটি কর্পোরেশন, জন্ম ও মৃত্যু নিবন্ধন</h3>
                 <h4>স্থানীয় সরকার বিভাগ</h4>
+                <h6>আমরাই গড়ব আগামীর বরিশাল</h6>
             </div>
-            <a href="<?php echo e(url('/')); ?>"><img class="img-fluid logoImg" src="http://br.lgd.gov.bd/images/jonmo.jpg" alt="logo"></a>
 
         </div>
     </section>

@@ -20,6 +20,9 @@ class CorrectionController extends Controller {
 						 'birth_app_date' => $request->get('birth_app_date'),
 						 'name' => $request->get('name'),
 						 'ward_id' => $request->get('ward_id'),
+						 'applicant_name' => $request->get('applicant_name'),
+						 'relation' => $request->get('relation'),
+						 'sign' => $request->get('sign'),
 						 'birth_date' => $request->get('birth_date')]
 						);
 
@@ -27,10 +30,12 @@ class CorrectionController extends Controller {
  					// correction
 						$present=$request->get('present');
 						$correction=$request->get('correction');
+						$reason=$request->get('reason');
 		         foreach ($present as $key => $n) {
 		          DB::table('correction_infos')->insert(
 		              ['present' => $n,
 									'correction' =>$correction[$key],
+									'reason' =>$reason[$key],
 									 'correction_id' =>$correction_id]
 		          );
 		         }

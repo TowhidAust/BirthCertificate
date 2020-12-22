@@ -81,11 +81,13 @@
            <tr>
              <td>Present infomation</td>
              <td>Correction Infomation</td>
+             <td>Correction Reason</td>
            </tr>
            @foreach($corrections as $row)
              <tr>
                   <td>{{$row->present}}</td>
                     <td>{{$row->correction}}</td>
+                    <td>{{$row->reason}}</td>
              </tr>
              @endforeach
         </table>
@@ -114,15 +116,15 @@
       @if(Auth::user()->user_type == "D" && $approve->councillor!='1')
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
       <a href="{{url('admin/correction/'.$id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
-      @elseif(Auth::user()->user_type == "A"&&$approve->accountant!='1')
+      @elseif(Auth::user()->user_type =="A"&&$approve->accountant!='1')
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
-      <a href="{{url('admin/application/'.$id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+      <a href="{{url('admin/correction/'.$id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       @elseif(Auth::user()->user_type == "O"&&$approve->officer!='1')
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
-      <a href="{{url('admin/application/'.$id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+      <a href="{{url('admin/correction/'.$id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       @elseif(Auth::user()->user_type == "OP"&&$approve->operator!='1')
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
-      <button data-toggle="modal" data-target="#complete" class="btn btn-success"><i class="fa fa-send"></i> Approve</button>
+        <a href="{{url('admin/correction/'.$id.'/complete')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       @endif
 
   </div>

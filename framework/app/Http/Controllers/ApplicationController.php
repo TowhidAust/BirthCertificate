@@ -176,7 +176,22 @@ class ApplicationController extends Controller {
 							->insert(
 							['applicant_id' =>$applicant_id]
 							);
-		// $this->sendSMS($number,$applicant_id,$bangla_name);
+			$image = "uploads/profile/".$applicant_id."_";
+ 		  $image = $payment_file .basename($_FILES["image"]["name"]);
+			$response = array();
+ 		  // Check if image file is an actual image or fake image
+ 		  if (isset($_FILES["image"]))
+ 		  {
+ 		    move_uploaded_file($_FILES["image"]["tmp_name"], $image);
+ 		  }
+			DB::table('applican_informations')
+							->insert(
+							['id' =>$applicant_id,
+							 'image' => $image]
+							);
+
+
+		 $this->sendSMS($number,$applicant_id,$bangla_name);
 		return view('frontend.index');
 	}
 	private function sendSMS($number,$applicant_id,$bangla_name){
@@ -205,9 +220,59 @@ class ApplicationController extends Controller {
 	 	return view('frontend.check_status',$index);
  }
  public function contact(){
-	// $index['data'] ='';
-	return view('frontend.contact');
-}
+ 	// $index['data'] ='';
+ 	return view('frontend.contact');
+ }
+
+ public function bid_use(){
+ 	// $index['data'] ='';
+ 	return view('frontend.use_of_BID');
+ }
+ public function process_of_apply(){
+ 	// $index['data'] ='';
+ 	return view('frontend.process_of_apply');
+ }
+ public function information_supplier(){
+ 	// $index['data'] ='';
+ 	return view('frontend.information_supplier');
+ }
+ public function b_d_registration_center(){
+ 	// $index['data'] ='';
+ 	return view('frontend.b_d_registration_center');
+ }
+ public function list_of_center(){
+ 	// $index['data'] ='';
+ 	return view('frontend.list_of_center');
+ }
+ public function mrittuki(){
+ 	// $index['data'] ='';
+ 	return view('frontend.mrittuki');
+ }
+ public function mrittuneed(){
+ 	// $index['data'] ='';
+ 	return view('frontend.mrittuneed');
+ }
+ public function mrittuapp(){
+ 	// $index['data'] ='';
+ 	return view('frontend.mrittuapp');
+ }
+ public function mrittuinf(){
+ 	// $index['data'] ='';
+ 	return view('frontend.mrittuinf');
+ }
+ public function gaget(){
+ 	// $index['data'] ='';
+ 	return view('frontend.gaget');
+ }
+ public function press(){
+ 	// $index['data'] ='';
+ 	return view('frontend.press');
+ }
+ public function birthki(){
+ 	// $index['data'] ='';
+ 	return view('frontend.birthki');
+ }
+
 public function sidebarDetails(){
 	// $index['data'] ='';
 	return view('frontend.sidebarDetails');

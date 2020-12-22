@@ -2,7 +2,7 @@
   @include('frontend.header')
     <section class="mainContents">
         @include('frontend.navbar')
-        <div class="sidebarAndContents container-custom mt-3">
+        <div class="sidebarAndContents container mt-3">
             <div class="row">
                
                 <div class="col-md-12">
@@ -13,7 +13,7 @@
 
 
                         <div class="logo">
-                            <h4>RioLeaf IT</h4>
+                            <h4>বরিশাল সিটি কর্পোরেশন </h4>
                             <span><i class="fab fa-facebook"></i></span>
                             <span><i class="fab fa-twitter"></i></span>
                             <span><i class="fab fa-linkedin"></i></span>
@@ -21,18 +21,18 @@
                         <div class="contactInner">
                             <div class="location">
                                 <i class="fas fa-location-arrow"></i>
-                                <span>7/35B,70 Bir Uttam C.R Dutta Road</span>
-                                <span>Estern Plaza, HatirPool, Dhaka-1205, Bangladesh</span>
+                                <span></span>
+                                <span></span>
                             </div>
 
                             <div class="email">
                                 
                                 <i class="fas fa-envelope"></i>
-                                <span>info@rioleafit.com</span>
+                                <span></span>
                             </div>
                             <div class="phone">
                                 <i class="fas fa-phone"></i>
-                                <span>+880-9678467317</span>
+                                <span></span>
                             </div>
                         </div>
 

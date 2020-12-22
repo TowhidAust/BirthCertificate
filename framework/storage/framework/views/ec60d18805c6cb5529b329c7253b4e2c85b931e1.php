@@ -84,11 +84,13 @@
            <tr>
              <td>Present infomation</td>
              <td>Correction Infomation</td>
+             <td>Correction Reason</td>
            </tr>
            <?php $__currentLoopData = $corrections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
              <tr>
                   <td><?php echo e($row->present); ?></td>
                     <td><?php echo e($row->correction); ?></td>
+                    <td><?php echo e($row->reason); ?></td>
              </tr>
              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </table>
@@ -117,15 +119,15 @@
       <?php if(Auth::user()->user_type == "D" && $approve->councillor!='1'): ?>
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> <?php echo app('translator')->getFromJson('Reject'); ?></button>
       <a href="<?php echo e(url('admin/correction/'.$id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
-      <?php elseif(Auth::user()->user_type == "A"&&$approve->accountant!='1'): ?>
+      <?php elseif(Auth::user()->user_type =="A"&&$approve->accountant!='1'): ?>
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> <?php echo app('translator')->getFromJson('Reject'); ?></button>
-      <a href="<?php echo e(url('admin/application/'.$id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+      <a href="<?php echo e(url('admin/correction/'.$id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       <?php elseif(Auth::user()->user_type == "O"&&$approve->officer!='1'): ?>
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> <?php echo app('translator')->getFromJson('Reject'); ?></button>
-      <a href="<?php echo e(url('admin/application/'.$id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+      <a href="<?php echo e(url('admin/correction/'.$id.'/approve')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       <?php elseif(Auth::user()->user_type == "OP"&&$approve->operator!='1'): ?>
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> <?php echo app('translator')->getFromJson('Reject'); ?></button>
-      <button data-toggle="modal" data-target="#complete" class="btn btn-success"><i class="fa fa-send"></i> Approve</button>
+        <a href="<?php echo e(url('admin/correction/'.$id.'/complete')); ?>" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       <?php endif; ?>
 
   </div>

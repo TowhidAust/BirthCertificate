@@ -2,7 +2,7 @@
   <?php echo $__env->make('frontend.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <section class="mainContents">
         <?php echo $__env->make('frontend.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <div class="sidebarAndContents container-custom mt-3">
+        <div class="sidebarAndContents container mt-3">
             <div class="row">
                 <div class="col-md-4">
                     <?php echo $__env->make('frontend.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -29,27 +29,58 @@
                                 <th>বিদেশে</th>
                               </tr>
                               <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>Thornton</td>
+                                <td>জন্ম বা মৃত্যুর ৪৫ (পঁয়তাল্লিশ) দিন পর্যন্ত কোন ব্যক্তির জন্ম বা মৃত্যু নিবন্ধন</td>
+                                <td>বিনা ফিসে</td>
+                                <td>বিনা ফিসে</td>
                               </tr>
                               <tr>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
+                                <td>জন্ম বা মৃত্যুর ৪৫ (পঁয়তাল্লিশ) দিন পর হইতে ৫ (পাঁচ) বৎসর পর্যন্ত কোন ব্যক্তির জন্ম বা মৃত্যু নিবন্ধন (সাকুল্যে)</td>
+                                <td>২৫/- টাকা</td>
+                                <td>১ মার্কিন ডলার</td>
+                              </tr>
+                              <tr>
+                                <td>জন্ম বা মৃত্যুর ৫ (পাঁচ) বৎসর পর কোন ব্যক্তির জন্ম বা মৃত্যু নিবন্ধন (সাকুল্যে)</td>
+                                <td>৫০/- টাকা</td>
+                                <td>১ মার্কিন ডলার</td>
+                              </tr>
+                              <tr>
+                                <td>জন্ম তারিখ সংশোধনের জন্য আবেদন ফি</td>
+                                <td>১০০/- টাকা</td>
+                                <td>২ মার্কিন ডলার</td>
+                              </tr>
+                              <tr>
+                                <td>জন্ম তারিখ ব্যতীত নাম, পিতার নাম, মাতার নাম, ঠিকানা ইত্যাদি অন্যান্য তথ্য সংশোধনের জন্য আবেদন ফি</td>
+                                <td>৫০/- টাকা</td>
+                                <td>১ মার্কিন ডলার</td>
+                              </tr>
+                              <tr>
+                                <td>বাংলা ও ইংরেজি উভয় ভাষায় মূল সনদ বা তথ্য সংশোধনের পর সনদের কপি সরবরাহ</td>
+                                <td>বিনা ফিসে</td>
+                                <td>বিনা ফিসে</td>
+                              </tr>
+                              <tr>
+                                <td>বাংলা ও ইংরেজি উভয় ভাষায় সনদের নকল সরবরাহ</td>
+                                <td>৫০/- টাকা</td>
+                                <td>১ মার্কিন ডলার</td>
                               </tr>
                           </table>
                     </div>
 
-                    <div class="checkBeforeProceed d-flex justify-content-between align-items-center">
-                        <input type="checkbox" style="width: 10%;">
-                        <span class="d-block" style="width: 50%;">I agree with the terms and conditions.</span>
-                         <a href="<?php echo e(route('application_form')); ?>">
-                          <button style="float:right;" class="btn btn-primary " type="button" name="button"> Continue to Online Enrolment</button></a>
-                    </div>
+
+
+                      <form action="<?php echo e(route('application_form')); ?>" method="get">
+                <div class="row">
+                  <div class="col-md-6">
+                      <input required type="checkbox">  আমি সজ্ঞানে নিবন্ধন করতে চায়
+                  </div>
+                  <div class="col-md-6">
+                      <button class="btn btn-primary notika-btn-primary"> অনলাইন তালিকাভুক্তি অব্যাহত রাখুন</button>
+                  </div>
                 </div>
+               </form>
             </div>
         </div>
+      </div>
     </section>
 
     <footer class="copyrightFooter">
