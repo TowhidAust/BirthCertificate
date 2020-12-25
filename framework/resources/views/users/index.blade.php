@@ -23,11 +23,6 @@
         <table class="table" id="data_table">
           <thead class="thead-inverse">
             <tr>
-              <th>
-                @if($data->count() > 0)
-                <input type="checkbox" id="chk_all">
-                @endif
-              </th>
               <th>#</th>
               <th>@lang('fleet.profile_photo')</th>
               <th>@lang('User Role')</th>
@@ -42,11 +37,6 @@
           <tbody>
             @foreach($data as $row)
             <tr>
-              <td>
-                @if($row->user_type != "S")
-                <input type="checkbox" name="ids[]" value="{{ $row->id }}" class="checkbox" id="chk{{ $row->id }}" onclick='checkcheckbox();'>
-                @endif
-              </td>
               <td>{{$row->id}}</td>
               <td>
               @if($row->getMeta('profile_image') != null)
@@ -98,11 +88,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <th>
-                @if($data->count() > 0)
-                <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled>@lang('fleet.delete')</button>
-                @endif
-              </th>
+              
               <th>#</th>
               <th>@lang('fleet.profile_photo')</th>
               <th>@lang('User Role')</th>

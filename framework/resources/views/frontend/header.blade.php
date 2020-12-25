@@ -19,10 +19,10 @@
     <section class="headerSection">
         <div class="d-flex flex-row justify-content-center align-items-center">
           <a href="{{url('/')}}">
-           <img class="img-fluid logoImg" src="https://1.bp.blogspot.com/-ym26csnYYR8/XXnmanyREUI/AAAAAAAADxI/Bmf_fg2ny3EfA11_3wDhlpyalvEi7zhIQCLcBGAsYHQ/s320/Government%2Bof%2BBangladesh%2BLogo%2BEnglish.png" alt="logo">
-          </a>
+            <img style="height:110px" src="{{ asset('assets/images/'. Hyvikk::get('icon_img') ) }}" alt="Fleet Logo" class="brand-image"
+                 style="opacity: .8">  </a>
             <div class="headerContent">
-                <h3>বরিশাল সিটি কর্পোরেশন, জন্ম ও মৃত্যু নিবন্ধন</h3>
+                <h3> জন্ম ও মৃত্যু নিবন্ধন, বরিশাল সিটি কর্পোরেশন</h3>
                 <h4>স্থানীয় সরকার বিভাগ</h4>
                 <h6>আমরাই গড়ব আগামীর বরিশাল</h6>
             </div>

@@ -1,23 +1,21 @@
-@include('frontend.header')
-<!-- @include('frontend.sidebar') -->
-<section class="mainContents">
-    @include('frontend.navbar')
-    <div class="row">
-    	<div class="col-md-4">
-    		@include('frontend.sidebar')
-    	</div>
-    	<div class="col-md-8">
-    		 <div class="sidebarAndContents container mt-3">
-    <div class="header">
-        <h3>প্রশ্ন: জন্ম নিবন্ধন কি কি কাজে লাগে?</h3>
-        <p>উত্তর: ক) পাসপোর্ট ইস্যু খ) বিবাহ নিবন্ধন গ) শিক্ষা প্রতিষ্ঠানে ভর্তি ঘ) সরকারী, বেসরকারী বা স্বায়ত্বশাসিত সংস্থায় নিয়োগদান ঙ) ড্রাইভিং লাইসেন্স ইস্যু চ) ভোটার তালিকা প্রণয়ন ছ) জমি রেজিষ্ট্রেশন জ) ব্যাংক হিসাব খোলা ঝ) আমদানি ও রপ্তানী লাইসেন্স প্রাপ্তি ঞ) গ্যাস, পানি, টেলিফোন ও বিদ্যুৎ সংযোগ প্রাপ্তি ট) ট্যাক্স আইডেন্টিফিকেশন নম্বর (টিআইএন) প্রাপ্তি ঠ) ঠিকাদারী লাইসেন্স প্রাপ্তি ড) বাড়ির নক্সা অনুমোদন প্রাপ্তি ঢ) গাড়ির রেজিষ্ট্রেশন প্রাপ্তি ন) ট্রেড লাইসেন্স প্রাপ্তি ও ত) জাতীয় পরিচয়পত্র প্রাপ্তি।</p>
-    </div>
-    </div>
-    	</div>
-    </div>
-   
-</section>
-<footer class="copyrightFooter">
+
+  @include('frontend.header')
+    <section class="mainContents">
+        @include('frontend.navbar')
+        <div class="sidebarAndContents container mt-3">
+            <div class="row">
+                <div class="col-md-4">
+                    @include('frontend.sidebar')
+                </div>
+                <div class="col-md-8">
+                  <h3>প্রশ্ন: জন্ম নিবন্ধন কি কি কাজে লাগে?</h3>
+                  <p>উত্তর: ক) পাসপোর্ট ইস্যু খ) বিবাহ নিবন্ধন গ) শিক্ষা প্রতিষ্ঠানে ভর্তি ঘ) সরকারী, বেসরকারী বা স্বায়ত্বশাসিত সংস্থায় নিয়োগদান ঙ) ড্রাইভিং লাইসেন্স ইস্যু চ) ভোটার তালিকা প্রণয়ন ছ) জমি রেজিষ্ট্রেশন জ) ব্যাংক হিসাব খোলা ঝ) আমদানি ও রপ্তানী লাইসেন্স প্রাপ্তি ঞ) গ্যাস, পানি, টেলিফোন ও বিদ্যুৎ সংযোগ প্রাপ্তি ট) ট্যাক্স আইডেন্টিফিকেশন নম্বর (টিআইএন) প্রাপ্তি ঠ) ঠিকাদারী লাইসেন্স প্রাপ্তি ড) বাড়ির নক্সা অনুমোদন প্রাপ্তি ঢ) গাড়ির রেজিষ্ট্রেশন প্রাপ্তি ন) ট্রেড লাইসেন্স প্রাপ্তি ও ত) জাতীয় পরিচয়পত্র প্রাপ্তি।</p>
+               </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="copyrightFooter">
       <span>	&copy; 2020 Birth & Death Registration. All rights reserved. Developed by Birth and Death Registration Team.</span>
     </footer>
-@include('frontend.footer')
+    @include('frontend.footer')

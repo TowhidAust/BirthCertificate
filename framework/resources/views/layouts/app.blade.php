@@ -125,7 +125,7 @@ $(document).ready(function(){
               @endif
             @endforeach
           @php($n = $r + $i +$l + $d + $s)
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-bell-o"></i>
           <span class="badge badge-warning navbar-badge">@if($n>0) {{$n}} @endif</span>
@@ -158,7 +158,7 @@ $(document).ready(function(){
             <span class="float-right text-muted text-sm">@if($s>0) {{$s}} @endif</span>
           </a>
         </div>
-      </li>
+      </li> -->
       @endif
     <!-- logout -->
     <li class="nav-item dropdown">
@@ -247,25 +247,31 @@ $(document).ready(function(){
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-           @if(Auth::user()->user_type == 'D' && Auth::user()->getMeta('driver_image') != null)
-           @if(starts_with(Auth::user()->getMeta('driver_image'),'http'))
-            @php($src = Auth::user()->getMeta('driver_image'))
-            @else
-            @php($src=asset('uploads/'.Auth::user()->getMeta('driver_image')))
-            @endif
+        @if(Auth::user()->user_type == 'D' && Auth::user()->getMeta('driver_image') != null)
+             @if(starts_with(Auth::user()->getMeta('driver_image'),'http'))
+                @php($src = Auth::user()->getMeta('driver_image'))
+             @else
+                @php($src=asset('uploads/'.Auth::user()->getMeta('driver_image')))
+              @endif
             <img src="{{$src}}" class="img-circle elevation-2" alt="User Image">
-            @elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O')
+        @elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O')
               @if(Auth::user()->getMeta('profile_image') == null)
               <img src="{{ asset("assets/images/no-user.jpg")}}" class="img-circle elevation-2" alt="User Image">
               @else
               <img src="{{asset('uploads/'.Auth::user()->getMeta('profile_image'))}}" class="img-circle elevation-2" alt="User Image">
               @endif
-            @elseif(Auth::user()->user_type == 'C' && Auth::user()->getMeta('profile_pic') != null)
-            @if(starts_with(Auth::user()->getMeta('profile_pic'),'http'))
-            @php($src = Auth::user()->getMeta('profile_pic'))
-            @else
-            @php($src=asset('uploads/'.Auth::user()->getMeta('profile_pic')))
-            @endif
+      @elseif(Auth::user()->user_type == 'OP')
+              @if(Auth::user()->getMeta('profile_image') == null)
+              <img src="{{ asset("assets/images/no-user.jpg")}}" class="img-circle elevation-2" alt="User Image">
+              @else
+              <img src="{{asset('uploads/'.Auth::user()->getMeta('profile_image'))}}" class="img-circle elevation-2" alt="User Image">
+              @endif
+        @elseif(Auth::user()->user_type == 'C' && Auth::user()->getMeta('profile_pic') != null)
+              @if(starts_with(Auth::user()->getMeta('profile_pic'),'http'))
+                @php($src = Auth::user()->getMeta('profile_pic'))
+              @else
+                @php($src=asset('uploads/'.Auth::user()->getMeta('profile_pic')))
+              @endif
             <img src="{{$src}}" class="img-circle elevation-2" alt="User Image">
             @else
             <img src="{{ asset("assets/images/no-user.jpg")}}" class="img-circle elevation-2" alt="User Image">
@@ -280,73 +286,7 @@ $(document).ready(function(){
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <!-- customer -->
-          @if(Auth::user()->user_type=="C"||Auth::user()->user_type=="A")
 
-            @if(Request::is('admin/bookings*'))
-            @php($class="menu-open")
-            @php($active="active")
-            @else
-            @php($class="")
-            @php($active="")
-            @endif
-          <li class="nav-item has-treeview {{$class}}">
-            <a href="#" class="nav-link {{$active}}">
-              <i class="nav-icon fa fa-address-card"></i>
-              <p>
-                applications
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('bookings.create')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
-                  <i class="fa fa-address-book nav-icon "></i>
-                  <p>
-                New Applications</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ url('/application')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
-                  <i class="fa fa-tasks nav-icon"></i>
-                  <p>
-                  Manage Applications</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="{{ url('admin/change-details/'.Auth::user()->id)}}" class="nav-link @if(Request::is('admin/change-details*')) active @endif">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                @lang('fleet.editProfile')
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="{{url('admin/addresses') }}" class="nav-link @if(Request::is('admin/addresses*')) active @endif">
-              <i class="nav-icon fa fa-map-marker"></i>
-              <p>
-                @lang('fleet.addresses')
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="{{url('admin/') }}" class="nav-link @if(Request::is('admin')) active @endif">
-              <i class="nav-icon fa fa-money"></i>
-              <p>
-                @lang('fleet.expenses')
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-          @endif
-          <!-- customer -->
-          <!-- user-type S or O -->
           @if(Auth::user()->user_type=="S" || Auth::user()->user_type=="O")
           <li class="nav-item">
             <a  href="{{ url('admin/')}}" class="nav-link @if(Request::is('admin')) active @endif">
@@ -361,25 +301,33 @@ $(document).ready(function(){
           <!-- user-type S or O -->
 
           <!-- driver -->
-          @if(Auth::user()->user_type=="D")
+          @if(Auth::user()->user_type=="D"||Auth::user()->user_type=="A")
 
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="{{url('admin/')}}" class="nav-link @if(Request::is('admin/')) active @endif">
-              <i class="nav-icon fa fa-user"></i>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-address-card"></i>
               <p>
-                @lang('fleet.myProfile')
-                <span class="right badge badge-danger"></span>
+                Applications
+                <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="{{ url('admin/change-details/'.Auth::user()->id)}}" class="nav-link @if(Request::is('admin/change-details*')) active @endif">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                @lang('fleet.editProfile')
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('today_application')}}" class="nav-link @if(Request::is('admin/bookings/create')) active @endif">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Today's </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('application')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                  Manage Applications</p>
+                </a>
+              </li>
+
+            </ul>
           </li>
             @if(Request::is('admin/notes*'))
             @php($class="menu-open")
@@ -389,29 +337,7 @@ $(document).ready(function(){
             @php($class="")
             @php($active="")
             @endif
-          <li class="nav-item has-treeview {{$class}}">
-            <a href="#" class="nav-link {{$active}}">
-              <i class="nav-icon fa fa-sticky-note"></i>
-              <p>
-                @lang('fleet.notes')
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('notes.index') }}" class="nav-link @if((Request::is('admin/notes*') && !(Request::is('admin/notes/create')))) active @endif">
-                  <i class="fa fa-flag nav-icon"></i>
-                  <p> @lang('fleet.manage_note')</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route("notes.create") }}" class="nav-link @if(Request::is('admin/notes/create')) active @endif">
-                  <i class="fa fa-plus-square nav-icon"></i>
-                  <p>@lang('fleet.create_note')</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>
@@ -438,37 +364,56 @@ $(document).ready(function(){
 
             </ul>
           </li>
-            @if(Request::is('admin/driver-reports*'))
-            @php($class="menu-open")
-            @php($active="active")
-
-            @else
-            @php($class="")
-            @php($active="")
-            @endif
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
-              <i class="nav-icon fa fa-book"></i>
+              <i class="nav-icon fa fa-sticky-note"></i>
               <p>
-                @lang('menu.reports')
+                @lang('fleet.notes')
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route("notes.create") }}" class="nav-link @if(Request::is('admin/notes/create')) active @endif">
+                  <i class="fa fa-plus-square nav-icon"></i>
+                  <p>@lang('fleet.create_note')</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('notes.index') }}" class="nav-link @if((Request::is('admin/notes*') && !(Request::is('admin/notes/create')))) active @endif">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> @lang('fleet.manage_note')</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview {{$class}}">
+            <a href="#" class="nav-link {{$active}}">
+              <i class="nav-icon fa fa-sticky-note"></i>
+              <p>
+                @lang('Reports')
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route("dreports.monthly")}}" class="nav-link @if(Request::is('admin/driver-reports/monthly')) active @endif">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p>@lang('menu.monthlyReport')</p>
+                <a style="margin-left: 23px;" href="{{ route('applicaton_report') }}" class="nav-link @if((Request::is('admin/report*') && !(Request::is('admin/report/create')))) active @endif">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> Applications Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route("dreports.yearly")}}" class="nav-link @if(Request::is('admin/driver-reports/yearly')) active @endif">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p>@lang('fleet.yearlyReport')</p>
+                <a style="margin-left: 23px;" href="{{ route('correction_report')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                   Corrections Report</p>
                 </a>
               </li>
             </ul>
           </li>
+
+
           @endif
           <!-- driver -->
 
@@ -513,14 +458,14 @@ $(document).ready(function(){
                   <p> Officers</p>
                 </a>
               </li>
-              @if(in_array(0,$modules))
+              <!-- @if(in_array(0,$modules))
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('customers.index')}}" class="nav-link @if(Request::is('admin/customers*')) active @endif">
                   <i class="fa fa-address-card nav-icon"></i>
                   <p>Operator</p>
                 </a>
               </li>
-              @endif
+              @endif -->
               @endif
             </ul>
           </li> @endif
@@ -579,7 +524,7 @@ $(document).ready(function(){
             @php($active="")
 
             @endif
-            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP")
+            @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="OP")
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>
@@ -606,8 +551,10 @@ $(document).ready(function(){
                 </a>
               </li>
             </ul>
-          </li> @endif
-              @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP")
+          </li>
+
+          @endif
+              @if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="OP")
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-address-card"></i>
@@ -633,96 +580,60 @@ $(document).ready(function(){
               </li>
 
             </ul>
-          </li> @endif
-
-            @if(Request::is('admin/reports*'))
-            @php($class="menu-open")
-            @php($active="active")
-
-            @else
-            @php($class="")
-            @php($active="")
-            @endif
-          @if(in_array(4,$modules)) <li class="nav-item has-treeview {{$class}}">
+          </li>
+          <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
-              <i class="nav-icon fa fa-book"></i>
+              <i class="nav-icon fa fa-sticky-note"></i>
               <p>
-                @lang('menu.reports')
+                @lang('fleet.notes')
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              @if(in_array(2,$modules))
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ url('admin/reports/income') }}" class="nav-link @if(Request::is('admin/reports/income')) active @endif">
-                  <i class="fa fa-credit-card nav-icon"></i>
-                  <p> Fee @lang('fleet.report')</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ url('admin/reports/expense') }}" class="nav-link @if(Request::is('admin/reports/expense')) active @endif">
-                  <i class="fa fa-money nav-icon"></i>
-                  <p> @lang('fleet.expense') @lang('fleet.report')</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.delinquent') }}" class="nav-link @if(Request::is('admin/reports/delinquent')) active @endif">
-                  <i class="fa fa-file-text nav-icon"></i>
-                  <p> @lang('menu.deliquentReport')</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.monthly') }}" class="nav-link @if(Request::is('admin/reports/monthly')) active @endif">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p>@lang('menu.monthlyReport')</p>
-                </a>
-              </li>
-              @endif
-              @if(in_array(3,$modules))
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.application') }}" class="nav-link @if(Request::is('admin/reports/application')) active @endif">
-                  <i class="fa fa-book nav-icon"></i>
-                  <p>Applications</p>
-                </a>
-              </li>
-              @endif
-              @if(in_array(0,$modules))
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.users') }}" class="nav-link @if(Request::is('admin/reports/users')) active @endif">
-                  <i class="fa fa-address-book nav-icon"></i>
-                  <p>@lang('fleet.user_report')</p>
-                </a>
-              </li>
-              @endif
-
-              @if(in_array(0,$modules))
 
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.customers') }}" class="nav-link @if(Request::is('admin/reports/customers')) active @endif">
-                  <i class="fa fa-users nav-icon"></i>
-                  <p>Operators</p>
+                <a style="margin-left: 23px;" href="{{ route("notes.create") }}" class="nav-link @if(Request::is('admin/notes/create')) active @endif">
+                  <i class="fa fa-plus-square nav-icon"></i>
+                  <p>@lang('fleet.create_note')</p>
                 </a>
               </li>
-              @endif
-
-              @if(in_array(2,$modules))
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('reports.yearly') }}" class="nav-link @if(Request::is('admin/reports/yearly')) active @endif">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p>@lang('fleet.yearlyReport')</p>
+                <a style="margin-left: 23px;" href="{{ route('notes.index') }}" class="nav-link @if((Request::is('admin/notes*') && !(Request::is('admin/notes/create')))) active @endif">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> @lang('fleet.manage_note')</p>
                 </a>
               </li>
-              @endif
             </ul>
-          </li> @endif
-            @if(Request::is('admin/settings*') || Request::is('admin/fare-settings') || Request::is('admin/api-settings') || (Request::is('admin/expensecategories*')) || (Request::is('admin/incomecategories*')) || (Request::is('admin/expensecategories*')) || (Request::is('admin/send-email')) || (Request::is('admin/set-email')) || (Request::is('admin/cancel-reason*')) || (Request::is('admin/frontend-settings*')) || (Request::is('admin/company-services*')) || (Request::is('admin/payment-settings*')))
-            @php($class="menu-open")
-            @php($active="active")
+          </li>
+          <li class="nav-item has-treeview {{$class}}">
+            <a href="#" class="nav-link {{$active}}">
+              <i class="nav-icon fa fa-sticky-note"></i>
+              <p>
+                @lang('Reports')
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('applicaton_report') }}" class="nav-link @if((Request::is('admin/report*') && !(Request::is('admin/report/create')))) active @endif">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> Applications Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="{{ route('correction_report')}}" class="nav-link @if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))) active @endif">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                   Corrections Report</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-            @else
-            @php($class="")
-            @php($active="")
-            @endif
+           @endif
+
+
+       @if(Auth::user()->user_type == "S")
           <li class="nav-item has-treeview {{$class}}">
             <a href="#" class="nav-link {{$active}}">
               <i class="nav-icon fa fa-gear"></i>
@@ -744,7 +655,7 @@ $(document).ready(function(){
                   <p>@lang('menu.api_settings')</p>
                 </a>
               </li> -->
-              {{-- <li class="nav-item">
+              <!-- {{-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/payment-settings')}}" class="nav-link @if(Request::is('admin/payment-settings')) active @endif">
                   <i class="fa fa-gear nav-icon"></i>
                   <p>@lang('fleet.payment_settings')</p>
@@ -767,19 +678,14 @@ $(document).ready(function(){
                   <i class="fa fa-envelope-open nav-icon"></i>
                   <p>@lang('menu.email_content')</p>
                 </a>
-              </li>
+              </li> -->
               <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ url('admin/fare-settings')}}" class="nav-link @if(Request::is('admin/fare-settings')) active @endif">
                   <i class="fa fa-gear nav-icon"></i>
                   <p>@lang('menu.fare_settings')</p>
                 </a>
               </li> -->
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="{{ route('expensecategories.index') }}" class="nav-link @if(Request::is('admin/expensecategories*')) active @endif">
-                  <i class="fa fa-tasks nav-icon"></i>
-                  <p>@lang('menu.expenseCategories')</p>
-                </a>
-              </li>
+
               <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="{{ route('incomecategories.index') }}" class="nav-link @if(Request::is('admin/incomecategories*')) active @endif">
                   <i class="fa fa-tasks nav-icon"></i>
@@ -800,7 +706,7 @@ $(document).ready(function(){
               </li> -->
             </ul>
           </li>
-
+         @endif
           @if(in_array(12,$modules) && Hyvikk::api('api_key') != null) <li class="nav-item">
             <a style="margin-left: 23px;" href="{{ url('admin/driver-maps')}}" class="nav-link @if(Request::is('admin/driver-maps') || Request::is('admin/track-driver*')) active @endif">
               <i class="nav-icon fa fa-map"></i>
@@ -873,7 +779,7 @@ $(document).ready(function(){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>@lang('fleet.copyright') &copy; 2016-{{date("Y")}} <a href="https://infobizsoftware.com/">LeoliftIT</a>.</strong>
+    <strong>@lang('fleet.copyright') &copy; 2019-{{date("Y")}} <a href="https://rioleafit.com/">RioleafIT</a>.</strong>
     @lang('fleet.all_rights_reserved')
     <div class="float-right d-none d-sm-inline-block">
       <b>@lang('fleet.version')</b> 4.0.3

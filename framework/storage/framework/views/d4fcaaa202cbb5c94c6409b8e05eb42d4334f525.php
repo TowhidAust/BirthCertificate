@@ -32,7 +32,7 @@
             <img src="<?php echo e(asset("assets/images/no-user.jpg")); ?>" alt="User profile picture" class="profile-user-img img-responsive img-circle">
           <?php endif; ?>
         </div>
-        <h3 class="profile-username text-center"> <?php echo e($data->getMeta('first_name')); ?> <?php echo e($data->getMeta('last_name')); ?></h3>
+        <h3 class="profile-username text-center">  <?php echo e(Auth::user()->name); ?></h3>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
             <b>
@@ -42,6 +42,11 @@
             <b>
             <?php echo app('translator')->getFromJson('fleet.total'); ?>
             Application</b> <a class="pull-right"> <?php echo e($total); ?> </a>
+          </li>
+          <li class="list-group-item">
+            <b>
+            <?php echo app('translator')->getFromJson('fleet.total'); ?>
+            Correction</b> <a class="pull-right"> <?php echo e($total_correction); ?> </a>
           </li>
         </ul>
         <a href="<?php echo e(url('admin/change-details/'.Auth::user()->id)); ?>" class="btn btn-info btn-block"><b><?php echo app('translator')->getFromJson('fleet.editProfile'); ?></b></a>
@@ -94,11 +99,6 @@
               <table class="table driver_table">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      <?php if($data->count() > 0): ?>
-                      <input type="checkbox" id="chk_all">
-                      <?php endif; ?>
-                    </th>
                     <th> Application ID</th>
                     <th> Name Bangla</th>
                     <th>Name English</th>
@@ -112,9 +112,6 @@
                 <tbody>
                     <?php $__currentLoopData = $pending_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                      <td>  <?php if($data->count() > 0): ?>
-                        <input type="checkbox" id="chk_all">
-                        <?php endif; ?></td>
                       <td><?php echo e($row->applicant_id); ?></td>
                       <td><?php echo e($row->bangla_name); ?></td>
                       <td><?php echo e($row->english_name); ?></td>
@@ -126,6 +123,18 @@
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -136,27 +145,20 @@
               <table class="table driver_table">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      <?php if($data->count() > 0): ?>
-                      <input type="checkbox" id="chk_all">
-                      <?php endif; ?>
-                    </th>
-                    <th> Application ID</th>
-                    <th> Name Bangla</th>
-                    <th>Name English</th>
-                    <th>Number</th>
-                    <th>Birth Date</th>
-                    <th>Gender</th>
-                    <th>Status</th>
-                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-                  </tr>
+                    <tr>
+                      <th> Application ID</th>
+                      <th> Name Bangla</th>
+                      <th>Name English</th>
+                      <th>Number</th>
+                      <th>Birth Date</th>
+                      <th>Gender</th>
+                      <th>Status</th>
+                      <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                    </tr>
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $approved_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                      <td>  <?php if($data->count() > 0): ?>
-                        <input type="checkbox" id="chk_all">
-                        <?php endif; ?></td>
                       <td><?php echo e($row->applicant_id); ?></td>
                       <td><?php echo e($row->bangla_name); ?></td>
                       <td><?php echo e($row->english_name); ?></td>
@@ -167,7 +169,18 @@
                       <td> <a href="<?php echo e(url("admin/application/".$row->applicant_id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </tbody>
+                </tbody>  <tfoot>
+                    <tr>
+                      <th> Application ID</th>
+                      <th> Name Bangla</th>
+                      <th>Name English</th>
+                      <th>Number</th>
+                      <th>Birth Date</th>
+                      <th>Gender</th>
+                      <th>Status</th>
+                      <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                    </tr>
+                  </tfoot>
               </table>
             </div>
           </div>
@@ -177,18 +190,13 @@
               <table class="table driver_table">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      <?php if($data->count() > 0): ?>
-                      <input type="checkbox" id="chk_all">
-                      <?php endif; ?>
-                    </th>
                     <th> Application ID</th>
                     <th> Name Bangla</th>
                     <th>Name English</th>
                     <th>Number</th>
                     <th>Birth Date</th>
                     <th>Gender</th>
-                    <th>Rejected Reason</th>
+                    <th>Reason</th>
                     <th>Status</th>
                     <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
                   </tr>
@@ -196,9 +204,7 @@
                 <tbody>
                     <?php $__currentLoopData = $rejected_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                      <td>  <?php if($data->count() > 0): ?>
-                        <input type="checkbox" id="chk_all">
-                        <?php endif; ?></td>
+
                       <td><?php echo e($row->applicant_id); ?></td>
                       <td><?php echo e($row->bangla_name); ?></td>
                       <td><?php echo e($row->english_name); ?></td>
@@ -211,6 +217,19 @@
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
+                 <tfoot>
+                   <tr>
+                     <th> Application ID</th>
+                     <th> Name Bangla</th>
+                     <th>Name English</th>
+                     <th>Number</th>
+                     <th>Birth Date</th>
+                     <th>Gender</th>
+                     <th>Reason</th>
+                     <th>Status</th>
+                     <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                   </tr>
+                  </tfoot>
               </table>
             </div>
           </div>

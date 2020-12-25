@@ -9,7 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class UserRequest extends FormRequest {
 
 	public function authorize() {
-		if (Auth::user()->user_type == "S" || Auth::user()->user_type == "O") {
+		if (Auth::user()->user_type == "S" || Auth::user()->user_type == "O")|| Auth::user()->user_type == "D") {
 			return true;
 		} else {
 			abort(404);

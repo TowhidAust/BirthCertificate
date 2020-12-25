@@ -10,7 +10,11 @@
         <a class="nav-item nav-link" href="<?php echo e(route('correction_form')); ?>">Correction</a>
         <a class="nav-item nav-link" href="<?php echo e(route('check_status')); ?>">Check Status</a>
         <a class="nav-item nav-link" href="<?php echo e(route('contact')); ?>">Contact Us</a>
-        <a class="nav-item nav-link" href="<?php echo e(route('check_status')); ?>">FAQ</a>
+        <a class="nav-item nav-link" href="<?php echo e(route('faq')); ?>">FAQ</a>
+
+      </div>
+      <div class="">
+          <a  class="btn btn-primary" style="float:right;" href="#">Download</a>
       </div>
     </div>
   </nav>

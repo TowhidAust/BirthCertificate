@@ -92,18 +92,10 @@ class DriversController extends Controller {
 
 	public function destroy(Request $request) {
 		$driver = User::find($request->id);
-		if ($driver->vehicle_id) {
-			$vehicle = VehicleModel::find($driver->vehicle_id);
-			if ($vehicle != null) {
-				$vehicle->driver_id = null;
-				$vehicle->save();
-			}
-
-		}
 		User::find($request->get('id'))->user_data()->delete();
 		User::find($request->get('id'))->delete();
 
-		return redirect()->route('drivers.index');
+		return back();
 	}
 
 	public function bulk_delete(Request $request) {

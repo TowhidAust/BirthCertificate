@@ -91,17 +91,31 @@ class HomeController extends Controller {
 	}
 
 	public function index() {
-
+		$index['Officer'] = DB::table('users')
+											->where('user_type','O')
+											->count('id');
+		$index['operator'] = DB::table('users')
+											->where('user_type','OP')
+											->count('id');
+		$index['councillor'] = DB::table('users')
+											->where('user_type','D')
+											->count('id');
+		$index['accountant'] = DB::table('users')
+											->where('user_type','A')
+											->count('id');
+		$index['admin'] = DB::table('users')
+											->where('user_type','S')
+											->count('id');
 		if (Auth::user()->user_type == "D") {
 			$index['data'] = User::join('wards','wards.id','users.ward_id')
 									   	->select('users.*','wards.name as ward_name')
 			               ->where('users.id',Auth::user()->id)->first();
 	  	$index['pending_applican_info'] = DB::table('applican_informations')
 																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
-																			->orderBy('applican_informations.id','desc')
 																			->where('applican_informations.ward_name',Auth::user()->ward_id)
 																			->where('applican_informations.status','Pending')
 																			->where('approvals.councillor','0')
+																			->orderBy('approvals.id','desc')
 																			->get();
 	  	$index['approved_applican_info'] = DB::table('applican_informations')
 																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
@@ -118,6 +132,9 @@ class HomeController extends Controller {
 
 			$index['total'] = DB::table('applican_informations')
 																			->where('ward_name',Auth::user()->ward_id)
+																			->count();
+			$index['total_correction'] = DB::table('correction_applications')
+																			->where('ward_id',Auth::user()->ward_id)
 																			->count();
 			// $index['vehicle'] = VehicleModel::where('driver_id', Auth::user()->id)->first();
 			return view("councillors.profile", $index);
@@ -246,6 +263,7 @@ class HomeController extends Controller {
 			ksort($dates);
 			$dates = array_slice($dates, -12, 12);
 			$index['dates'] = $dates;
+			$index['total'] = $dates;
 			$temp = array();
 			foreach ($all_dates as $key) {
 				$temp[$key] = 0;
@@ -265,6 +283,7 @@ class HomeController extends Controller {
 			$expenses = array_merge($temp, $expense2);
 			ksort($expenses);
 			$index['expenses1'] = implode(",", array_slice($expenses, -12, 12));
+
 
 			return view('home', $index);
 		}

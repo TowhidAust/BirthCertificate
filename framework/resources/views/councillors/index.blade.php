@@ -35,7 +35,6 @@
       <div class="card-header">
         <h3 class="card-title">Councillor &nbsp;
           <a href="{{ route("councillor.create") }}" class="btn btn-success">Add Councillor </a>
-          <button data-toggle="modal" data-target="#import" class="btn btn-warning">@lang('fleet.import')</button>
         </h3>
       </div>
 
@@ -43,11 +42,7 @@
         <table class="table" id="data_table" style="padding-bottom: 15px">
           <thead class="thead-inverse">
             <tr>
-              <th>
-                @if($data->count() > 0)
-                <input type="checkbox" id="chk_all">
-                @endif
-              </th>
+
               <th>#</th>
               <th>Image</th>
               <th>@lang('fleet.name')</th>
@@ -62,9 +57,7 @@
           <tbody>
             @foreach($data as $row)
             <tr>
-              <td>
-                <input type="checkbox" name="ids[]" value="{{ $row->id }}" class="checkbox" id="chk{{ $row->id }}" onclick='checkcheckbox();'>
-              </td>
+
               <td>{{$row->id}}</td>
               <td>
                 @if($row->getMeta('driver_image') != null)
@@ -110,14 +103,11 @@
           </tbody>
           <tfoot>
             <tr>
-              <th>
-                @if($data->count() > 0)
-                <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled>@lang('fleet.delete')</button>
-                @endif
-              </th>
+
               <th>#</th>
               <th>Image</th>
               <th>@lang('fleet.name')</th>
+              <th>@lang('Ward No')</th>
               <th>@lang('fleet.email')</th>
               <th>@lang('fleet.is_active')</th>
               <th>@lang('fleet.phone')</th>

@@ -1,8 +1,15 @@
 
   @include('frontend.header')
     <section class="mainContents">
+      <span><h5>@if (Session::has('message'))
+            <div class="alert alert-success" role="alert">
+              {!! session('message') !!}
+            </div>
+            @endif</h5>
+      </span>
         @include('frontend.navbar')
         <div class="sidebarAndContents container mt-3">
+
             <div class="row">
                 <div class="col-md-4">
                     @include('frontend.sidebar')

@@ -33,7 +33,7 @@
             <img src="{{ asset("assets/images/no-user.jpg")}}" alt="User profile picture" class="profile-user-img img-responsive img-circle">
           @endif
         </div>
-        <h3 class="profile-username text-center"> {{$data->getMeta('first_name')}} {{ $data->getMeta('last_name')}}</h3>
+        <h3 class="profile-username text-center">  {{Auth::user()->name}}</h3>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
             <b>
@@ -43,6 +43,11 @@
             <b>
             @lang('fleet.total')
             Application</b> <a class="pull-right"> {{$total}} </a>
+          </li>
+          <li class="list-group-item">
+            <b>
+            @lang('fleet.total')
+            Correction</b> <a class="pull-right"> {{$total_correction}} </a>
           </li>
         </ul>
         <a href="{{ url('admin/change-details/'.Auth::user()->id) }}" class="btn btn-info btn-block"><b>@lang('fleet.editProfile')</b></a>
@@ -91,11 +96,6 @@
               <table class="table driver_table">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      @if($data->count() > 0)
-                      <input type="checkbox" id="chk_all">
-                      @endif
-                    </th>
                     <th> Application ID</th>
                     <th> Name Bangla</th>
                     <th>Name English</th>
@@ -109,9 +109,6 @@
                 <tbody>
                     @foreach($pending_applican_info as $row)
                     <tr>
-                      <td>  @if($data->count() > 0)
-                        <input type="checkbox" id="chk_all">
-                        @endif</td>
                       <td>{{$row->applicant_id}}</td>
                       <td>{{$row->bangla_name}}</td>
                       <td>{{$row->english_name}}</td>
@@ -123,6 +120,18 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -133,27 +142,20 @@
               <table class="table driver_table">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      @if($data->count() > 0)
-                      <input type="checkbox" id="chk_all">
-                      @endif
-                    </th>
-                    <th> Application ID</th>
-                    <th> Name Bangla</th>
-                    <th>Name English</th>
-                    <th>Number</th>
-                    <th>Birth Date</th>
-                    <th>Gender</th>
-                    <th>Status</th>
-                    <th>@lang('fleet.action')</th>
-                  </tr>
+                    <tr>
+                      <th> Application ID</th>
+                      <th> Name Bangla</th>
+                      <th>Name English</th>
+                      <th>Number</th>
+                      <th>Birth Date</th>
+                      <th>Gender</th>
+                      <th>Status</th>
+                      <th>@lang('fleet.action')</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach($approved_applican_info as $row)
                     <tr>
-                      <td>  @if($data->count() > 0)
-                        <input type="checkbox" id="chk_all">
-                        @endif</td>
                       <td>{{$row->applicant_id}}</td>
                       <td>{{$row->bangla_name}}</td>
                       <td>{{$row->english_name}}</td>
@@ -165,6 +167,18 @@
                     </tr>
                     @endforeach
                 </tbody>
+                 <tfoot>
+                   <tr>
+                     <th> Application ID</th>
+                     <th> Name Bangla</th>
+                     <th>Name English</th>
+                     <th>Number</th>
+                     <th>Birth Date</th>
+                     <th>Gender</th>
+                     <th>Status</th>
+                     <th>@lang('fleet.action')</th>
+                   </tr>
+                  </tfoot>
               </table>
             </div>
           </div>
@@ -174,18 +188,13 @@
               <table class="table driver_table">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      @if($data->count() > 0)
-                      <input type="checkbox" id="chk_all">
-                      @endif
-                    </th>
                     <th> Application ID</th>
                     <th> Name Bangla</th>
                     <th>Name English</th>
                     <th>Number</th>
                     <th>Birth Date</th>
                     <th>Gender</th>
-                    <th>Rejected Reason</th>
+                    <th>Reason</th>
                     <th>Status</th>
                     <th>@lang('fleet.action')</th>
                   </tr>
@@ -193,9 +202,7 @@
                 <tbody>
                     @foreach($rejected_applican_info as $row)
                     <tr>
-                      <td>  @if($data->count() > 0)
-                        <input type="checkbox" id="chk_all">
-                        @endif</td>
+
                       <td>{{$row->applicant_id}}</td>
                       <td>{{$row->bangla_name}}</td>
                       <td>{{$row->english_name}}</td>
@@ -208,6 +215,19 @@
                     </tr>
                     @endforeach
                 </tbody>
+                 <tfoot>
+                   <tr>
+                     <th> Application ID</th>
+                     <th> Name Bangla</th>
+                     <th>Name English</th>
+                     <th>Number</th>
+                     <th>Birth Date</th>
+                     <th>Gender</th>
+                     <th>Reason</th>
+                     <th>Status</th>
+                     <th>@lang('fleet.action')</th>
+                   </tr>
+                  </tfoot>
               </table>
             </div>
           </div>

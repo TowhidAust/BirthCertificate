@@ -57,6 +57,19 @@
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
+                <tfoot class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Birth ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

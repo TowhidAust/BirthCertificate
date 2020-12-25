@@ -24,23 +24,24 @@
                 <li class="style28"> <a href="http://www.gazipurdarpon.com/%E0%A6%97%E0%A6%BE%E0%A6%9C%E0%A7%80%E0%A6%AA%E0%A7%81%E0%A6%B0%E0%A7%87-%E0%A6%B6%E0%A6%BF%E0%A6%B6%E0%A7%81%E0%A6%B0-%E0%A6%AC%E0%A6%BF%E0%A7%9F%E0%A7%87-%E0%A6%A8%E0%A6%BF%E0%A6%AC%E0%A6%A8/ " target="_blank" "=""><span class="style24">গাজীপুরে শিশুর বিয়ে নিবন্ধনে কাজির কারাদন্ড </span><strong></strong></a><strong> </strong></li><strong>
   <li class="style28"> <a href="http://www.munshiganjtimes.com/%E0%A6%9F%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A7%80%E0%A6%AC%E0%A6%BE%E0%A7%9C%E0%A7%80%E0%A6%A4%E0%A7%87-%E0%A6%AC%E0%A6%BE%E0%A6%B2%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BF%E0%A7%9F%E0%A7%87-%E0%A6%A6%E0%A7%87/  " target="_blank" "=""><span class="style24">টঙ্গীবাড়ীতে বাল্যবিয়ে দেওয়ায় কাজীর কারাদন্ড </span><strong></strong></a><strong> </strong></li><strong>
   <li class="style28"> <a href="http://news.iportbd.com/details.php?id=8376 " target="_blank" "=""><span class="style24">জাল সনদকারীকে দণ্ড  </span><strong></strong></a><strong> </strong></li><strong>
-  <li class="style28"> <a href="http://www.sitakundtimes.com/archives/4294" target="_blank" "=""><span class="style24">সীতাকুন্ড বারআউলিয়ায় জাল সনদ তৈরীর অভিযোগে কম্পিউটার জব্দ </span><strong></strong></a><strong> </strong></li><strong>  
+  <li class="style28"> <a href="http://www.sitakundtimes.com/archives/4294" target="_blank" "=""><span class="style24">সীতাকুন্ড বারআউলিয়ায় জাল সনদ তৈরীর অভিযোগে কম্পিউটার জব্দ </span><strong></strong></a><strong> </strong></li><strong>
 
-                  <li class="style28"> <a href="http://br.lgd.gov.bd/files/narayongonj.pdf " target="_blank" "=""><span class="style24">ভূয়া আইডি কার্ড ও জাল জন্ম নিবন্ধন সনদ তৈরি প্রতিরোধে নারায়ণগঞ্জ সদর নির্বাহী অফিসার কর্তৃক ভ্রাম্যমান আদালত পরিচালনা</span><strong></strong></a><strong> </strong></li><strong>
-                  <li><span class="style21"><a href="files/chunaroghat.pdf " target="_blank" "=""><span class="style24">চুনারুঘাটে জাল জন্ম সনদের দায়ে যুবকের জেল-জরিমানা</span></a></span><span class="style24"><a href="narayongonj.pdf"><strong></strong></a></span></li><strong>
-                  <li><span class="style21"><a href="files/kutubdia.pdf " target="_blank" "=""><span class="style28">কুতুবদিয়ায় জন্ম ও মৃত্যুর জাল সনদ বিক্রির দায়ে আটক ১</span></a></span></li>
-                  <li><a href="http://br.lgd.gov.bd/files/jaljonmo.pdf " target="_blank" "=""><span class="style28">জাল জন্ম নিবন্ধন সনদ পত্র তৈরীর সরঞ্জামাদি সহ আটক ১ জন</span></a></li>
-                  <li><a href="http://br.lgd.gov.bd/files/mymensingh.pdf " target="_blank" "=""><span class="style28"> জন্ম নিবন্ধন সনদ জালিয়াতি বিপাকে ময়মনসিংহ পৌরসভা</span></a></li>
-                  <li> <a href="http://br.lgd.gov.bd/files/soronkhola.pdf " target="_blank" "=""><span class="style24">ভূয়া জন্ম সনদ দেওয়ায় শরণখোলায় দু’ইউপি সদস্য বরখাস্ত </span></a></li>
-<li> <a href="http://br.lgd.gov.bd/files/holokhanakurigramsadarupbrcertificat_.zip " target="_blank" "=""><span class="style24">বেআইনী ভাবে জন্ম নিবন্ধন সনদ প্রস্তুত এবং প্রচারের জন্য হলোখানা ইউনিয়ন পরিষদের বিরুদ্ধে  ব্যবস্থা গ্রহণ  </span></a></li>
+                  <li class="style28"> <a download href="<?php echo e(asset('pdf/press/narayongonj.pdf')); ?>" target="_blank" "=""><span class="style24">ভূয়া আইডি কার্ড ও জাল জন্ম নিবন্ধন সনদ তৈরি প্রতিরোধে নারায়ণগঞ্জ সদর নির্বাহী অফিসার কর্তৃক ভ্রাম্যমান আদালত পরিচালনা</span><strong></strong></a><strong> </strong></li><strong>
+                  <li><span class="style21"><a download href="<?php echo e(asset('pdf/press/chunaroghat.pdf')); ?>" target="_blank" "=""><span class="style24">চুনারুঘাটে জাল জন্ম সনদের দায়ে যুবকের জেল-জরিমানা</span></a></span><span class="style24"><a href="narayongonj.pdf"><strong></strong></a></span></li><strong>
+                  <li><span class="style21"><a download href="<?php echo e(asset('pdf/press/kutubdia.pdf')); ?>" target="_blank" "=""><span class="style28">কুতুবদিয়ায় জন্ম ও মৃত্যুর জাল সনদ বিক্রির দায়ে আটক ১</span></a></span></li>
+                  <li><a download href="<?php echo e(asset('pdf/press/jaljonmo.pdf')); ?>" target="_blank" "=""><span class="style28">জাল জন্ম নিবন্ধন সনদ পত্র তৈরীর সরঞ্জামাদি সহ আটক ১ জন</span></a></li>
+                  <li><a download href="<?php echo e(asset('pdf/press/mymensingh.pdf')); ?>" target="_blank" "=""><span class="style28"> জন্ম নিবন্ধন সনদ জালিয়াতি বিপাকে ময়মনসিংহ পৌরসভা</span></a></li>
+                  <li> <a download href="<?php echo e(asset('pdf/press/soronkhola.pdf')); ?>" target="_blank" "=""><span class="style24">ভূয়া জন্ম সনদ দেওয়ায় শরণখোলায় দু’ইউপি সদস্য বরখাস্ত </span></a></li>
+<li> <a href="<?php echo e(asset('pdf/press/holokhanakurigramsadarupbrcertificat__2.zip')); ?>" target="_blank" "=""><span class="style24">বেআইনী ভাবে জন্ম নিবন্ধন সনদ প্রস্তুত এবং প্রচারের জন্য হলোখানা ইউনিয়ন পরিষদের বিরুদ্ধে  ব্যবস্থা গ্রহণ  </span></a></li>
               </strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></ul>
     </div>
     </div>
     	</div>
     </div>
-   
+
 </section>
 <footer class="copyrightFooter">
       <span>	&copy; 2020 Birth & Death Registration. All rights reserved. Developed by Birth and Death Registration Team.</span>
     </footer>
-<?php echo $__env->make('frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/frontend/press.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('frontend.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/frontend/press.blade.php ENDPATH**/ ?>

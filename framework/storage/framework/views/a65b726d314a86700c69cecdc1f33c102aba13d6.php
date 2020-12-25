@@ -128,20 +128,6 @@ input:checked + .slider:before {
                </select>
               </div>
             </div>
-            <div class="form-group" style="margin-top: 30px">
-
-              <div class="row">
-                <div class="col-md-3">
-                  <label class="switch">
-                  <input type="checkbox" name="is_admin" value="1">
-                  <span class="slider round"></span>
-                  </label>
-                </div>
-                <div class="col-md-3" style="margin-top: 5px">
-                  <h4><?php echo app('translator')->getFromJson('fleet.is_admin'); ?></h4>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">

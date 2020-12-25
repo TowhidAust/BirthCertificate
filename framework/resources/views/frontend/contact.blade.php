@@ -4,20 +4,15 @@
         @include('frontend.navbar')
         <div class="sidebarAndContents container mt-3">
             <div class="row">
-               
+
                 <div class="col-md-12">
-                   
+
                     <div class="contactInfo">
                         <h3>CONTACT US</h3>
                         <hr>
+<h4>বরিশাল সিটি কর্পোরেশন </h4>
 
-
-                        <div class="logo">
-                            <h4>বরিশাল সিটি কর্পোরেশন </h4>
-                            <span><i class="fab fa-facebook"></i></span>
-                            <span><i class="fab fa-twitter"></i></span>
-                            <span><i class="fab fa-linkedin"></i></span>
-                        </div>
+                    
                         <div class="contactInner">
                             <div class="location">
                                 <i class="fas fa-location-arrow"></i>
@@ -26,7 +21,7 @@
                             </div>
 
                             <div class="email">
-                                
+
                                 <i class="fas fa-envelope"></i>
                                 <span></span>
                             </div>
@@ -36,9 +31,9 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
-                    
+
                 </div>
             </div>
         </div>

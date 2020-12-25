@@ -1,0 +1,110 @@
+<img src="/themes/responsive_npf/images/print_btn.png" style="cursor: pointer;" onclick="print_content();" width="24" title="প্রিন্ট" alt="print_btn">
+
+
+<div id="printable_area"><h3>জেনে রাখুন </h3>
+<div><table border="1" cellpadding="1" cellspacing="1" style="width:500px">
+	<tbody>
+		<tr>
+			<td style="text-align: justify;">জন্ম ও মৃত্যু নিবন্ধন কি ?</td>
+			<td>
+			<p style="margin-left: 0.38in; text-align: justify;">জন্ম ও মৃত্যু নিবন্ধন আইন-২০০৪ (সর্বশেষ সংশোধিত সহ) অনুসারে-</p>
+
+			<div style="margin-left: 0.38in; text-align: justify;">´জন্ম: কোন ব্যক্তির জীবিত ভূমিষ্ট হওয়া;</div>
+
+			<div style="margin-left: 0.38in; text-align: justify;">´মৃত্যু: কোন ব্যক্তির জীবনাবসান হওয়া;&nbsp;</div>
+
+			<div style="margin-left: 0.38in; text-align: justify;">´নিবন্ধন: নিবন্ধন বহিতে কোন ব্যক্তির জন্ম ও মৃত্যু নিবন্ধন করা;</div>
+
+			<div style="margin-left: 0.38in; text-align: justify;">´নিবন্ধন বহি: হস্তলিখিত উপায়ে বা তথ্য প্রযুক্তির মাধ্যমে সৃজিত এমন কোন বহি, যাহাতে কোন ব্যক্তির জন্ম বা মৃত্যুর তথ্য লিপিবদ্ধ করা হয়।</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">জন্ম নিবন্ধনের পদ্ধতি</td>
+			<td>
+			<div style="margin-left: 0.38in;">
+			<div style="margin-left: 0.38in; text-align: justify;">´জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ এর আওতায় একজন মানুষের নাম, লিঙ্গ, জন্মের তারিখ ও স্থান, বাবা মায়ের নাম, তাদের জাতীয়তা এবং স্থায়ী ঠিকানা নির্ধারিত নিবন্ধক কর্তৃক কম্পিউটারে এন্ট্রি প্রদানসহ ডেটাবেইজে সংরক্ষণ এবং জন্ম নিবন্ধন সনদ প্রদান করা।</div>
+
+			<div style="text-align: justify;">&nbsp;</div>
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">মৃত্যু নিবন্ধন পদ্ধতি</td>
+			<td style="text-align:justify">
+			<div style="margin-left:.38in;">´জন্ম নিবন্ধন হলো জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ এর আওতায় একজন মৃত ব্যক্তির নাম, মৃত্যুর তারিখ, মৃত্যুর স্থান, লিঙ্গ, পিতা/মাতা বা স্বামী/স্ত্রীর নাম নির্ধারিত নিবন্ধক কর্তৃক কম্পিউটারে এন্ট্রি প্রদানসহ ডেটাবেইজে সংরক্ষণ ও মৃত্যু নিবন্ধন সনদ প্রদান করা।</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">জন্ম ও মৃত্যু নিবন্ধনের গুরুত্ব</td>
+			<td style="text-align:justify">
+			<div style="margin-left:.38in;">•জাতিসংঘ শিশু অধিকার সনদের অনুচ্ছেদ ৭ অনুযায়ী “ Every child to be registered immediate after birth ”</div>
+
+			<div style="margin-left:.38in;">•বাংলাদেশের জাতীয় শিশু নীতি ২০১১-এর অনু: ৬.১০.১- অনুযায়ী সকল শিশুর জন্মের পর পরই জন্ম নিবন্ধন নিশ্চিত করতে হবে।</div>
+
+			<div style="margin-left:.38in;">•শিশুর মৌলিক অধিকার</div>
+
+			<div style="margin-left:.38in;">•রাষ্ট্রীয় অধিকার লাভ</div>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">জন্ম নিবন্ধন কোথায় করতে হবে?</td>
+			<td style="text-align: justify;">ইউনিয়ন পরিষদের চেয়ারম্যান, পৌরসভা/সিটি কর্পোরেশন এর মেয়র বা মেয়র কর্তৃক ক্ষমতাপ্রাপ্ত কোন কাউন্সিলর বা অন্য কোন কর্মকর্তা, ক্যান্টনমেন্ট বোর্ড এর এক্সিকিউটিভ অফিসার এবং দূতাবাসসমূহের ক্ষমতাপ্রাপ্ত কোন অফিসার জন্ম ও মৃত্যু নিবন্ধন করে থাকেন।</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">একই ব্যক্তি একাধিকবার জন্ম নিবন্ধন করতে পারবে কি?</td>
+			<td style="text-align: justify;">একই ব্যক্তির অনুকূলে একাধিকবার জন্ম নিবন্ধন করা যাবে না। এটি জন্ম ও মৃত্যু নিবন্ধন আইন, ২০০৪ এর ২১ ধারা অনুযায়ী দন্ডনীয় অপরাধ।</td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">একজন ব্যক্তি জন্ম নিবন্ধন হয়েছে কিনা তা কিভাবে পরীক্ষা করবে?</td>
+			<td style="text-align: justify;"><span style="color:rgb(0, 0, 0); font-family:trebuchet ms,arial,helvetica,sans-serif">অনলাইনে জন্ম নিবন্ধন করা থাকলে <span style="font-size:12px">orgbdr.gov.bd&nbsp;</span>ওয়েব সাইটে প্রবেশ করে জন্ম তথ্য যাচাই অপশনে ব্যক্তির ব্যপন নম্বর ও জন্ম তারিখ প্রদান করে জন্ম নিবন্ধন হয়েছে কিনা তা নিশ্চিত হওয়া যাবে</span><span style="color:rgb(102, 102, 102); font-family:trebuchet ms,arial,helvetica,sans-serif">&nbsp;</span><span style="color:rgb(0, 0, 0)">।</span></td>
+		</tr>
+		<tr>
+			<td style="text-align: justify;">জন্ম নিবন্ধন সনদের ব্যক্তি পরিচিতি নম্বর (ব্যপন) ১৭ ডিজিটে কিভাবে রুপান্তর করতে হবে?</td>
+			<td style="text-align: justify;">১৭ ডিজিটের কম ব্যপন নম্বর হলে সংশ্লিষ্ট নিবন্ধকের কার্যালয়ে পুরাতন সনদ জমা প্রদান করে ১৭ ডিজিট ব্যপন নম্বর সম্বলিত সনদ নেয়া যাবে।</td>
+		</tr>
+	</tbody>
+</table>
+
+<p style="text-align: justify;">&nbsp;</p>
+
+<p style="text-align: justify;">&nbsp;</p>
+
+<p style="margin-left: 0.38in; text-align: justify;">&nbsp;</p>
+
+<div style="margin-left: 0.38in; text-align: justify;">&nbsp;</div>
+
+<div style="margin-left:.38in;">
+<div style="margin-left:.38in;">&nbsp;</div>
+</div>
+</div>
+
+<style>a:visited span {
+  color: green !important; 
+}
+#left-content ul {
+  	list-style: circle;
+	list-style-position: inside;
+}
+th{
+	border:1px solid black;
+}
+td{
+	border:1px solid black;
+}
+@media only screen and (min-width:320px) and (max-width:959px){
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  #printable_area p img {
+	width:100%!important;
+	height: unset!important;
+  }
+}
+
+sub {
+    vertical-align: sub!important;
+    font-size: smaller!important;
+}
+</style><script></script></div>

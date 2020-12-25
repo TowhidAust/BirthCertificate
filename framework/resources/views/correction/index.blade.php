@@ -54,6 +54,17 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Ward No</th>
+                    <th> Birth ID</th>
+                    <th> Application  Name</th>
+                    <th>Birth Date</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -86,6 +97,17 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Ward No</th>
+                    <th> Birth ID</th>
+                    <th> Application  Name</th>
+                    <th>Birth Date</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -117,6 +139,17 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Ward No</th>
+                    <th> Birth ID</th>
+                    <th> Application  Name</th>
+                    <th>Birth Date</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

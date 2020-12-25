@@ -127,7 +127,7 @@ $(document).ready(function(){
               <?php endif; ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           <?php ($n = $r + $i +$l + $d + $s); ?>
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-bell-o"></i>
           <span class="badge badge-warning navbar-badge"><?php if($n>0): ?> <?php echo e($n); ?> <?php endif; ?></span>
@@ -160,7 +160,7 @@ $(document).ready(function(){
             <span class="float-right text-muted text-sm"><?php if($s>0): ?> <?php echo e($s); ?> <?php endif; ?></span>
           </a>
         </div>
-      </li>
+      </li> -->
       <?php endif; ?>
     <!-- logout -->
     <li class="nav-item dropdown">
@@ -248,25 +248,31 @@ $(document).ready(function(){
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-           <?php if(Auth::user()->user_type == 'D' && Auth::user()->getMeta('driver_image') != null): ?>
-           <?php if(starts_with(Auth::user()->getMeta('driver_image'),'http')): ?>
-            <?php ($src = Auth::user()->getMeta('driver_image')); ?>
-            <?php else: ?>
-            <?php ($src=asset('uploads/'.Auth::user()->getMeta('driver_image'))); ?>
-            <?php endif; ?>
+        <?php if(Auth::user()->user_type == 'D' && Auth::user()->getMeta('driver_image') != null): ?>
+             <?php if(starts_with(Auth::user()->getMeta('driver_image'),'http')): ?>
+                <?php ($src = Auth::user()->getMeta('driver_image')); ?>
+             <?php else: ?>
+                <?php ($src=asset('uploads/'.Auth::user()->getMeta('driver_image'))); ?>
+              <?php endif; ?>
             <img src="<?php echo e($src); ?>" class="img-circle elevation-2" alt="User Image">
-            <?php elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'): ?>
+        <?php elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'): ?>
               <?php if(Auth::user()->getMeta('profile_image') == null): ?>
               <img src="<?php echo e(asset("assets/images/no-user.jpg")); ?>" class="img-circle elevation-2" alt="User Image">
               <?php else: ?>
               <img src="<?php echo e(asset('uploads/'.Auth::user()->getMeta('profile_image'))); ?>" class="img-circle elevation-2" alt="User Image">
               <?php endif; ?>
-            <?php elseif(Auth::user()->user_type == 'C' && Auth::user()->getMeta('profile_pic') != null): ?>
-            <?php if(starts_with(Auth::user()->getMeta('profile_pic'),'http')): ?>
-            <?php ($src = Auth::user()->getMeta('profile_pic')); ?>
-            <?php else: ?>
-            <?php ($src=asset('uploads/'.Auth::user()->getMeta('profile_pic'))); ?>
-            <?php endif; ?>
+      <?php elseif(Auth::user()->user_type == 'OP'): ?>
+              <?php if(Auth::user()->getMeta('profile_image') == null): ?>
+              <img src="<?php echo e(asset("assets/images/no-user.jpg")); ?>" class="img-circle elevation-2" alt="User Image">
+              <?php else: ?>
+              <img src="<?php echo e(asset('uploads/'.Auth::user()->getMeta('profile_image'))); ?>" class="img-circle elevation-2" alt="User Image">
+              <?php endif; ?>
+        <?php elseif(Auth::user()->user_type == 'C' && Auth::user()->getMeta('profile_pic') != null): ?>
+              <?php if(starts_with(Auth::user()->getMeta('profile_pic'),'http')): ?>
+                <?php ($src = Auth::user()->getMeta('profile_pic')); ?>
+              <?php else: ?>
+                <?php ($src=asset('uploads/'.Auth::user()->getMeta('profile_pic'))); ?>
+              <?php endif; ?>
             <img src="<?php echo e($src); ?>" class="img-circle elevation-2" alt="User Image">
             <?php else: ?>
             <img src="<?php echo e(asset("assets/images/no-user.jpg")); ?>" class="img-circle elevation-2" alt="User Image">
@@ -281,73 +287,7 @@ $(document).ready(function(){
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <!-- customer -->
-          <?php if(Auth::user()->user_type=="C"||Auth::user()->user_type=="A"): ?>
 
-            <?php if(Request::is('admin/bookings*')): ?>
-            <?php ($class="menu-open"); ?>
-            <?php ($active="active"); ?>
-            <?php else: ?>
-            <?php ($class=""); ?>
-            <?php ($active=""); ?>
-            <?php endif; ?>
-          <li class="nav-item has-treeview <?php echo e($class); ?>">
-            <a href="#" class="nav-link <?php echo e($active); ?>">
-              <i class="nav-icon fa fa-address-card"></i>
-              <p>
-                applications
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('bookings.create')); ?>" class="nav-link <?php if(Request::is('admin/bookings/create')): ?> active <?php endif; ?>">
-                  <i class="fa fa-address-book nav-icon "></i>
-                  <p>
-                New Applications</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(url('/application')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
-                  <i class="fa fa-tasks nav-icon"></i>
-                  <p>
-                  Manage Applications</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="<?php echo e(url('admin/change-details/'.Auth::user()->id)); ?>" class="nav-link <?php if(Request::is('admin/change-details*')): ?> active <?php endif; ?>">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                <?php echo app('translator')->getFromJson('fleet.editProfile'); ?>
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="<?php echo e(url('admin/addresses')); ?>" class="nav-link <?php if(Request::is('admin/addresses*')): ?> active <?php endif; ?>">
-              <i class="nav-icon fa fa-map-marker"></i>
-              <p>
-                <?php echo app('translator')->getFromJson('fleet.addresses'); ?>
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="<?php echo e(url('admin/')); ?>" class="nav-link <?php if(Request::is('admin')): ?> active <?php endif; ?>">
-              <i class="nav-icon fa fa-money"></i>
-              <p>
-                <?php echo app('translator')->getFromJson('fleet.expenses'); ?>
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
-          </li>
-          <?php endif; ?>
-          <!-- customer -->
-          <!-- user-type S or O -->
           <?php if(Auth::user()->user_type=="S" || Auth::user()->user_type=="O"): ?>
           <li class="nav-item">
             <a  href="<?php echo e(url('admin/')); ?>" class="nav-link <?php if(Request::is('admin')): ?> active <?php endif; ?>">
@@ -362,25 +302,33 @@ $(document).ready(function(){
           <!-- user-type S or O -->
 
           <!-- driver -->
-          <?php if(Auth::user()->user_type=="D"): ?>
+          <?php if(Auth::user()->user_type=="D"||Auth::user()->user_type=="A"): ?>
 
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="<?php echo e(url('admin/')); ?>" class="nav-link <?php if(Request::is('admin/')): ?> active <?php endif; ?>">
-              <i class="nav-icon fa fa-user"></i>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-address-card"></i>
               <p>
-                <?php echo app('translator')->getFromJson('fleet.myProfile'); ?>
-                <span class="right badge badge-danger"></span>
+                Applications
+                <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a style="margin-left: 23px;" href="<?php echo e(url('admin/change-details/'.Auth::user()->id)); ?>" class="nav-link <?php if(Request::is('admin/change-details*')): ?> active <?php endif; ?>">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                <?php echo app('translator')->getFromJson('fleet.editProfile'); ?>
-                <span class="right badge badge-danger"></span>
-              </p>
-            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('today_application')); ?>" class="nav-link <?php if(Request::is('admin/bookings/create')): ?> active <?php endif; ?>">
+                  <i class="fa fa-address-book nav-icon "></i>
+                  <p>
+                  Today's </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('application')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                  Manage Applications</p>
+                </a>
+              </li>
+
+            </ul>
           </li>
             <?php if(Request::is('admin/notes*')): ?>
             <?php ($class="menu-open"); ?>
@@ -390,29 +338,7 @@ $(document).ready(function(){
             <?php ($class=""); ?>
             <?php ($active=""); ?>
             <?php endif; ?>
-          <li class="nav-item has-treeview <?php echo e($class); ?>">
-            <a href="#" class="nav-link <?php echo e($active); ?>">
-              <i class="nav-icon fa fa-sticky-note"></i>
-              <p>
-                <?php echo app('translator')->getFromJson('fleet.notes'); ?>
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('notes.index')); ?>" class="nav-link <?php if((Request::is('admin/notes*') && !(Request::is('admin/notes/create')))): ?> active <?php endif; ?>">
-                  <i class="fa fa-flag nav-icon"></i>
-                  <p> <?php echo app('translator')->getFromJson('fleet.manage_note'); ?></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route("notes.create")); ?>" class="nav-link <?php if(Request::is('admin/notes/create')): ?> active <?php endif; ?>">
-                  <i class="fa fa-plus-square nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('fleet.create_note'); ?></p>
-                </a>
-              </li>
-            </ul>
-          </li>
+
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
               <i class="nav-icon fa fa-address-card"></i>
@@ -439,37 +365,56 @@ $(document).ready(function(){
 
             </ul>
           </li>
-            <?php if(Request::is('admin/driver-reports*')): ?>
-            <?php ($class="menu-open"); ?>
-            <?php ($active="active"); ?>
-
-            <?php else: ?>
-            <?php ($class=""); ?>
-            <?php ($active=""); ?>
-            <?php endif; ?>
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
-              <i class="nav-icon fa fa-book"></i>
+              <i class="nav-icon fa fa-sticky-note"></i>
               <p>
-                <?php echo app('translator')->getFromJson('menu.reports'); ?>
+                <?php echo app('translator')->getFromJson('fleet.notes'); ?>
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route("notes.create")); ?>" class="nav-link <?php if(Request::is('admin/notes/create')): ?> active <?php endif; ?>">
+                  <i class="fa fa-plus-square nav-icon"></i>
+                  <p><?php echo app('translator')->getFromJson('fleet.create_note'); ?></p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('notes.index')); ?>" class="nav-link <?php if((Request::is('admin/notes*') && !(Request::is('admin/notes/create')))): ?> active <?php endif; ?>">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> <?php echo app('translator')->getFromJson('fleet.manage_note'); ?></p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview <?php echo e($class); ?>">
+            <a href="#" class="nav-link <?php echo e($active); ?>">
+              <i class="nav-icon fa fa-sticky-note"></i>
+              <p>
+                <?php echo app('translator')->getFromJson('Reports'); ?>
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route("dreports.monthly")); ?>" class="nav-link <?php if(Request::is('admin/driver-reports/monthly')): ?> active <?php endif; ?>">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('menu.monthlyReport'); ?></p>
+                <a style="margin-left: 23px;" href="<?php echo e(route('applicaton_report')); ?>" class="nav-link <?php if((Request::is('admin/report*') && !(Request::is('admin/report/create')))): ?> active <?php endif; ?>">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> Applications Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route("dreports.yearly")); ?>" class="nav-link <?php if(Request::is('admin/driver-reports/yearly')): ?> active <?php endif; ?>">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('fleet.yearlyReport'); ?></p>
+                <a style="margin-left: 23px;" href="<?php echo e(route('correction_report')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                   Corrections Report</p>
                 </a>
               </li>
             </ul>
           </li>
+
+
           <?php endif; ?>
           <!-- driver -->
 
@@ -514,14 +459,14 @@ $(document).ready(function(){
                   <p> Officers</p>
                 </a>
               </li>
-              <?php if(in_array(0,$modules)): ?>
+              <!-- <?php if(in_array(0,$modules)): ?>
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('customers.index')); ?>" class="nav-link <?php if(Request::is('admin/customers*')): ?> active <?php endif; ?>">
                   <i class="fa fa-address-card nav-icon"></i>
                   <p>Operator</p>
                 </a>
               </li>
-              <?php endif; ?>
+              <?php endif; ?> -->
               <?php endif; ?>
             </ul>
           </li> <?php endif; ?>
@@ -580,7 +525,7 @@ $(document).ready(function(){
             <?php ($active=""); ?>
 
             <?php endif; ?>
-            <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP"): ?>
+            <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="OP"): ?>
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
               <i class="nav-icon fa fa-address-card"></i>
@@ -607,8 +552,10 @@ $(document).ready(function(){
                 </a>
               </li>
             </ul>
-          </li> <?php endif; ?>
-              <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="A"||Auth::user()->user_type=="OP"): ?>
+          </li>
+
+          <?php endif; ?>
+              <?php if(Auth::user()->user_type=="O"||Auth::user()->user_type=="S"||Auth::user()->user_type=="OP"): ?>
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
               <i class="nav-icon fa fa-address-card"></i>
@@ -634,96 +581,60 @@ $(document).ready(function(){
               </li>
 
             </ul>
-          </li> <?php endif; ?>
-
-            <?php if(Request::is('admin/reports*')): ?>
-            <?php ($class="menu-open"); ?>
-            <?php ($active="active"); ?>
-
-            <?php else: ?>
-            <?php ($class=""); ?>
-            <?php ($active=""); ?>
-            <?php endif; ?>
-          <?php if(in_array(4,$modules)): ?> <li class="nav-item has-treeview <?php echo e($class); ?>">
+          </li>
+          <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
-              <i class="nav-icon fa fa-book"></i>
+              <i class="nav-icon fa fa-sticky-note"></i>
               <p>
-                <?php echo app('translator')->getFromJson('menu.reports'); ?>
+                <?php echo app('translator')->getFromJson('fleet.notes'); ?>
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <?php if(in_array(2,$modules)): ?>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(url('admin/reports/income')); ?>" class="nav-link <?php if(Request::is('admin/reports/income')): ?> active <?php endif; ?>">
-                  <i class="fa fa-credit-card nav-icon"></i>
-                  <p> Fee <?php echo app('translator')->getFromJson('fleet.report'); ?></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(url('admin/reports/expense')); ?>" class="nav-link <?php if(Request::is('admin/reports/expense')): ?> active <?php endif; ?>">
-                  <i class="fa fa-money nav-icon"></i>
-                  <p> <?php echo app('translator')->getFromJson('fleet.expense'); ?> <?php echo app('translator')->getFromJson('fleet.report'); ?></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.delinquent')); ?>" class="nav-link <?php if(Request::is('admin/reports/delinquent')): ?> active <?php endif; ?>">
-                  <i class="fa fa-file-text nav-icon"></i>
-                  <p> <?php echo app('translator')->getFromJson('menu.deliquentReport'); ?></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.monthly')); ?>" class="nav-link <?php if(Request::is('admin/reports/monthly')): ?> active <?php endif; ?>">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('menu.monthlyReport'); ?></p>
-                </a>
-              </li>
-              <?php endif; ?>
-              <?php if(in_array(3,$modules)): ?>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.application')); ?>" class="nav-link <?php if(Request::is('admin/reports/application')): ?> active <?php endif; ?>">
-                  <i class="fa fa-book nav-icon"></i>
-                  <p>Applications</p>
-                </a>
-              </li>
-              <?php endif; ?>
-              <?php if(in_array(0,$modules)): ?>
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.users')); ?>" class="nav-link <?php if(Request::is('admin/reports/users')): ?> active <?php endif; ?>">
-                  <i class="fa fa-address-book nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('fleet.user_report'); ?></p>
-                </a>
-              </li>
-              <?php endif; ?>
-
-              <?php if(in_array(0,$modules)): ?>
 
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.customers')); ?>" class="nav-link <?php if(Request::is('admin/reports/customers')): ?> active <?php endif; ?>">
-                  <i class="fa fa-users nav-icon"></i>
-                  <p>Operators</p>
+                <a style="margin-left: 23px;" href="<?php echo e(route("notes.create")); ?>" class="nav-link <?php if(Request::is('admin/notes/create')): ?> active <?php endif; ?>">
+                  <i class="fa fa-plus-square nav-icon"></i>
+                  <p><?php echo app('translator')->getFromJson('fleet.create_note'); ?></p>
                 </a>
               </li>
-              <?php endif; ?>
-
-              <?php if(in_array(2,$modules)): ?>
               <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('reports.yearly')); ?>" class="nav-link <?php if(Request::is('admin/reports/yearly')): ?> active <?php endif; ?>">
-                  <i class="fa fa-calendar nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('fleet.yearlyReport'); ?></p>
+                <a style="margin-left: 23px;" href="<?php echo e(route('notes.index')); ?>" class="nav-link <?php if((Request::is('admin/notes*') && !(Request::is('admin/notes/create')))): ?> active <?php endif; ?>">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> <?php echo app('translator')->getFromJson('fleet.manage_note'); ?></p>
                 </a>
               </li>
-              <?php endif; ?>
             </ul>
-          </li> <?php endif; ?>
-            <?php if(Request::is('admin/settings*') || Request::is('admin/fare-settings') || Request::is('admin/api-settings') || (Request::is('admin/expensecategories*')) || (Request::is('admin/incomecategories*')) || (Request::is('admin/expensecategories*')) || (Request::is('admin/send-email')) || (Request::is('admin/set-email')) || (Request::is('admin/cancel-reason*')) || (Request::is('admin/frontend-settings*')) || (Request::is('admin/company-services*')) || (Request::is('admin/payment-settings*'))): ?>
-            <?php ($class="menu-open"); ?>
-            <?php ($active="active"); ?>
+          </li>
+          <li class="nav-item has-treeview <?php echo e($class); ?>">
+            <a href="#" class="nav-link <?php echo e($active); ?>">
+              <i class="nav-icon fa fa-sticky-note"></i>
+              <p>
+                <?php echo app('translator')->getFromJson('Reports'); ?>
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('applicaton_report')); ?>" class="nav-link <?php if((Request::is('admin/report*') && !(Request::is('admin/report/create')))): ?> active <?php endif; ?>">
+                  <i class="fa fa-flag nav-icon"></i>
+                  <p> Applications Report</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a style="margin-left: 23px;" href="<?php echo e(route('correction_report')); ?>" class="nav-link <?php if((Request::is('admin/bookings*')) && !(Request::is('admin/bookings/create')) && !(Request::is('admin/bookings_calendar'))): ?> active <?php endif; ?>">
+                  <i class="fa fa-tasks nav-icon"></i>
+                  <p>
+                   Corrections Report</p>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-            <?php else: ?>
-            <?php ($class=""); ?>
-            <?php ($active=""); ?>
-            <?php endif; ?>
+           <?php endif; ?>
+
+
+       <?php if(Auth::user()->user_type == "S"): ?>
           <li class="nav-item has-treeview <?php echo e($class); ?>">
             <a href="#" class="nav-link <?php echo e($active); ?>">
               <i class="nav-icon fa fa-gear"></i>
@@ -745,7 +656,7 @@ $(document).ready(function(){
                   <p><?php echo app('translator')->getFromJson('menu.api_settings'); ?></p>
                 </a>
               </li> -->
-              
+              <!-- 
               <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('cancel-reason.index')); ?>" class="nav-link <?php if(Request::is('admin/cancel-reason*')): ?> active <?php endif; ?>">
                   <i class="fa fa-ban nav-icon"></i>
@@ -763,19 +674,14 @@ $(document).ready(function(){
                   <i class="fa fa-envelope-open nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('menu.email_content'); ?></p>
                 </a>
-              </li>
+              </li> -->
               <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(url('admin/fare-settings')); ?>" class="nav-link <?php if(Request::is('admin/fare-settings')): ?> active <?php endif; ?>">
                   <i class="fa fa-gear nav-icon"></i>
                   <p><?php echo app('translator')->getFromJson('menu.fare_settings'); ?></p>
                 </a>
               </li> -->
-              <li class="nav-item">
-                <a style="margin-left: 23px;" href="<?php echo e(route('expensecategories.index')); ?>" class="nav-link <?php if(Request::is('admin/expensecategories*')): ?> active <?php endif; ?>">
-                  <i class="fa fa-tasks nav-icon"></i>
-                  <p><?php echo app('translator')->getFromJson('menu.expenseCategories'); ?></p>
-                </a>
-              </li>
+
               <!-- <li class="nav-item">
                 <a style="margin-left: 23px;" href="<?php echo e(route('incomecategories.index')); ?>" class="nav-link <?php if(Request::is('admin/incomecategories*')): ?> active <?php endif; ?>">
                   <i class="fa fa-tasks nav-icon"></i>
@@ -796,7 +702,7 @@ $(document).ready(function(){
               </li> -->
             </ul>
           </li>
-
+         <?php endif; ?>
           <?php if(in_array(12,$modules) && Hyvikk::api('api_key') != null): ?> <li class="nav-item">
             <a style="margin-left: 23px;" href="<?php echo e(url('admin/driver-maps')); ?>" class="nav-link <?php if(Request::is('admin/driver-maps') || Request::is('admin/track-driver*')): ?> active <?php endif; ?>">
               <i class="nav-icon fa fa-map"></i>
@@ -869,7 +775,7 @@ $(document).ready(function(){
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong><?php echo app('translator')->getFromJson('fleet.copyright'); ?> &copy; 2016-<?php echo e(date("Y")); ?> <a href="https://infobizsoftware.com/">LeoliftIT</a>.</strong>
+    <strong><?php echo app('translator')->getFromJson('fleet.copyright'); ?> &copy; 2019-<?php echo e(date("Y")); ?> <a href="https://rioleafit.com/">RioleafIT</a>.</strong>
     <?php echo app('translator')->getFromJson('fleet.all_rights_reserved'); ?>
     <div class="float-right d-none d-sm-inline-block">
       <b><?php echo app('translator')->getFromJson('fleet.version'); ?></b> 4.0.3

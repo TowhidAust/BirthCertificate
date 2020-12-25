@@ -10,7 +10,7 @@
   </style>
 @endsection
 @section("breadcrumb")
-<li class="breadcrumb-item active">@lang('menu.bookings')</li>
+<li class="breadcrumb-item active">@lang('Application')</li>
 @endsection
 @section('content')
 <div class="row">
@@ -32,11 +32,6 @@
               <table class="table table-responsive display" id="data_table" >
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      @if($data->count() > 0)
-                      <input type="checkbox" id="chk_all">
-                      @endif
-                    </th>
                     <th> Application ID</th>
                     <th> Name Bangla</th>
                     <th>Name English</th>
@@ -50,9 +45,6 @@
                 <tbody>
                     @foreach($pending_applican_info as $row)
                     <tr>
-                      <td>  @if($data->count() > 0)
-                        <input type="checkbox" id="chk_all">
-                        @endif</td>
                       <td>{{$row->applicant_id}}</td>
                       <td>{{$row->bangla_name}}</td>
                       <td>{{$row->english_name}}</td>
@@ -64,6 +56,18 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -74,11 +78,6 @@
               <table class="table driver_table" id="data_table1" >
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      @if($data->count() > 0)
-                      <input type="checkbox" id="chk_all">
-                      @endif
-                    </th>
                     <th> Application ID</th>
                     <th> Name Bangla</th>
                     <th>Name English</th>
@@ -92,9 +91,6 @@
                 <tbody>
                     @foreach($approved_applican_info as $row)
                     <tr>
-                      <td>  @if($data->count() > 0)
-                        <input type="checkbox" id="chk_all">
-                        @endif</td>
                       <td>{{$row->applicant_id}}</td>
                       <td>{{$row->bangla_name}}</td>
                       <td>{{$row->english_name}}</td>
@@ -106,6 +102,18 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
@@ -115,11 +123,6 @@
               <table class="table driver_table" id="data_table2">
                 <thead class="thead-inverse">
                   <tr>
-                    <th>
-                      @if($data->count() > 0)
-                      <input type="checkbox" id="chk_all">
-                      @endif
-                    </th>
                     <th> Application ID</th>
                     <th> Name Bangla</th>
                     <th>Name English</th>
@@ -134,9 +137,6 @@
                 <tbody>
                     @foreach($rejected_applican_info as $row)
                     <tr>
-                      <td>  @if($data->count() > 0)
-                        <input type="checkbox" id="chk_all">
-                        @endif</td>
                       <td>{{$row->applicant_id}}</td>
                       <td>{{$row->bangla_name}}</td>
                       <td>{{$row->english_name}}</td>
@@ -149,6 +149,19 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Rejected Reason</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

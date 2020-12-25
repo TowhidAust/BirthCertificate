@@ -152,6 +152,140 @@ public function index()
         // dd($data);
         return view("correction.index", $data);
     }
+public function report()
+    {
+        if (Auth::user()->user_type == "C") {
+            $data['data'] = Bookings::where('customer_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        } elseif (Auth::user()->user_type == "S") {
+
+          $data['pending_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_applications.status','Pending')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+                                          // dd($data['pending_applican_info']);
+          $data['approved_applican_info'] =  DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_applications.status','Completed')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+          $data['rejected_applican_info'] =   DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_applications.status','Rejected')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+        }elseif(Auth::user()->user_type == "D"){
+          $data['pending_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                    			->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.councillor','0')
+                                          ->where('correction_applications.ward_id',Auth::user()->ward_id)
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+                                          // dd($data['pending_applican_info']);
+          $data['approved_applican_info'] =  DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.councillor','1')
+                                          ->where('correction_applications.ward_id',Auth::user()->ward_id)
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+          $data['rejected_applican_info'] =   DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.councillor','2')
+                                          ->where('correction_applications.ward_id',Auth::user()->ward_id)
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+        }elseif (Auth::user()->user_type == "A") {
+          $data['pending_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.councillor','1')
+                                          ->where('correction_approvals.accountant','0')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+                                           // dd($data['pending_applican_info']);
+          $data['approved_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.councillor','1')
+                                          ->where('correction_approvals.accountant','1')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+          $data['rejected_applican_info'] =  DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.councillor','1')
+                                          ->where('correction_approvals.accountant','2')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+        }elseif (Auth::user()->user_type == "O") {
+          $data['pending_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.accountant','1')
+                                          ->where('correction_approvals.officer','0')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+                                           // dd($data['pending_applican_info']);
+          $data['approved_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.accountant','1')
+                                          ->where('correction_approvals.officer','1')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+          $data['rejected_applican_info'] =  DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.accountant','1')
+                                          ->where('correction_approvals.officer','2')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+        }elseif (Auth::user()->user_type == "OP") {
+          $data['pending_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.officer','1')
+                                          ->where('correction_approvals.operator','0')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+                                           // dd($data['pending_applican_info']);
+          $data['approved_applican_info'] = DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.officer','1')
+                                          ->where('correction_approvals.operator','1')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+          $data['rejected_applican_info'] =  DB::table('correction_applications')
+                                          ->join('wards','wards.id','=','correction_applications.ward_id')
+                                          ->join('correction_approvals','correction_approvals.correction_id','=','correction_applications.id')
+                                          ->orderBy('correction_applications.id','desc')
+                                          ->where('correction_approvals.officer','1')
+                                          ->where('correction_approvals.operator','2')
+                                          ->select('correction_applications.*','wards.name as ward_name')
+                                          ->get();
+        }
+        // dd($data);
+        return view("correction.index", $data);
+    }
 public function today_correction()
     {
        $data;

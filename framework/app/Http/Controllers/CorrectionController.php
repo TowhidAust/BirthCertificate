@@ -12,12 +12,40 @@ use App\Model\UserData;
 use Validator;
 class CorrectionController extends Controller {
 	public function correction(Request $request) {
-		 // dd($request->all());
+// 		$request->validate(
+//     ['birth_id' => 'required'],
+//     ['birth_id.required' => 'জন্ম/মৃত্যু নিবন্ধন নম্বর আবশ্যক']
+// );
+// 		$request->validate(
+//     ['name' => 'required'],
+//     ['name.required' => 'নিবন্ধিত ব্যক্তির নাম আবশ্যক']
+// );
+		$request->validate([
+			'birth_id' => 'required',
+			'birth_date' => 'required',
+			'application_date' => 'required',
+			'name' => 'required',
+			'ward_id' => 'required',
+			'applicant_name' => 'required',
+			'reason' => 'required',
+			'correction' => 'required',
+			'present' => 'required',
+			'relation' => 'required',
+			'document' => 'required',
+		]);
+		// $birth_id = Request::old('birth_id');
+		// $name = Request::old('name');
+		// $birth_date = Request::old('birth_date');
+		// $application_date = Request::old('application_date');
+		// $applicant_name = Request::old('applicant_name');
+		// $relation = Request::old('relation');
+		// $ward_id = Request::old('ward_id');
+	 // dd($request->all());
 		// applicant info
 		DB::table('correction_applications')
 						->insert(
 						['birth_id' => $request->get('birth_id'),
-						 'birth_app_date' => $request->get('birth_app_date'),
+						 'birth_app_date' => $request->get('application_date'),
 						 'name' => $request->get('name'),
 						 'ward_id' => $request->get('ward_id'),
 						 'applicant_name' => $request->get('applicant_name'),
@@ -40,7 +68,7 @@ class CorrectionController extends Controller {
 		          );
 		         }
 
-						 $images=$request->file('file');
+						 $images=$request->file('document');
 			     if ($images) {
 			       foreach($images as $image)  {
 			       $image_name = $correction_id."_".$image->getClientOriginalName();

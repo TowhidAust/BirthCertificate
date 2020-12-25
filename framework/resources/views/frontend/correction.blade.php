@@ -10,7 +10,15 @@
         {!! session('message') !!}
       </div>
       @endif</h5>
-
+      @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
 
     <form action="{{route('correction_submit')}}" method="post" enctype="multipart/form-data">
        {{csrf_field() }}
@@ -21,15 +29,15 @@
         <div class="row">
           <div class="col-md-6 dashed">
             <label for=""> জন্ম/মৃত্যু নিবন্ধন নম্বরঃ </label><span class="red">*</span>
-            <input class="form-control" name="birth_id" type="text" required>
+            <input class="form-control" name="birth_id" type="text" value="{{ old('birth_id') }}">
 
             <label class="mt-3" for=""> নিবন্ধিত ব্যক্তির নামঃ </label><span class="red">*</span>
 
-            <input class="form-control" type="text" name="name" required>
+            <input class="form-control" type="text" name="name" value="{{ old('name') }}" >
 
               <label class="mt-3">নিবন্ধন ওয়ার্ডের নামঃ </label><span class="red">*</span>
-              <select class="form-control" name="ward_id" required>
-                <option value="">ওয়ার্ড নির্বাচন করুন  </option>
+              <select class="form-control" name="ward_id" >
+                <option value="{{ old('ward_id') }}">ওয়ার্ড নির্বাচন করুন  </option>
                 @foreach($wards as $row)
                 <option value="{{$row->id}}">{{$row->name}}</option>
                 @endforeach
@@ -38,10 +46,10 @@
           </div>
           <div class="col-md-6 dashed">
             <label for=""> জন্ম/মৃত্যু নিবন্ধনের তারিখঃ   </label><span class="red">*</span>
-            <input class="form-control" type="date" name="birth_app_date" required>
+            <input class="form-control" type="date" name="application_date" value="{{ old('application_date') }}">
 
             <label class="mt-3" for=""> জন্ম/মৃত্যু তারিখঃ  </label><span class="red">*</span>
-            <input class="form-control" type="date" name="birth_date" required>
+            <input class="form-control" type="date" name="birth_date" value="{{ old('birth_date') }}">
           </div>
           <!-- <div class="col-md-6 dashed">
               <label class="mt-3" for=""> জন্ম/মৃত্যু নিবন্ধনের তারিখঃ </label>
@@ -64,9 +72,9 @@
                                                  <td>যুক্ত করুন</td>
                                                </tr>
                                                  <tr>
-                                                      <td><input type="text" name="present[]"  class="form-control name_list" required/></td>
-                                                      <td><input type="text" name="correction[]"  class="form-control name_list" required/></td>
-                                                      <td><input type="text" name="reason[]"  class="form-control name_list" required/></td>
+                                                      <td><input type="text" name="present[]"  class="form-control name_list"  required /></td>
+                                                      <td><input type="text" name="correction[]"  class="form-control name_list"  required /></td>
+                                                      <td><input type="text" name="reason[]"  class="form-control name_list"  required/></td>
 
                                                       <td><button type="button" name="add" id="add" class="btn btn-success">যুক্ত করুন</button></td>
                                                  </tr>
@@ -79,7 +87,7 @@
 সংযুক্তি (প্রমাণিক কাগজপত্র)<span class="red">*</span>
           </div>
           <div class="col-md-6 dashed">
-            <input type="file" name="file[]" placeholder="Enter New Tag" class="form-control name_list" required multiple />
+            <input type="file" name="document[]" placeholder="Enter New Tag" class="form-control name_list"  multiple />
           </div>
           <div class="col-md-6 dashed">
             <h3>ফি প্রদানের তথ্য </h3>
@@ -99,13 +107,13 @@
             <h3>আবেদনকারীর  তথ্য</h3>
 
             <label class="mt-3" for=""> নাম ও নিবন্ধিত  </label><span class="red">*</span>
-            <input class="form-control" name="applicant_name" type="test" required>
+            <input class="form-control" name="applicant_name" type="test"  value="{{ old('applicant_name') }}">
 
             <label class="mt-3" for="">  ব্যক্তির সাথে সম্পর্ক</label><span class="red">*</span>
-            <input class="form-control" name="relation" type="test" required>
+            <input class="form-control" name="relation" type="test"  value="{{ old('relation') }}">
 
             <label class="mt-3" for=""> আবেদনকারীর সাক্ষর </label><span class="red">*</span>
-            <input class="form-control" name="sign" type="file" required>
+            <input class="form-control" name="sign" type="file" >
           </div>
 
 
@@ -129,9 +137,7 @@
     </form>
   </div>
 
-  <div class="submit d-flex justify-content-end p-3">
-    <a class="btn btn-primary" href="#">Next</a>
-  </div>
+
 </section>
 
 <footer class="copyrightFooter">

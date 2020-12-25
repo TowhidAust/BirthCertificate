@@ -23,14 +23,27 @@ Route::namespace ('Admin')->group(function () {
     Route::post('/correction-reject', 'CorrectionController@reject')->name('reject_correction');
     Route::get('/correction/{id}/complete', 'CorrectionController@complete');
     Route::post('/correction-update', 'CorrectionController@correction_update')->name('update');
+    Route::get('/application', 'ApplicationController@index')->name('application');
+    Route::get('/today-application', 'ApplicationController@today_application')->name('today_application');
+    Route::get('/reports/application', 'ReportController@application')->name('application_report_show');
+
+    Route::get('/report_correction', 'ReportController@correction_report')->name('correction_report');
+    Route::post('/report_acorrection_search', 'ReportController@correction_report_post')->name('correction_report_post');
+    Route::get('/report_application', 'ReportController@application_report')->name('applicaton_report');
+    Route::post('/report_application_search', 'ReportController@application_report_post')->name('applicaton_report_post');
+
+
+        Route::get('changepassword/{id}', 'UtilityController@change');
+        Route::post('changepassword/{id}', 'UtilityController@change_post');
+        Route::get('/change-details/{id}', 'UtilityController@changepass')->name("changepass");
+        Route::post('/change-details/{id}', 'UtilityController@changepassword')->name("changepass");
+        Route::post('/change_password', 'UtilityController@password_change');
 
 
     Route::group(['middleware' => ['lang_check', 'auth', 'officeadmin']], function () {
         // Route::get('test', function () {
         //     return view('geocode');
         // });
-        Route::get('/application', 'ApplicationController@index')->name('application');
-        Route::get('/today-application', 'ApplicationController@today_application')->name('today_application');
         Route::get('/pending-application', 'ApplicationController@pending')->name('pending');
 
         Route::get('/councillor', 'CouncillorController@index')->name('councillor');
@@ -39,6 +52,7 @@ Route::namespace ('Admin')->group(function () {
         Route::get("/councillor/enable/{id}", 'CouncillorController@enable');
         Route::get("/councillor/disable/{id}", 'CouncillorController@disable');
         Route::get("/councillor/{id}/edit", 'CouncillorController@edit');
+
 
 
 
@@ -58,7 +72,8 @@ Route::namespace ('Admin')->group(function () {
         // routes for bulk delete action
 
 
-        Route::get('reports/income', 'ReportsController@income')->middleware('userpermission:4');
+        Route::get('reports/income', 'ReportsController@income')->name('application_report')->middleware('userpermission:4');
+
         Route::post('reports/income', 'ReportsController@income_post')->middleware('userpermission:4');
         Route::post('print-income', 'ReportsController@income_print');
 

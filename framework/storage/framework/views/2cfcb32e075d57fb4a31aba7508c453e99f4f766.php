@@ -22,11 +22,6 @@
         <table class="table" id="data_table">
           <thead class="thead-inverse">
             <tr>
-              <th>
-                <?php if($data->count() > 0): ?>
-                <input type="checkbox" id="chk_all">
-                <?php endif; ?>
-              </th>
               <th>#</th>
               <th><?php echo app('translator')->getFromJson('fleet.profile_photo'); ?></th>
               <th><?php echo app('translator')->getFromJson('User Role'); ?></th>
@@ -41,11 +36,6 @@
           <tbody>
             <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-              <td>
-                <?php if($row->user_type != "S"): ?>
-                <input type="checkbox" name="ids[]" value="<?php echo e($row->id); ?>" class="checkbox" id="chk<?php echo e($row->id); ?>" onclick='checkcheckbox();'>
-                <?php endif; ?>
-              </td>
               <td><?php echo e($row->id); ?></td>
               <td>
               <?php if($row->getMeta('profile_image') != null): ?>
@@ -100,11 +90,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <th>
-                <?php if($data->count() > 0): ?>
-                <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled><?php echo app('translator')->getFromJson('fleet.delete'); ?></button>
-                <?php endif; ?>
-              </th>
+              
               <th>#</th>
               <th><?php echo app('translator')->getFromJson('fleet.profile_photo'); ?></th>
               <th><?php echo app('translator')->getFromJson('User Role'); ?></th>

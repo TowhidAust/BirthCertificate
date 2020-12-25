@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use App\Model\Bookings;
+use App\Model\VehicleModel;
 use App\Model\Hyvikk;
 use App\Model\IncCats;
 use App\Model\User;
@@ -21,6 +22,25 @@ public function index()
     {
         if (Auth::user()->user_type == "C") {
             $data['data'] = Bookings::where('customer_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        } elseif (Auth::user()->user_type == "D") {
+          $data['pending_applican_info'] = DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+    																			->where('applican_informations.ward_name',Auth::user()->ward_id)
+                                          ->where('applican_informations.status','Pending  ')
+                                          ->get();
+          $data['approved_applican_info'] =  DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+    																			->where('applican_informations.ward_name',Auth::user()->ward_id)
+                                          ->where('applican_informations.status','Completed')
+                                          ->get();
+          $data['rejected_applican_info'] =  DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+    																			->where('applican_informations.ward_name',Auth::user()->ward_id)
+                                          ->where('applican_informations.status','Rejected')
+                                          ->get();
         } elseif (Auth::user()->user_type == "S") {
           $data['pending_applican_info'] = DB::table('applican_informations')
                                           ->join('approvals','approvals.applicant_id','=','applican_informations.id')
@@ -134,6 +154,28 @@ public function today_application()
           $data['rejected_applican_info'] =  DB::table('applican_informations')
                                           ->join('approvals','approvals.applicant_id','=','applican_informations.id')
                                           ->orderBy('applican_informations.id','desc')
+    																			->whereDate('created_at', Carbon::today())
+                                          ->where('applican_informations.status','Rejected')
+                                          ->get();
+        } elseif (Auth::user()->user_type == "D") {
+          $data['pending_applican_info'] = DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+                                          ->where('applican_informations.ward_name',Auth::user()->ward_id)
+    																			->whereDate('created_at', Carbon::today())
+                                          ->where('applican_informations.status','Pending  ')
+                                          ->get();
+          $data['approved_applican_info'] =  DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+                                          ->where('applican_informations.ward_name',Auth::user()->ward_id)
+    																			->whereDate('created_at', Carbon::today())
+                                          ->where('applican_informations.status','Completed')
+                                          ->get();
+          $data['rejected_applican_info'] =  DB::table('applican_informations')
+                                          ->join('approvals','approvals.applicant_id','=','applican_informations.id')
+                                          ->orderBy('applican_informations.id','desc')
+                                          ->where('applican_informations.ward_name',Auth::user()->ward_id)
     																			->whereDate('created_at', Carbon::today())
                                           ->where('applican_informations.status','Rejected')
                                           ->get();

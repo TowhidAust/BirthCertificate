@@ -37,7 +37,7 @@ class UsersController extends Controller {
 
 	}
 
-	public function store(UserRequest $request) {
+	public function store(Request $request) {
 	//	 dd($request->get('module'));
 
 		$id = User::create([

@@ -34,7 +34,6 @@
       <div class="card-header">
         <h3 class="card-title">Councillor &nbsp;
           <a href="<?php echo e(route("councillor.create")); ?>" class="btn btn-success">Add Councillor </a>
-          <button data-toggle="modal" data-target="#import" class="btn btn-warning"><?php echo app('translator')->getFromJson('fleet.import'); ?></button>
         </h3>
       </div>
 
@@ -42,11 +41,7 @@
         <table class="table" id="data_table" style="padding-bottom: 15px">
           <thead class="thead-inverse">
             <tr>
-              <th>
-                <?php if($data->count() > 0): ?>
-                <input type="checkbox" id="chk_all">
-                <?php endif; ?>
-              </th>
+
               <th>#</th>
               <th>Image</th>
               <th><?php echo app('translator')->getFromJson('fleet.name'); ?></th>
@@ -61,9 +56,7 @@
           <tbody>
             <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-              <td>
-                <input type="checkbox" name="ids[]" value="<?php echo e($row->id); ?>" class="checkbox" id="chk<?php echo e($row->id); ?>" onclick='checkcheckbox();'>
-              </td>
+
               <td><?php echo e($row->id); ?></td>
               <td>
                 <?php if($row->getMeta('driver_image') != null): ?>
@@ -112,14 +105,11 @@
           </tbody>
           <tfoot>
             <tr>
-              <th>
-                <?php if($data->count() > 0): ?>
-                <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled><?php echo app('translator')->getFromJson('fleet.delete'); ?></button>
-                <?php endif; ?>
-              </th>
+
               <th>#</th>
               <th>Image</th>
               <th><?php echo app('translator')->getFromJson('fleet.name'); ?></th>
+              <th><?php echo app('translator')->getFromJson('Ward No'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.email'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.is_active'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.phone'); ?></th>

@@ -58,6 +58,19 @@
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="thead-inverse">
+                  <tr>
+                    <th> Application ID</th>
+                    <th> Birth ID</th>
+                    <th> Name Bangla</th>
+                    <th>Name English</th>
+                    <th>Number</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                    <th>@lang('fleet.action')</th>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>

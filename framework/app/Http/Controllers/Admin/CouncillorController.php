@@ -23,7 +23,7 @@ class CouncillorController extends Controller {
 		                ->whereUser_type("D")->orderBy('users.id', 'desc')
 										->select('users.*','wards.name as ward_name')
 										->get();
-
+    // dd($index);
 		return view("councillors.index", $index);
 	}
 
@@ -103,7 +103,7 @@ class CouncillorController extends Controller {
 	}
 
 	public function store(Request $request) {
-		// dd($request->all());
+		 // dd($request->all());
 		$request->validate([
 			'contract_number' => ['required', new UniqueContractNumber],
 			'first_name' => 'required',
@@ -114,7 +114,8 @@ class CouncillorController extends Controller {
 			'end_date' => 'nullable|date|date_format:Y-m-d',
 			'driver_image' => 'nullable|image|mimes:jpg,png,jpeg',
 		]);
-
+// echo  $request->get("ward");
+// exit;
 		$id = User::create([
 			"name" => $request->get("first_name") . " " . $request->get("last_name"),
 			"email" => $request->get("email"),

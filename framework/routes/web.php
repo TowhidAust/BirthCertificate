@@ -11,6 +11,8 @@ if (env('front_enable') == 'no') {
 
     Route::get('/correction-form', 'FrontendController@correctionForm')->middleware('IsInstalled')->name('correction_form');
     Route::post('/application-submit', 'ApplicationController@application')->middleware('IsInstalled')->name('application_submit');
+    Route::get('/application_update', 'ApplicationController@application_update')->middleware('IsInstalled')->name('application_update');
+    Route::post('/application_complete', 'ApplicationController@application_complete')->middleware('IsInstalled')->name('application_complete');
     Route::get('/check-status', 'ApplicationController@checkStatus')->middleware('IsInstalled')->name('check_status');
     Route::post('/verify', 'ApplicationController@verify')->middleware('IsInstalled')->name('verify');
 
@@ -31,5 +33,6 @@ if (env('front_enable') == 'no') {
    Route::get('/mrittuinf', 'ApplicationController@mrittuinf')->middleware('IsInstalled')->name('mrittuinf');
    Route::get('/gaget', 'ApplicationController@gaget')->middleware('IsInstalled')->name('gaget');
    Route::get('/press', 'ApplicationController@press')->middleware('IsInstalled')->name('press');
+   Route::get('/faq', 'ApplicationController@faq')->middleware('IsInstalled')->name('faq');
    Route::get('/birthki', 'ApplicationController@birthki')->middleware('IsInstalled')->name('birthki');
 }

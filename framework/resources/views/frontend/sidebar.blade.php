@@ -25,11 +25,11 @@
 
 
             <ul><li><a href="http://bdlaws.minlaw.gov.bd/" target="_blank">জন্ম ও মৃত্যু নিবন্ধন আইন-২০০৪ (সর্বশেষ সংশোধিত সহ)</a></li></ul>
-            <ul><li><a href="http://br.lgd.gov.bd/files/unionparisad.pdf" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (ইউনিয়ন পরিষদ) বিধিমালা-২০০৬</a></li></ul>
-            <ul><li><a href="http://br.lgd.gov.bd/files/pouroshova-act.pdf" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (পৌরসভা) বিধিমালা-২০০৬</a></li></ul>
-            <ul><li><a href="http://br.lgd.gov.bd/files/city_corporation.pdf" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (সিটি কর্পোরেশন) বিধিমালা-২০০৬</a></li></ul>
-            <ul><li><a href="http://br.lgd.gov.bd/files/Cantonment%20board.pdf" target="_blank">জন্ম ও মৃত্যু নিবন্ধন বিধিমালা (দৃতাবাস)-২০০৬</a></li></ul>
-            <ul><li><a href="http://br.lgd.gov.bd/files/Dutabash%20Bidimala.pdf" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (ক্যান্টনমেন্ট বোর্ড) বিধিমালা-২০০৬</a></li></ul>
+            <ul><li><a download href="{{asset('pdf/unionparisad.pdf')}}" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (ইউনিয়ন পরিষদ) বিধিমালা-২০০৬</a></li></ul>
+            <ul><li><a download href="{{asset('pdf/pouroshova-act.pdf')}}" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (পৌরসভা) বিধিমালা-২০০৬</a></li></ul>
+            <ul><li><a download href="{{asset('pdf/city_corporation.pdf')}}" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (সিটি কর্পোরেশন) বিধিমালা-২০০৬</a></li></ul>
+            <ul><li><a download href="{{asset('pdf/Dutabash_Bidimala.pdf')}}" target="_blank">জন্ম ও মৃত্যু নিবন্ধন বিধিমালা (দৃতাবাস)-২০০৬</a></li></ul>
+            <ul><li><a download href="{{asset('pdf/Cantonment_board.pdf')}}" target="_blank">জন্ম ও মৃত্যু নিবন্ধন (ক্যান্টনমেন্ট বোর্ড) বিধিমালা-২০০৬</a></li></ul>
 
             <ul><li><a href="{{route('gaget')}}">জন্ম ও মৃত্যু নিবন্ধন সম্পর্কিত বিভিন্ন গেজেট/ প্রজ্ঞাপন</a></li></ul>
             <ul><li><a href="{{route('press')}}">জন্ম ও মৃত্যু নিবন্ধন আইন ২০০৪ এর বিধান বা বিধি লঙ্ঘনকারী বিভিন্ন ব্যক্তি বা প্রতিষ্ঠানের বিরুদ্ধে নেওয়া বিভিন্ন ঘটনাসমূহ</a></li></ul>

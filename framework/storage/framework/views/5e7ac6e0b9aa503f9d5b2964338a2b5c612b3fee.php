@@ -26,11 +26,6 @@
         <table class="table" id="data_table">
           <thead class="thead-inverse">
             <tr>
-              <th>
-                <?php if($data->count() > 0): ?>
-                  <input type="checkbox" id="chk_all">
-                <?php endif; ?>
-              </th>
               <th><?php echo app('translator')->getFromJson('fleet.submitted_on'); ?></th>
               <th> <?php echo app('translator')->getFromJson('fleet.note'); ?></th>
               <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
@@ -39,9 +34,6 @@
           <tbody>
             <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
-              <td>
-                <input type="checkbox" name="ids[]" value="<?php echo e($row->id); ?>" class="checkbox" id="chk<?php echo e($row->id); ?>" onclick='checkcheckbox();'>
-              </td>
               <td>
               <?php echo e(date($date_format_setting,strtotime($row->submitted_on))); ?>
 
@@ -68,18 +60,6 @@
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </tbody>
-          <tfoot>
-            <tr>
-              <th>
-                <?php if($data->count() > 0): ?>
-                  <button class="btn btn-danger" id="bulk_delete" data-toggle="modal" data-target="#bulkModal" disabled><?php echo app('translator')->getFromJson('fleet.delete'); ?></button>
-                <?php endif; ?>
-              </th>
-              <th><?php echo app('translator')->getFromJson('fleet.submitted_on'); ?></th>
-              <th><?php echo app('translator')->getFromJson('fleet.note'); ?></th>
-              <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
