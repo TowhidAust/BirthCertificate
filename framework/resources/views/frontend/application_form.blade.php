@@ -51,7 +51,7 @@
             </div>
             <div class="mt-3">
               <label for="">Name in english:(capital letters) </label><span class="red">*</span>
-              <input class="form-control" name="english_name" type="text" required>
+              <input class="form-control" name="english_name" type="text" style="text-transform:uppercase">
             </div>
 
             <div class="mt-3">
@@ -60,8 +60,8 @@
             </div>
 
             <div class="mt-3">
-              <label for=""> ফোন নম্বর</label><span class="red">*</span>
-              <input class="form-control" name="number" type="text" required maxlength ="13">
+              <label for=""> ফোন নম্বর</label><span class="red">*</span> <div id="number"></div>
+              <input id="numb" class="form-control" name="number" type="text" required maxlength ="13">
             </div>
             <div class="mt-3">
               <label for=""> পিতা ও মাতার কততম সন্তানঃ </label><span class="red">*</span>
@@ -84,13 +84,13 @@
               <input class="form-control" type="text" name="father_name_bn" required>
 
               <label class="mt-3" for=""> পিতার নামঃ (ইংরেজীতে) (CAPITAL LETTERS) </label><span class="red">*</span>
-              <input class="form-control" type="text" name="father_name_en" required>
+              <input class="form-control" type="text" name="father_name_en" style="text-transform:uppercase" required>
 
               <label class="mt-3" for=""> জন্ম নিবন্ধন নম্বরঃ </label>
               <input class="form-control" type="text" name="father_birth_id">
 
-              <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ </label><span class="red">*</span>
-              <input class="form-control" type="text" name="father_nid" required>
+              <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ </label><span class="red">*</span> <div id="nid"></div>
+              <input class="form-control" id="father_nid" type="text" name="father_nid" required>
 
               <label class="mt-3" for=""> বিদেশে অবস্থান করলে পাসপোর্ট নম্বরঃ </label>
               <input class="form-control" type="text" name="father_passport">
@@ -106,13 +106,13 @@
               <input class="form-control" type="text" name="mother_name_bn" required>
 
               <label class="mt-3" for=""> মাতার নামঃ (ইংরেজীতে) (CAPITAL LETTERS) </label><span class="red">*</span>
-              <input class="form-control" type="text" name="mother_name_en" required>
+              <input class="form-control" type="text" name="mother_name_en"  style="text-transform:uppercase" required>
 
               <label class="mt-3" for=""> জন্ম নিবন্ধন নম্বরঃ </label>
               <input class="form-control" type="text" name="mother_birth_id">
 
-              <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ </label><span class="red">*</span>
-              <input class="form-control" type="text" name="mother_nid" required>
+              <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ </label><span class="red">*</span><div id="mother_nid"></div>
+              <input id="mo_nid" class="form-control" type="text" name="mother_nid" required>
 
               <label class="mt-3" for=""> বিদেশে অবস্থান করলে পাসপোর্ট নম্বরঃ </label>
               <input class="form-control" type="text" name="mother_passport">
@@ -141,7 +141,7 @@
               <input class="form-control" type="text" name="p_postoffice_bn" required>
 
               <label class="mt-3" for=""> পোষ্ট কোডঃ </label><span class="red">*</span>
-              <input class="form-control" type="text" name="p_post_code_bn" required>
+              <input class="form-control" type="text" name="p_post_code_bn" required maxlength="4">
 
               <label class="mt-3" for=""> উপজেলাঃ </label><span class="red">*</span>
               <input class="form-control" type="text" name="p_police_station_bn" required>
@@ -166,7 +166,7 @@
               <input class="form-control" type="text" name="p_postoffice_en" required>
 
               <label class="mt-3" for=""> Post Code </label><span class="red">*</span>
-              <input class="form-control" type="text" name="p_post_code_en" required>
+              <input class="form-control" type="text" name="p_post_code_en"  required maxlength="4">
 
               <label class="mt-3" for=""> Upozila </label><span class="red">*</span>
               <input class="form-control" type="text" name="p_police_station_en"required>
@@ -207,7 +207,7 @@
             <input class="form-control" type="text" name="b_postoffice_bn"required>
 
             <label class="mt-3" for=""> পোষ্ট কোডঃ </label><span class="red">*</span>
-            <input class="form-control" type="text" name="b_post_code_bn"required>
+            <input class="form-control" type="text" name="b_post_code_bn" required maxlength="4">
 
             <label class="mt-3" for=""> উপজেলাঃ </label><span class="red">*</span>
             <input class="form-control" type="text" name="b_police_station_bn"required>
@@ -230,7 +230,7 @@
               <input class="form-control" type="text" name="b_postoffice_en" required>
 
               <label class="mt-3" for=""> Post Code </label><span class="red">*</span>
-              <input class="form-control" type="text" name="b_post_code_en" required>
+              <input class="form-control" type="text" name="b_post_code_en"  required maxlength="4">
 
               <label class="mt-3" for=""> Upozila </label><span class="red">*</span>
               <input class="form-control" type="text" name="b_police_station_en" required>
@@ -255,7 +255,7 @@
               <input class="form-control" type="text" name="per_postoffice_bn" required>
 
               <label class="mt-3" for=""> পোষ্ট কোডঃ </label><span class="red">*</span>
-              <input class="form-control" type="text" name="per_post_code_bn" required>
+              <input class="form-control" type="text" name="per_post_code_bn" required maxlength="4">
 
               <label class="mt-3" for=""> উপজেলাঃ </label><span class="red">*</span>
               <input class="form-control" type="text" name="per_police_station_bn" required>
@@ -279,7 +279,7 @@
               <label class="mt-3" for=""> Post Office </label><span class="red">*</span>
               <input class="form-control" type="text" name="per_postoffice_en" required>
               <label class="mt-3" for=""> Post Code </label><span class="red">*</span>
-              <input class="form-control" type="text" name="per_post_code_en" required>
+              <input class="form-control" type="text" name="per_post_code_en"  required maxlength="4">
 
               <label class="mt-3" for=""> Upozila </label><span class="red">*</span>
               <input class="form-control" type="text" name="per_police_station_en" required>
@@ -311,7 +311,7 @@
             <input class="form-control" name="address" type="text" required>
 
             <label class="mt-3" for=""> নিবন্ধনকারী ব্যক্তির সহিত সম্পর্কঃ </label><span class="red">*</span>
-            <select class="form-control" name="relation" id="" required>
+            <select class="form-control" name="relation" required>
               <option value="পিতা">পিতা</option>
               <option value="মাতা">মাতা</option>
               <option value="নিজ">নিজ</option>
@@ -323,14 +323,15 @@
               <option value="অন্যান্য">অন্যান্য</option>
 
             </select>
-            <label class="mt-3" for=""> জন্ম নিবন্ধন নম্বরঃ</label><span class="red">*</span>
-            <input class="form-control" name="app_bid" type="text">
+              <label class="mt-3" for=""> জন্ম নিবন্ধন নম্বরঃ</label>
+              <input class="form-control" name="app_bid" type="text">
 
-            <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ</label><span class="red">*</span>
-            <input class="form-control" name="app_nid" type="text">
+              <label class="mt-3" for=""> জাতীয় পরিচয়পত্র নম্বরঃ</label>
+              <input class="form-control" name="app_nid" type="text">
 
-            <label class="mt-3" for=""> স্বাক্ষরঃ </label><span class="red">*</span>
-            <input class="form-control" name="app_file" type="file">
+              <label class="mt-3" for=""> স্বাক্ষরঃ </label>
+              <input class="form-control" name="app_file" type="file">
+
 
             <label class="mt-3" for="">আইনের ২(ক) ধারা অনুযায়ী নিযুক্ত অভিভাবকের উপযুক্ত প্রমাণক সংযুক্ত করতে হইবে।</label>
             <label class="mt-3" for="">বিধিমালার ৯ ক্ষমতাপ্রাপ্ত ব্যক্তি (ক্ষমতাপ্রাপ্তির সপক্ষে উপযুক্ত আদেশনামা/প্রত্যয়নপত্র সংযুক্ত করতে হইবে।)</label>
@@ -339,7 +340,7 @@
           </div>
           <div class="modal-footer">
                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button class="btn btn-success notika-btn-success">Submit & Preview</button>
+                            <button  onclick="myFunction()" class="btn btn-success notika-btn-success">Submit & Preview</button>
              </div>
           </div>
 
@@ -354,4 +355,5 @@
   <footer class="copyrightFooter">
       <span>	&copy; 2020 Birth & Death Registration. All rights reserved. Developed by Birth and Death Registration Team.</span>
     </footer>
+
 @include('frontend.footer')

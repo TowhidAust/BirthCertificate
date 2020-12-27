@@ -86,7 +86,8 @@
           </div>
           <div class="col-md-6 dashed">
 
-সংযুক্তি (প্রমাণিক কাগজপত্র)<span class="red">*</span>
+            সংযুক্তি (প্রমাণিক কাগজপত্র)*
+            (এক বা একের অধিক একত্রে দিন)<span class="red">*</span>
           </div>
           <div class="col-md-6 dashed">
             <input type="file" name="document[]" placeholder="Enter New Tag" class="form-control name_list"  multiple />

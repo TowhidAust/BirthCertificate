@@ -80,19 +80,13 @@
 
           </div>
 
-          <div class="form-group col-md-3">
-            <?php echo Form::label('dis_format',__('fleet.dis_format'),['class'=>"form-label"]); ?>
 
-            <?php echo Form::select('name[dis_format]', ['km' => 'km', 'miles' => 'miles'], Hyvikk::get("dis_format"),['class'=>"form-control",'required']); ?>
 
-          </div>
-
-          <div class="form-group col-md-3">
-            <?php echo Form::label('fuel_unit',__('fleet.fuel_unit'),['class'=>"form-label"]); ?>
-
-            <?php echo Form::select('name[fuel_unit]', ['gallon' => 'gallon', 'liter' => 'liter'], Hyvikk::get("fuel_unit"),['class'=>"form-control",'required']); ?>
-
-          </div>
+          <input type="hidden" name="fuel_unit" value="fsdf">
+          <input type="hidden" name="dis_format" value="fsdf">
+          <input type="hidden" name="time_interval" value="fsdf">
+          <input type="hidden" name="tax_charge" value="fsdf">
+          <input type="hidden" name="tax_no" value="fsdf">
 
           <div class="form-group col-md-3">
             <?php echo Form::label('language',__('fleet.language'),['class'=>"form-label"]); ?>
@@ -116,18 +110,7 @@
             </select>
           </div>
 
-          <div class="form-group col-md-4">
-            <?php echo Form::label('time_interval',__('fleet.defaultTimeInterval'),['class'=>"form-label"]); ?>
 
-
-              <div class="input-group mb-3">
-                <?php echo Form::number('name[time_interval]',Hyvikk::get('time_interval'),['class'=>"form-control",'required','min'=>1]); ?>
-
-                <div class="input-group-append">
-                  <span class="input-group-text">day(s)</span>
-                </div>
-              </div>
-          </div>
 
           <div class="form-group col-md-4">
             <label for="icon_img"> <?php echo app('translator')->getFromJson('fleet.icon_img'); ?></label>
@@ -154,40 +137,16 @@
             </div>
           </div>
 
-          <div class="form-group col-md-3">
-            <?php echo Form::label('currency',__('fleet.currency'),['class'=>"form-label"]); ?>
-
-            <?php echo Form::text('name[currency]',
-            Hyvikk::get('currency'),['class'=>"form-control",'required']); ?>
-
-          </div>
+        <input type="hidden" name="currency" value="sdfsd">
           <div class="form-group col-md-3">
             <?php echo Form::label('date_format',__('fleet.date_format'),['class'=>"form-label"]); ?>
 
             <?php echo Form::select('name[date_format]', ['d-m-Y' => 'dd-mm-yyyy ('.date('d-m-Y').')', 'Y-m-d' => 'yyyy-mm-dd ('.date('Y-m-d').')','m-d-Y'=>'mm-dd-yyyy ('.date('m-d-Y').')'], Hyvikk::get("date_format"),['class'=>"form-control",'required']); ?>
 
           </div>
-          <div class="form-group col-md-3">
-            <?php echo Form::label('tax_no',__('fleet.tax_no'),['class'=>"form-label"]); ?>
 
-            <?php echo Form::text('name[tax_no]',
-            Hyvikk::get('tax_no'),['class'=>"form-control",'required']); ?>
 
-          </div>
 
-          <div class="form-group col-md-3">
-            <?php echo Form::label('tax_charge',__('fleet.tax_charge')." (%)",['class'=>"form-label"]); ?>
-
-            <div class="row">
-              <div class="col-md-8">
-                <?php echo Form::text('udf1', null,['class' => 'form-control','id'=>'udf1','placeholder'=>'Enter Tax Name']); ?>
-
-              </div>
-              <div class="col-md-4">
-                <button type="button" class="btn btn-info add_udf"> <?php echo app('translator')->getFromJson('fleet.addNew'); ?></button>
-              </div>
-            </div>
-          </div>
           <?php ($udfs = json_decode(Hyvikk::get('tax_charge'))); ?>
 
           <?php if($udfs != null): ?>
@@ -201,13 +160,7 @@
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           <?php endif; ?>
           <div class="blank col-md-12"></div>
-          <div class="form-group col-md-12">
-            <?php echo Form::label('invoice_text',__('fleet.invoice_text'),['class'=>"form-label"]); ?>
-
-            <?php echo Form::textarea('name[invoice_text]',
-            Hyvikk::get('invoice_text'),['class'=>"form-control",'size'=>'30x3']); ?>
-
-          </div>
+         <input type="hidden" name="invoice_text" value="fsdf">
         </div>
       </div>
       <div class="card-footer">
@@ -219,7 +172,7 @@
           </div>
           <div class="col-md-2">
             <div class="form-group">
-              <button type="button" data-toggle="modal" data-target="#myModal"  class="form-control btn btn-danger"><?php echo app('translator')->getFromJson('fleet.clear_database'); ?></button>  
+              <button type="button" data-toggle="modal" data-target="#myModal"  class="form-control btn btn-danger"><?php echo app('translator')->getFromJson('fleet.clear_database'); ?></button>
             </div>
           </div>
         </div>
@@ -289,7 +242,7 @@
         type: 'success'
       });
   <?php endif; ?>
-  
+
   $('.view1').click(function(){
     $('#myModal3 .modal-body .myimg').attr( "src","<?php echo e(asset('assets/images/'. Hyvikk::get('icon_img') )); ?>");
     $('#myModal3 .modal-body .myimg').removeAttr( "height");
@@ -315,4 +268,5 @@
   });
 </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/utilities/settings.blade.php ENDPATH**/ ?>

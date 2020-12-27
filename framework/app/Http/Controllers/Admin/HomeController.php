@@ -91,45 +91,178 @@ class HomeController extends Controller {
 	}
 
 	public function index() {
-		$index['Officer'] = DB::table('users')
-											->where('user_type','O')
-											->count('id');
-		$index['operator'] = DB::table('users')
-											->where('user_type','OP')
-											->count('id');
-		$index['councillor'] = DB::table('users')
-											->where('user_type','D')
-											->count('id');
-		$index['accountant'] = DB::table('users')
-											->where('user_type','A')
-											->count('id');
-		$index['admin'] = DB::table('users')
-											->where('user_type','S')
-											->count('id');
+		if(Auth::user()->user_type == "S"){
+			$index['officer'] = DB::table('users')
+												->where('user_type','O')
+												->count('id');
+			$index['operator'] = DB::table('users')
+												->where('user_type','OP')
+												->count('id');
+			$index['councillor'] = DB::table('users')
+												->where('user_type','D')
+												->count('id');
+			$index['accountant'] = DB::table('users')
+												->where('user_type','A')
+												->count('id');
+			$index['admin'] = DB::table('users')
+												->where('user_type','S')
+												->count('id');
+
+			$index['total_application'] = DB::table('applican_informations')
+												          ->count('id');
+
+			$index['pending'] = DB::table('applican_informations')
+																	->where('status','Pending')
+												          ->count('id');
+
+			$index['rejected'] = DB::table('applican_informations')
+																	->where('status','Rejected')
+												          ->count('id');
+
+			$index['completed'] = DB::table('applican_informations')
+																	->where('status','completed')
+												          ->count('id');
+
+			$index['total_application_correction'] = DB::table('correction_applications')
+												          ->count('id');
+
+			$index['pending_correction'] = DB::table('correction_applications')
+																	->where('status','Pending')
+												          ->count('id');
+
+			$index['rejected_correction'] = DB::table('correction_applications')
+																	->where('status','Rejected')
+												          ->count('id');
+
+			$index['completed_correction'] = DB::table('correction_applications')
+																	->where('status','completed')
+												          ->count('id');
+		}elseif(Auth::user()->user_type == "A"){
+			$index['total_application'] = DB::table('approvals')
+																	->count('id');
+
+			$index['pending'] = DB::table('approvals')
+																	->where('approvals.accountant',0)
+																	->count('id');
+
+			$index['rejected'] = DB::table('approvals')
+																	->where('approvals.accountant',1)
+																	->count('id');
+
+			$index['completed'] =DB::table('approvals')
+																	->where('approvals.accountant',2)
+																	->count('id');
+
+			$index['total_application_correction'] = DB::table('correction_approvals')
+																	->count('id');
+
+			$index['pending_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.accountant',0)
+																	->count('id');
+
+			$index['rejected_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.accountant',1)
+																	->count('id');
+
+			$index['completed_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.accountant',2)
+																	->count('id');
+		}elseif(Auth::user()->user_type == "O"){
+			$index['total_application'] = DB::table('approvals')
+																	->count('id');
+
+			$index['pending'] = DB::table('approvals')
+																	->where('approvals.officer',0)
+																	->count('id');
+
+			$index['rejected'] = DB::table('approvals')
+																	->where('approvals.officer',1)
+																	->count('id');
+
+			$index['completed'] =DB::table('approvals')
+																	->where('approvals.officer',2)
+																	->count('id');
+
+			$index['total_application_correction'] = DB::table('correction_approvals')
+																	->count('id');
+
+			$index['pending_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.officer',0)
+																	->count('id');
+
+			$index['rejected_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.officer',1)
+																	->count('id');
+
+			$index['completed_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.officer',2)
+																	->count('id');
+		}elseif(Auth::user()->user_type == "OP"){
+			$index['total_application'] = DB::table('approvals')
+																	->count('id');
+
+			$index['pending'] = DB::table('approvals')
+																	->where('approvals.operator',0)
+																	->count('id');
+
+			$index['rejected'] = DB::table('approvals')
+																	->where('approvals.operator',1)
+																	->count('id');
+
+			$index['completed'] =DB::table('approvals')
+																	->where('approvals.operator',2)
+																	->count('id');
+
+			$index['total_application_correction'] = DB::table('correction_approvals')
+																	->count('id');
+
+			$index['pending_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.operator',0)
+																	->count('id');
+
+			$index['rejected_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.operator',1)
+																	->count('id');
+
+			$index['completed_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.operator',2)
+																	->count('id');
+		}
+
 		if (Auth::user()->user_type == "D") {
-			$index['data'] = User::join('wards','wards.id','users.ward_id')
+			$index['total_application'] = DB::table('approvals')
+																	->count('id');
+
+			$index['pending'] = DB::table('approvals')
+																	->where('approvals.councillor',0)
+																	->count('id');
+
+			$index['rejected'] = DB::table('approvals')
+																	->where('approvals.councillor',1)
+																	->count('id');
+
+			$index['completed'] =DB::table('approvals')
+																	->where('approvals.councillor',2)
+																	->count('id');
+
+			$index['total_application_correction'] = DB::table('correction_approvals')
+																	->count('id');
+
+			$index['pending_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.councillor',0)
+																	->count('id');
+
+			$index['rejected_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.councillor',1)
+																	->count('id');
+
+			$index['completed_correction'] = DB::table('correction_approvals')
+																	->where('correction_approvals.councillor',2)
+																	->count('id');
+				$index['data'] = User::join('wards','wards.id','users.ward_id')
 									   	->select('users.*','wards.name as ward_name')
 			               ->where('users.id',Auth::user()->id)->first();
-	  	$index['pending_applican_info'] = DB::table('applican_informations')
-																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
-																			->where('applican_informations.ward_name',Auth::user()->ward_id)
-																			->where('applican_informations.status','Pending')
-																			->where('approvals.councillor','0')
-																			->orderBy('approvals.id','desc')
-																			->get();
-	  	$index['approved_applican_info'] = DB::table('applican_informations')
-																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
-																			->orderBy('applican_informations.id','desc')
-																			->where('applican_informations.ward_name',Auth::user()->ward_id)
-																			->where('approvals.councillor','1')
-																			->get();
-	  	$index['rejected_applican_info'] = DB::table('applican_informations')
-																			->join('approvals','approvals.applicant_id','=','applican_informations.id')
-																			->orderBy('applican_informations.id','desc')
-																			->where('applican_informations.ward_name',Auth::user()->ward_id)
-																			->where('approvals.councillor','2')
-																			->get();
-
+	  
 			$index['total'] = DB::table('applican_informations')
 																			->where('ward_name',Auth::user()->ward_id)
 																			->count();
@@ -138,6 +271,7 @@ class HomeController extends Controller {
 																			->count();
 			// $index['vehicle'] = VehicleModel::where('driver_id', Auth::user()->id)->first();
 			return view("councillors.profile", $index);
+
 
 		} elseif (Auth::user()->user_type == "C") {
 

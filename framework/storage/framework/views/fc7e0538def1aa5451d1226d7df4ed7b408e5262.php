@@ -162,14 +162,14 @@ input:checked + .slider:before {
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <?php echo Form::label('about_description', __('fleet.aboutFleetManagerDescription'), ['class' => 'form-label']); ?>
+              <?php echo Form::label('about_description', __('Description'), ['class' => 'form-label']); ?>
 
               <textarea name="about_description" class="form-control" rows="3" required><?php echo e(Hyvikk::frontend('about_description')); ?></textarea>
             </div>
           </div>
             <div class="col-md-6">
               <div class="form-group">
-              <?php echo Form::label('about_title',__('fleet.aboutFleetManagerTitle'), ['class' => 'form-label']); ?>
+              <?php echo Form::label('about_title',__('Title'), ['class' => 'form-label']); ?>
 
               <?php echo Form::text('about_title', Hyvikk::frontend('about_title') ,['class' => 'form-control','required']); ?>
 
@@ -195,38 +195,13 @@ input:checked + .slider:before {
 
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <?php echo Form::label('cities',__('fleet.cities_serving'), ['class' => 'form-label']); ?>
 
-              <?php echo Form::number('cities', Hyvikk::frontend('cities') ,['class' => 'form-control','required','min'=>0]); ?>
+          <input type="hidden" name="vehicles" value="23">
+          <input type="hidden" name="cities" value="23">
+          <input type="hidden" name="cancellation" value="dasdsad">
+          <input type="hidden" name="terms" value="dadsad">
 
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <?php echo Form::label('vehicles',__('fleet.vehicles_serving'), ['class' => 'form-label']); ?>
 
-              <?php echo Form::number('vehicles', Hyvikk::frontend('vehicles') ,['class' => 'form-control','required','min'=>0]); ?>
-
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <?php echo Form::label('cancellation',__('fleet.cancellation_link'), ['class' => 'form-label']); ?>
-
-              <?php echo Form::text('cancellation', Hyvikk::frontend('cancellation') ,['class' => 'form-control']); ?>
-
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <?php echo Form::label('terms',__('fleet.terms'), ['class' => 'form-label']); ?>
-
-              <?php echo Form::text('terms', Hyvikk::frontend('terms') ,['class' => 'form-control']); ?>
-
-            </div>
-          </div>
           <div class="col-md-4">
             <div class="form-group">
               <?php echo Form::label('privacy_policy',__('fleet.privacy_policy'), ['class' => 'form-label']); ?>
@@ -331,4 +306,5 @@ input:checked + .slider:before {
     });
 </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\BirthCertificate\framework\resources\views/utilities/frontend.blade.php ENDPATH**/ ?>

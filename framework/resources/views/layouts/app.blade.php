@@ -177,7 +177,7 @@ $(document).ready(function(){
                 @php($src=asset('uploads/'.Auth::user()->getMeta('driver_image')))
                 @endif
                 <img src="{{$src}}" class="img-size-50 mr-3 img-circle" alt="User Image">
-                @elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O')
+                @elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'|| Auth::user()->user_type == 'A')
                   @if(Auth::user()->getMeta('profile_image') == null)
                   <img src="{{ asset("assets/images/no-user.jpg")}}" class="img-size-50 mr-3 img-circle" alt="User Image">
                   @else
@@ -254,7 +254,7 @@ $(document).ready(function(){
                 @php($src=asset('uploads/'.Auth::user()->getMeta('driver_image')))
               @endif
             <img src="{{$src}}" class="img-circle elevation-2" alt="User Image">
-        @elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O')
+        @elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'|| Auth::user()->user_type == 'A')
               @if(Auth::user()->getMeta('profile_image') == null)
               <img src="{{ asset("assets/images/no-user.jpg")}}" class="img-circle elevation-2" alt="User Image">
               @else

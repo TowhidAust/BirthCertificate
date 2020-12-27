@@ -10,9 +10,92 @@
       </div>
 
       <div class="card-body">
+        <h4>Applications</h4>
         <div class="row">
-          @if(Auth::user()->user_type == "S")
           <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Application</span>
+                <span class="info-box-number">{{$total_application}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Pending</span>
+                <span class="info-box-number">{{$pending}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3  col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Completed</span>
+                <span class="info-box-number"> {{$completed}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Rejected</span>
+                <span class="info-box-number">{{$rejected}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4>Corrections</h4>
+        <div class="row">
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Corrections</span>
+                <span class="info-box-number">{{$total_application_correction}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Pending</span>
+                <span class="info-box-number">{{$pending_correction}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3  col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Completed</span>
+                <span class="info-box-number"> {{$completed_correction}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Rejected</span>
+                <span class="info-box-number">{{$rejected_correction}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+  @if(Auth::user()->user_type == "S")
+          <h4>Users</h4>
+        <div class="row">
+
+
+          <div class="col-lg-4 col-xs-6">
             <div class="info-box">
               <span class="info-box-icon bg-info"><i class="fa fa-users"></i></span>
 
@@ -24,19 +107,19 @@
           </div>
 
 
-          <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-4 col-xs-6">
             <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fa fa-id-card"></i></span>
+              <span class="info-box-icon bg-success"><i class="fa fa-user"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Officer</span>
-                <span class="info-box-number">{{$Officer}}</span>
+                <span class="info-box-number">{{$officer}}</span>
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-4 col-xs-6">
             <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fa fa-id-card"></i></span>
+              <span class="info-box-icon bg-success"><i class="fa fa-user"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Accountant</span>
@@ -44,9 +127,9 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-4 col-xs-6">
             <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fa fa-id-card"></i></span>
+              <span class="info-box-icon bg-success"><i class="fa fa-user"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Operator</span>
@@ -54,7 +137,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-4 col-xs-6">
             <div class="info-box">
               <span class="info-box-icon bg-success"><i class="fa fa-id-card"></i></span>
 
@@ -64,64 +147,9 @@
               </div>
             </div>
           </div>
-          @endif
-          @if(in_array(1,$modules))
-          <div class="col-lg-4 col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-info"><i class="fa fa-taxi"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">Operator</span>
-                <span class="info-box-number">54</span>
-              </div>
-            </div>
-          </div>
-          @endif
-          @if(in_array(3,$modules))
-          <div class="col-lg-4 col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-danger"><i class="fa fa-book"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">Application</span>
-                <span class="info-box-number">122</span>
-              </div>
-            </div>
-          </div>
-          @endif
-
-          @if(in_array(2,$modules))
-          <div class="col-lg-4 col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-success"><i class="fa fa-money"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">Application Fee</span>
-                <span class="info-box-number"><small>{{ Hyvikk::get("currency")}}</small> 50000</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4  col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-danger"><i class="fa fa-credit-card"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">@lang('fleet.expense')</span>
-                <span class="info-box-number"><small>{{ Hyvikk::get("currency")}}</small> {{$expense}}</span>
-              </div>
-            </div>
-          </div>
-          @endif
-
-
-          @if(Hyvikk::api('api') && Hyvikk::api('driver_review') == 1 && in_array(10,$modules))
-          <div class="col-lg-4  col-xs-6">
-            <div class="info-box">
-              <span class="info-box-icon bg-danger"><i class="fa fa-star"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">@lang('fleet.reviews')</span>
-                <span class="info-box-number">{{$reviews}}</span>
-              </div>
-            </div>
-          </div>
-          @endif
         </div>
+        @endif
+
       </div>
     </div>
   </div>

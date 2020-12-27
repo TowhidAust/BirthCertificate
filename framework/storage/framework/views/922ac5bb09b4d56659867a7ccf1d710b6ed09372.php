@@ -179,7 +179,7 @@ $(document).ready(function(){
                 <?php ($src=asset('uploads/'.Auth::user()->getMeta('driver_image'))); ?>
                 <?php endif; ?>
                 <img src="<?php echo e($src); ?>" class="img-size-50 mr-3 img-circle" alt="User Image">
-                <?php elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'): ?>
+                <?php elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'|| Auth::user()->user_type == 'A'): ?>
                   <?php if(Auth::user()->getMeta('profile_image') == null): ?>
                   <img src="<?php echo e(asset("assets/images/no-user.jpg")); ?>" class="img-size-50 mr-3 img-circle" alt="User Image">
                   <?php else: ?>
@@ -255,7 +255,7 @@ $(document).ready(function(){
                 <?php ($src=asset('uploads/'.Auth::user()->getMeta('driver_image'))); ?>
               <?php endif; ?>
             <img src="<?php echo e($src); ?>" class="img-circle elevation-2" alt="User Image">
-        <?php elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'): ?>
+        <?php elseif(Auth::user()->user_type == 'S' || Auth::user()->user_type == 'O'|| Auth::user()->user_type == 'A'): ?>
               <?php if(Auth::user()->getMeta('profile_image') == null): ?>
               <img src="<?php echo e(asset("assets/images/no-user.jpg")); ?>" class="img-circle elevation-2" alt="User Image">
               <?php else: ?>

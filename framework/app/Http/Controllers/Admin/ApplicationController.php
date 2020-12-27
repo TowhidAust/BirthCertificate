@@ -293,10 +293,18 @@ public function pending()  {
          DB::table('approvals')
             ->where('applicant_id',$id)
             ->update(['councillor' => 1]);
+        DB::table('applican_informations')
+           ->where('id',$id)
+           ->update(['status' => 'Pending']);
       }elseif(Auth::user()->user_type == "A"){
         DB::table('approvals')
            ->where('applicant_id',$id)
            ->update(['accountant' => 1]);
+
+       DB::table('applican_informations')
+          ->where('id',$id)
+          ->update(['status' => 'Pending']);
+
         DB::table('payments')
            ->where('applicant_id',$id)
            ->update(['status' => 1]);
@@ -304,6 +312,10 @@ public function pending()  {
         DB::table('approvals')
            ->where('applicant_id',$id)
            ->update(['officer' => 1]);
+
+       DB::table('applican_informations')
+          ->where('id',$id)
+          ->update(['status' => 'Pending']);
       }
       Session::flash('message', 'Approved successfully!');
      return back();
@@ -314,6 +326,9 @@ public function pending()  {
          DB::table('approvals')
             ->where('applicant_id',$request->get('applicant_id'))
             ->update(['councillor' => 2,'reason'=>$request->get('reason')]);
+         DB::table('applican_informations')
+            ->where('id',$request->get('applicant_id'))
+            ->update(['status' => 'Rejected']);
       $info=DB::table('applican_informations')
                 ->where('id',$request->get('applicant_id'))
                 ->select('number')
@@ -323,6 +338,9 @@ public function pending()  {
          DB::table('approvals')
             ->where('applicant_id',$request->get('applicant_id'))
            ->update(['accountant' => 2,'reason'=>$request->get('reason')]);
+           DB::table('applican_informations')
+              ->where('id',$request->get('applicant_id'))
+              ->update(['status' => 'Rejected']);
    $info=DB::table('applican_informations')
              ->where('id',$request->get('applicant_id'))
              ->select('number')
@@ -332,6 +350,9 @@ public function pending()  {
          DB::table('approvals')
             ->where('applicant_id',$request->get('applicant_id'))
            ->update(['officer' => 2,'reason'=>$request->get('reason')]);
+           DB::table('applican_informations')
+              ->where('id',$request->get('applicant_id'))
+              ->update(['status' => 'Rejected']);
    $info=DB::table('applican_informations')
              ->where('id',$request->get('applicant_id'))
              ->select('number')
@@ -341,6 +362,9 @@ public function pending()  {
             DB::table('approvals')
                ->where('applicant_id',$request->get('applicant_id'))
                ->update(['operator' => 2,'reason'=>$request->get('reason')]);
+               DB::table('applican_informations')
+                  ->where('id',$request->get('applicant_id'))
+                  ->update(['status' => 'Rejected']);
       $info=DB::table('applican_informations')
                 ->where('id',$request->get('applicant_id'))
                 ->select('number')

@@ -23,8 +23,6 @@ class FrontEndRequest extends FormRequest {
 			'about_description' => 'required',
 			'about_title' => 'required',
 			'faq_link' => 'nullable|url',
-			'cancellation' => 'nullable|url',
-			'terms' => 'nullable|url',
 			'privacy_policy' => 'nullable|url',
 		];
 	}

@@ -439,11 +439,20 @@ $data['data'] = Bookings::orderBy('id', 'desc')->get();
          DB::table('correction_approvals')
             ->where('correction_id',$id)
             ->update(['councillor' => 1]);
+
+      DB::table('correction_applications')
+         ->where('id',$id)
+         ->update(['status' => 'Pending']);
+
       }elseif(Auth::user()->user_type == "A"){
 
         DB::table('correction_approvals')
            ->where('correction_id',$id)
            ->update(['accountant'=> 1]);
+
+     DB::table('correction_applications')
+        ->where('id',$id)
+        ->update(['status' => 'Pending']);
         DB::table('correction_payments')
            ->where('correction_id',$id)
            ->update(['status' => 1]);
@@ -451,6 +460,10 @@ $data['data'] = Bookings::orderBy('id', 'desc')->get();
         DB::table('correction_approvals')
            ->where('correction_id',$id)
            ->update(['officer' => 1]);
+
+     DB::table('correction_applications')
+        ->where('id',$id)
+        ->update(['status' => 'Pending']);
       }
       Session::flash('message', 'Approved successfully!');
      return back();
@@ -466,6 +479,12 @@ $data['data'] = Bookings::orderBy('id', 'desc')->get();
             ->select('applican_informations.number')
             ->first();
 
+
+
+      DB::table('correction_applications')
+         ->where('id',$request->get('id'))
+         ->update(['status' => 'Rejected']);
+
   $this->sendSMS($info->number,$request->get('reason'));
     }elseif(Auth::user()->user_type=="A"){
          DB::table('approvals')
@@ -476,11 +495,17 @@ $data['data'] = Bookings::orderBy('id', 'desc')->get();
             ->where('correction_applications.id',$request->get('id'))
             ->select('applican_informations.number')
             ->first();
+            DB::table('correction_applications')
+               ->where('id',$request->get('id'))
+               ->update(['status' => 'Rejected']);
    $this->sendSMS($info->number,$request->get('reason'));
  }elseif(Auth::user()->user_type=="O"){
          DB::table('approvals')
             ->where('applicant_id',$request->get('applicant_id'))
            ->update(['officer' => 2,'reason'=>$request->get('reason')]);
+           DB::table('correction_applications')
+              ->where('id',$request->get('id'))
+              ->update(['status' => 'Rejected']);
      $info=DB::table('correction_applications')
           ->join('applican_informations','applican_informations.birth_id','correction_applications.birth_id')
             ->where('correction_applications.id',$request->get('id'))
@@ -491,6 +516,11 @@ $data['data'] = Bookings::orderBy('id', 'desc')->get();
    DB::table('correction_approvals')
       ->where('correction_id',$request->get('id'))
       ->update(['operator' => 2,'reason'=>$request->get('reason')]);
+      
+      DB::table('correction_applications')
+         ->where('id',$request->get('id'))
+         ->update(['status' => 'Rejected']);
+
 $info=DB::table('correction_applications')
      ->join('applican_informations','applican_informations.birth_id','correction_applications.birth_id')
        ->where('correction_applications.id',$request->get('id'))
@@ -702,6 +732,10 @@ $this->sendSMS($info->number,$request->get('reason'));
                 DB::table('correction_approvals')
                    ->where('correction_id',$request->get('correction_id'))
                    ->update(['operator' => 1]);
+
+                DB::table('correction_applications')
+                   ->where('id',$request->get('correction_id'))
+                   ->update(['status' => 'Completed']);
 
               Session::flash('message', 'Update successfully!');
     return back();

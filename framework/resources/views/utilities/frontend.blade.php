@@ -155,13 +155,13 @@ input:checked + .slider:before {
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              {!! Form::label('about_description', __('fleet.aboutFleetManagerDescription'), ['class' => 'form-label']) !!}
+              {!! Form::label('about_description', __('Description'), ['class' => 'form-label']) !!}
               <textarea name="about_description" class="form-control" rows="3" required>{{ Hyvikk::frontend('about_description') }}</textarea>
             </div>
           </div>
             <div class="col-md-6">
               <div class="form-group">
-              {!! Form::label('about_title',__('fleet.aboutFleetManagerTitle'), ['class' => 'form-label']) !!}
+              {!! Form::label('about_title',__('Title'), ['class' => 'form-label']) !!}
               {!! Form::text('about_title', Hyvikk::frontend('about_title') ,['class' => 'form-control','required']) !!}
             </div>
             </div>
@@ -182,30 +182,13 @@ input:checked + .slider:before {
               {!! Form::text('faq_link', Hyvikk::frontend('faq_link') ,['class' => 'form-control']) !!}
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              {!! Form::label('cities',__('fleet.cities_serving'), ['class' => 'form-label']) !!}
-              {!! Form::number('cities', Hyvikk::frontend('cities') ,['class' => 'form-control','required','min'=>0]) !!}
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              {!! Form::label('vehicles',__('fleet.vehicles_serving'), ['class' => 'form-label']) !!}
-              {!! Form::number('vehicles', Hyvikk::frontend('vehicles') ,['class' => 'form-control','required','min'=>0]) !!}
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              {!! Form::label('cancellation',__('fleet.cancellation_link'), ['class' => 'form-label']) !!}
-              {!! Form::text('cancellation', Hyvikk::frontend('cancellation') ,['class' => 'form-control']) !!}
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              {!! Form::label('terms',__('fleet.terms'), ['class' => 'form-label']) !!}
-              {!! Form::text('terms', Hyvikk::frontend('terms') ,['class' => 'form-control']) !!}
-            </div>
-          </div>
+
+          <input type="hidden" name="vehicles" value="23">
+          <input type="hidden" name="cities" value="23">
+          <input type="hidden" name="cancellation" value="dasdsad">
+          <input type="hidden" name="terms" value="dadsad">
+
+
           <div class="col-md-4">
             <div class="form-group">
               {!! Form::label('privacy_policy',__('fleet.privacy_policy'), ['class' => 'form-label']) !!}

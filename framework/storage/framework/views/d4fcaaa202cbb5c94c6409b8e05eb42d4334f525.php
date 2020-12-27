@@ -82,158 +82,94 @@
   </div>
 
   <div class="col-md-9">
-    <div class="card">
-      <div class="card-header p-2">
-        <ul class="nav nav-pills">
-          <li class="nav-item"><a class="nav-link custom_color active" href="#activity" data-toggle="tab">Pending</a></li>
-          <li class="nav-item"><a class="nav-link custom_color" href="#upcoming" data-toggle="tab">Approved</a></li>
-          <li class="nav-item"><a class="nav-link custom_color " style="color:red;" href="#rejected" data-toggle="tab">Rejected</a></li>
-
-        </ul>
+    <div class="card card-default">
+      <div class="card-header">
+        <h3 class="card-title"><?php echo app('translator')->getFromJson('fleet.dashboard'); ?></h3>
       </div>
+
       <div class="card-body">
-        <div class="tab-content">
-          <div class="active tab-pane" id="activity">
-            <h4>Pending Applications</h4>
-            <div class="table-responsive">
-              <table class="table driver_table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th> Application ID</th>
-                    <th> Name Bangla</th>
-                    <th>Name English</th>
-                    <th>Number</th>
-                    <th>Birth Date</th>
-                    <th>Gender</th>
-                    <th>Status</th>
-                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <?php $__currentLoopData = $pending_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <tr>
-                      <td><?php echo e($row->applicant_id); ?></td>
-                      <td><?php echo e($row->bangla_name); ?></td>
-                      <td><?php echo e($row->english_name); ?></td>
-                      <td><?php echo e($row->number); ?></td>
-                      <td><?php echo e($row->birth_date); ?></td>
-                      <td><?php echo e($row->gender); ?></td>
-                      <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
-                      <td> <a href="<?php echo e(url("admin/application/".$row->applicant_id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
-                    </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th> Application ID</th>
-                    <th> Name Bangla</th>
-                    <th>Name English</th>
-                    <th>Number</th>
-                    <th>Birth Date</th>
-                    <th>Gender</th>
-                    <th>Status</th>
-                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-                  </tr>
-                </tfoot>
-              </table>
+        <h4>Applications</h4>
+        <div class="row">
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Application</span>
+                <span class="info-box-number"><?php echo e($total_application); ?></span>
+              </div>
             </div>
           </div>
 
-          <div class="tab-pane" id="upcoming">
-            <h4>Approved Applican</h4>
-            <div class="table-responsive">
-              <table class="table driver_table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <tr>
-                      <th> Application ID</th>
-                      <th> Name Bangla</th>
-                      <th>Name English</th>
-                      <th>Number</th>
-                      <th>Birth Date</th>
-                      <th>Gender</th>
-                      <th>Status</th>
-                      <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $__currentLoopData = $approved_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <tr>
-                      <td><?php echo e($row->applicant_id); ?></td>
-                      <td><?php echo e($row->bangla_name); ?></td>
-                      <td><?php echo e($row->english_name); ?></td>
-                      <td><?php echo e($row->number); ?></td>
-                      <td><?php echo e($row->birth_date); ?></td>
-                      <td><?php echo e($row->gender); ?></td>
-                      <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
-                      <td> <a href="<?php echo e(url("admin/application/".$row->applicant_id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
-                    </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </tbody>  <tfoot>
-                    <tr>
-                      <th> Application ID</th>
-                      <th> Name Bangla</th>
-                      <th>Name English</th>
-                      <th>Number</th>
-                      <th>Birth Date</th>
-                      <th>Gender</th>
-                      <th>Status</th>
-                      <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-                    </tr>
-                  </tfoot>
-              </table>
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Pending</span>
+                <span class="info-box-number"><?php echo e($pending); ?></span>
+              </div>
             </div>
           </div>
-          <div class="tab-pane" id="rejected">
-            <h4>Approved Applican</h4>
-            <div class="table-responsive">
-              <table class="table driver_table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th> Application ID</th>
-                    <th> Name Bangla</th>
-                    <th>Name English</th>
-                    <th>Number</th>
-                    <th>Birth Date</th>
-                    <th>Gender</th>
-                    <th>Reason</th>
-                    <th>Status</th>
-                    <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <?php $__currentLoopData = $rejected_applican_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <tr>
-
-                      <td><?php echo e($row->applicant_id); ?></td>
-                      <td><?php echo e($row->bangla_name); ?></td>
-                      <td><?php echo e($row->english_name); ?></td>
-                      <td><?php echo e($row->number); ?></td>
-                      <td><?php echo e($row->birth_date); ?></td>
-                      <td><?php echo e($row->gender); ?></td>
-                      <td><?php echo e($row->reason); ?></td>
-                      <td><span class="badge badge-secondary"><?php echo e($row->status); ?></span></td>
-                      <td> <a href="<?php echo e(url("admin/application/".$row->applicant_id."/view")); ?>"><button type="button" class="btn btn-info" name="View">View</button></a>  </td>
-                    </tr>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </tbody>
-                 <tfoot>
-                   <tr>
-                     <th> Application ID</th>
-                     <th> Name Bangla</th>
-                     <th>Name English</th>
-                     <th>Number</th>
-                     <th>Birth Date</th>
-                     <th>Gender</th>
-                     <th>Reason</th>
-                     <th>Status</th>
-                     <th><?php echo app('translator')->getFromJson('fleet.action'); ?></th>
-                   </tr>
-                  </tfoot>
-              </table>
+          <div class="col-lg-3  col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Completed</span>
+                <span class="info-box-number"> <?php echo e($completed); ?></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fa fa-book"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Rejected</span>
+                <span class="info-box-number"><?php echo e($rejected); ?></span>
+              </div>
             </div>
           </div>
         </div>
+        <h4>Corrections</h4>
+        <div class="row">
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Total Corrections</span>
+                <span class="info-box-number"><?php echo e($total_application_correction); ?></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Pending</span>
+                <span class="info-box-number"><?php echo e($pending_correction); ?></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3  col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Completed</span>
+                <span class="info-box-number"> <?php echo e($completed_correction); ?></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-xs-6">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fa fa-file"></i></span>
+              <div class="info-box-content">
+                <span class="info-box-text">Rejected</span>
+                <span class="info-box-number"><?php echo e($rejected_correction); ?></span>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+
       </div>
     </div>
   </div>
