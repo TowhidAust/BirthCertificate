@@ -391,7 +391,8 @@ public function pending()  {
                    ->where('id',$request->get('applicant_id'))
                    ->select('number','english_name')
                    ->first();
-         $message='Dear '.$info->english_name.' Your application has been completed. Your birth certificate ID : '.$request->get('birth_id').'Thank You';
+         $message='Dear '.$info->english_name.' Your application has been completed. Your birth certificate ID : '.$request->get('birth_id').'
+         Thank You';
          $this->sendSMS($info->number,$message);
          Session::flash('complete', 'Application has Completed successfully!');
          return back();

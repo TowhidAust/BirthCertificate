@@ -16,6 +16,7 @@ class ApplicationController extends Controller {
 		// applicant info
 		$number = $request->get('number');
 		$bangla_name=$request->get('bangla_name');
+		$english_name=$request->get('english_name');
 		DB::table('applican_informations')
 						->insert(
 						['applican_name' => $request->get('applican_name'),
@@ -197,7 +198,7 @@ class ApplicationController extends Controller {
 							);
 
 	   Session::put(['id' => $applicant_id]);
-		  $this->sendSMS($number,$applicant_id,$bangla_name);
+		  $this->sendSMS($number,$applicant_id,$english_name);
 		 return redirect()->route('application_update');
 	}
 	public function application_update(){
@@ -220,6 +221,7 @@ class ApplicationController extends Controller {
 									'applican_informations.status',
 									'applican_informations.applican_name',
 									'wards.name as ward_name',
+									'wards.id as ward_id',
 									'applican_informations.bangla_name',
 									'applican_informations.image',
 									'applican_informations.english_name',
@@ -297,6 +299,8 @@ class ApplicationController extends Controller {
 	 return view('frontend.application_form_update',$data);
 	}
 	public function application_complete(Request $request){
+		date_default_timezone_set('Asia/Dhaka');
+   $datatime  = date( 'Y-m-d G:i:s', time () );
 		DB::table('applican_informations')
 						->where('id',$request->get('applicant_id'))
 						->update(
@@ -306,6 +310,7 @@ class ApplicationController extends Controller {
 						 'birth_date' => $request->get('birth_date'),
 						 'number' =>$request->get('number'),
 						 'gender' =>$request->get('gender'),
+						 'created_at' =>$datatime,
 						 'sons_position' => $request->get('sons_position')]
 						);
 						DB::table('parents')
@@ -403,10 +408,13 @@ class ApplicationController extends Controller {
 	// public function application_update(Request $request){
 	// 	return $request->all();
 	// }
-	private function sendSMS($number,$applicant_id,$bangla_name){
+	private function sendSMS($number,$applicant_id,$english_name){
 		// start sms code by saif
          $url = "http://66.45.237.70/api.php";
-         $text='Dear '.$bangla_name.' your enrollment ID : '.$applicant_id.'Thank You';
+				 $text='Dear '.$english_name.'Your application has successfully submitted.
+Your enrollment ID:'.$applicant_id.'
+Thank You
+Barishal City Corporation';
          $data= array(
          'username'=>"01712874257",
          'password'=>"rioleafbd",

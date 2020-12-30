@@ -12,8 +12,8 @@
 @endsection
 
 @section("breadcrumb")
-<li class="breadcrumb-item"><a href="{{ route("drivers.index")}}">@lang('fleet.drivers')</a></li>
-<li class="breadcrumb-item active">@lang('fleet.edit_driver')</li>
+<li class="breadcrumb-item"><a href="{{ route("drivers.index")}}">Councillor Edit</a></li>
+<li class="breadcrumb-item active">Councillor Edit</li>
 
 @endsection
 @section('content')
@@ -21,7 +21,7 @@
   <div class="col-md-12">
     <div class="card card-warning">
       <div class="card-header">
-        <h3 class="card-title">@lang('fleet.edit_driver')</h3>
+        <h3 class="card-title">Councillor Edit</h3>
       </div>
 
       <div class="card-body">

@@ -42,6 +42,9 @@ class CorrectionController extends Controller {
 		// $ward_id = Request::old('ward_id');
 	 // dd($request->all());
 		// applicant info
+		date_default_timezone_set('Asia/Dhaka');
+	 $datatime  = date( 'Y-m-d G:i:s', time () );
+		$name=$request->get('name');
 		DB::table('correction_applications')
 						->insert(
 						['birth_id' => $request->get('birth_id'),
@@ -51,6 +54,7 @@ class CorrectionController extends Controller {
 						 'applicant_name' => $request->get('applicant_name'),
 						 'relation' => $request->get('relation'),
 						 'sign' => $request->get('sign'),
+						 'created_at' => $datatime,
 						 'birth_date' => $request->get('birth_date')]
 						);
 
@@ -119,14 +123,27 @@ class CorrectionController extends Controller {
 			// 				->insert(
 			// 				['applicant_id' =>$correction_id]
 			// 				);
-		// $this->sendSMS($number,$correction_id,$bangla_name);
+
+			$info=DB::table('correction_applications')
+	 				->join('applican_informations','applican_informations.birth_id','correction_applications.birth_id')
+	 					->where('correction_applications.id',$correction_id)
+	 					->select('applican_informations.number')
+	 					->first();
+// dd($info);
+    if($info){
+		$this->sendSMS($info->number,$correction_id,$name);
+		}
 		Session::flash('message', 'Your application send successfully!');
+
 		return back();
 	}
-	private function sendSMS($number,$correction_id,$bangla_name){
+	private function sendSMS($number,$correction_id,$name){
 		// start sms code by saif
          $url = "http://66.45.237.70/api.php";
-         $text='Dear '.$bangla_name.' your enrollment ID : '.$correction_id.'Thank You';
+				 $text='Dear '.$name.'Your correction has successfully submitted.
+Your correction ID:'.$correction_id.'
+Thank You
+Barishal City Corporation';
          $data= array(
          'username'=>"01712874257",
          'password'=>"rioleafbd",

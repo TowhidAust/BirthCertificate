@@ -21,7 +21,7 @@
         </div>
 
         <div class="UploadImage">
-          <h6 class="mt-3"> আপনার ছবি সিলেক্ট করুন</h6>
+          <h6 class="mt-3"> আপনার ছবি নির্বাচন করুন</h6>
           <input type='file' name="image" id="imgInp" value="<?php echo e(asset('assets/images/user.png')); ?>" />
         </div>
 
@@ -305,14 +305,15 @@
             <div class="mt-3 p-3">
             <h3>আবেদনকারীর প্রত্যয়ন (নিবন্ধনকারী ব্যাক্তি ১৮ বছরের নিম্নে বয়স্ক হলে তাহার পিতা বা মাতা বা আইনানুগ অভিভাবক বা বিধি ৯ মতে ক্ষমতাপ্রাপ্ত ব্যক্তি) নিম্নে প্রত্যয়নপূর্বক সাক্ষর/ টিপসহি প্রদান করিবেনঃ</h3>
 
-            <label class="mt-3" for=""> নামঃ </label><span class="red">*</span>
-            <input class="form-control" name="name" type="text" required>
+            <label class="mt-3" for=""> নামঃ </label>
+            <input class="form-control" name="name" type="text" >
 
-            <label class="mt-3" for=""> ঠিকানাঃ </label><span class="red">*</span>
-            <input class="form-control" name="address" type="text" required>
+            <label class="mt-3" for=""> ঠিকানাঃ </label>
+            <input class="form-control" name="address" type="text">
 
-            <label class="mt-3" for=""> নিবন্ধনকারী ব্যক্তির সহিত সম্পর্কঃ </label><span class="red">*</span>
-            <select class="form-control" name="relation" required>
+            <label class="mt-3" for=""> নিবন্ধনকারী ব্যক্তির সহিত সম্পর্কঃ </label>
+            <select class="form-control" name="relation">
+              <option value="">নির্বাচন করুন</option>
               <option value="পিতা">পিতা</option>
               <option value="মাতা">মাতা</option>
               <option value="নিজ">নিজ</option>

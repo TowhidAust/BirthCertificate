@@ -151,11 +151,7 @@
               <input type="submit"  class="form-control btn btn-success"  value="@lang('fleet.save')" />
             </div>
           </div>
-          <div class="col-md-2">
-            <div class="form-group">
-              <button type="button" data-toggle="modal" data-target="#myModal"  class="form-control btn btn-danger">@lang('fleet.clear_database')</button>
-            </div>
-          </div>
+
         </div>
       </div>
       {!! Form::close()!!}

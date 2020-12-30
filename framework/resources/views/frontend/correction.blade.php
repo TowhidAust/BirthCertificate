@@ -45,7 +45,7 @@
 
           </div>
           <div class="col-md-6 dashed">
-            <label for=""> জন্ম/মৃত্যু নিবন্ধনের তারিখঃ   </label><span class="red">*</span>
+            <label for=""> জন্ম/মৃত্যু নিবন্ধনের তারিখঃ   </label>
             <input class="form-control" type="date" name="application_date" value="{{ old('application_date') }}">
 
             <label class="mt-3" for=""> জন্ম/মৃত্যু তারিখঃ  </label><span class="red">*</span>

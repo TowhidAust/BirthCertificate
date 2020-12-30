@@ -16,6 +16,7 @@
          <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Division : {{$data->applican_name}}  </p>
          <p class="text-muted well well-sm " style="margin-top: 10px;">  Application Ward : {{$data->ward_name}}  </p>
          <select class="form-control" name="ward_name" style="width:50%">
+          <option value="{{$data->ward_id}}">{{$data->ward_name}}</option>
            @foreach($wards as $row)
            <option value="{{$row->id}}">{{$row->name}}</option>
            @endforeach

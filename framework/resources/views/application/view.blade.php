@@ -224,7 +224,6 @@
   <div class="row">
     <div class="col-xs-12">
       @if(Auth::user()->user_type == "D"&&$approve->councillor!='1')
-      <a href="{{url('admin/print/'.$id)}}" target="_blank" class="btn btn-warning"><i class="fa fa-print"></i> @lang('fleet.print')</a>
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
       <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       @elseif(Auth::user()->user_type == "A"&&$approve->accountant!='1')
@@ -234,8 +233,7 @@
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
       <a href="{{url('admin/application/'.$data->applicant_id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       @elseif(Auth::user()->user_type == "OP"&&$approve->operator!='1')
-      <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
-      <button data-toggle="modal" data-target="#complete" class="btn btn-success"><i class="fa fa-send"></i> Approve</button>
+      <button data-toggle="modal" data-target="#complete" class="btn btn-success"><i class="fa fa-send"></i> Complete</button>
       @endif
 
   </div>

@@ -11,8 +11,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection("breadcrumb"); ?>
-<li class="breadcrumb-item"><a href="<?php echo e(route("drivers.index")); ?>"><?php echo app('translator')->getFromJson('fleet.drivers'); ?></a></li>
-<li class="breadcrumb-item active"><?php echo app('translator')->getFromJson('fleet.edit_driver'); ?></li>
+<li class="breadcrumb-item"><a href="<?php echo e(route("drivers.index")); ?>">Councillor Edit</a></li>
+<li class="breadcrumb-item active">Councillor Edit</li>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
@@ -20,7 +20,7 @@
   <div class="col-md-12">
     <div class="card card-warning">
       <div class="card-header">
-        <h3 class="card-title"><?php echo app('translator')->getFromJson('fleet.edit_driver'); ?></h3>
+        <h3 class="card-title">Councillor Edit</h3>
       </div>
 
       <div class="card-body">

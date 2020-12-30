@@ -14,7 +14,7 @@
 
       </div>
       <div class="">
-          <a  class="btn btn-primary" style="float:right;" href="#">Download</a>
+          <a  class="btn btn-primary" style="float:right;" href="<?php echo e(asset('pdf/user_manual.pdf')); ?>">User Manual</a>
       </div>
     </div>
   </nav>

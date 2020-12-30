@@ -123,8 +123,7 @@
       <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
       <a href="{{url('admin/correction/'.$id.'/approve')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
       @elseif(Auth::user()->user_type == "OP"&&$approve->operator!='1')
-      <button data-toggle="modal" data-target="#import" class="btn btn-danger"><i class="fa fa-undo"></i> @lang('Reject')</button>
-        <a href="{{url('admin/correction/'.$id.'/complete')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i> Approve</a>
+        <a href="{{url('admin/correction/'.$id.'/complete')}}" target="_blank" class="btn btn-success"><i class="fa fa-send"></i>Complete</a>
       @endif
 
   </div>

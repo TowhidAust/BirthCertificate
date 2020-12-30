@@ -139,7 +139,7 @@
 
        <div class="row">
        <div class="col-xs-12">
-           <button style="float:right;" class="btn btn-success"><i class="fa fa-edit"></i> Submit</button>
+           <button style="float:right;" class="btn btn-success"><i class="fa fa-edit"></i>Final Submission </button>
 
 
        </div>

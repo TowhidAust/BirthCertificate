@@ -8,26 +8,21 @@
                 <div class="col-md-12">
 
                     <div class="contactInfo">
-                        <h3>CONTACT US</h3>
+                        <h3>যোগাযোগ</</h3>
                         <hr>
 <h4>বরিশাল সিটি কর্পোরেশন </h4>
+<p>নগর ভবন</p>
 
-                    
                         <div class="contactInner">
-                            <div class="location">
-                                <i class="fas fa-location-arrow"></i>
-                                <span></span>
-                                <span></span>
-                            </div>
 
                             <div class="email">
 
                                 <i class="fas fa-envelope"></i>
-                                <span></span>
+                                <span>contact@barisalcity.gov.bd</span>
                             </div>
                             <div class="phone">
                                 <i class="fas fa-phone"></i>
-                                <span></span>
+                                <span>+৮৮-০৪৩১-৬৩০৪১</span>
                             </div>
                         </div>
 
